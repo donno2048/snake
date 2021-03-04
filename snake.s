@@ -1,4 +1,3 @@
-		bits 16
 		org 100h
 section .text
 		call hide_cursor
