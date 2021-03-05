@@ -1,9 +1,92 @@
 		org 100h
-section .text
-		call hide_cursor
 	start:
-		call start_playing
-		call show_game_over
+		mov ax, 0
+		mov word [score], ax
+		mov byte [is_game_over], al
+		mov al, 8
+		mov byte [snake_direction], al
+		mov al, 40
+		mov byte [snake_head_x], al
+		mov byte [snake_head_previous_x], al
+		mov byte [snake_tail_previous_x], al
+		mov byte [snake_tail_x], al
+		mov al, 15
+		mov byte [snake_head_y], al
+		mov byte [snake_head_previous_y], al
+		mov byte [snake_tail_y], al
+		mov byte [snake_tail_previous_y], al
+		mov bx, 0
+	.next:	
+		mov byte [buffer + bx], ' '
+		inc bx
+		cmp bx, 2000
+		jnz .next
+		mov di, 0
+	.next_x:
+		mov byte [buffer + di], 255
+		mov byte [buffer + 80 + di], 196
+		mov byte [buffer + 1920 + di], 196
+		inc di
+		cmp di, 80
+		jnz .next_x
+		mov di, 0
+	.next_y:
+		mov byte [buffer + 80 + di], 179
+		mov byte [buffer + 159 + di], 179
+		add di,80
+		cmp di, 2000
+		jnz .next_y
+	.corners:
+		mov byte [buffer + 80], 218
+		mov byte [buffer + 159], 191
+		mov byte [buffer + 1920], 192
+		mov byte [buffer + 1999], 217
+		mov cx, 10
+	.again:
+		push cx
+		call create_food
+		pop cx
+		loop .again
+	.main_loop:
+		mov si, 2
+		call sleep
+		call update_snake_direction
+		mov al, [snake_head_y]
+		mov byte [snake_head_previous_y], al
+		mov al, [snake_head_x]
+		mov byte [snake_head_previous_x], al
+		mov ah, [snake_direction]
+		cmp ah, 8
+		jz .up
+		cmp ah, 4
+		jz .down
+		cmp ah, 2
+		jz .left
+		cmp ah, 1
+		jz .right
+	.up:
+		dec word [snake_head_y]
+		jmp .end
+	.down:
+		inc word [snake_head_y]
+		jmp .end
+	.left:
+		dec word [snake_head_x]
+		jmp .end
+	.right:
+		inc word [snake_head_x]
+	.end:
+		mov bl, [snake_direction]
+		mov ch, 0
+		mov cl, [snake_head_previous_x]
+		mov dl, [snake_head_previous_y]
+		call buffer_write
+		call check_snake_new_position
+		call print_score
+		call buffer_render
+		mov al, [is_game_over]
+		cmp al, 0
+		jz .main_loop
 		jmp start
 	sleep:
 			mov ah, 0
@@ -15,13 +98,6 @@ section .text
 			sub dx, bx
 			cmp dx, si
 			jl .wait
-			ret
-	hide_cursor:
-			mov ah, 02h
-			mov bh, 0
-			mov dh, 25
-			mov dl, 0
-			int 10h
 			ret
 	clear_keyboard_buffer:
 			mov ah, 1
@@ -35,14 +111,6 @@ section .text
 	exit_process:
 			mov ah, 4ch
 			int 21h
-			ret
-	buffer_clear:
-			mov bx, 0
-		.next:	
-			mov byte [buffer + bx], ' '
-			inc bx
-			cmp bx, 2000
-			jnz .next
 			ret
 	buffer_write:
 		mov di, buffer
@@ -123,8 +191,6 @@ section .text
 			jz .end
 			mov ah, 0h
 			int 16h
-			cmp al, 27
-			jz exit_process
 			cmp ah, 48h
 			jz .up
 			cmp ah, 50h
@@ -147,38 +213,6 @@ section .text
 			mov byte [snake_direction], 1
 			jmp update_snake_direction
 		.end:
-			ret
-	update_snake_head:
-			mov al, [snake_head_y]
-			mov byte [snake_head_previous_y], al
-			mov al, [snake_head_x]
-			mov byte [snake_head_previous_x], al
-			mov ah, [snake_direction]
-			cmp ah, 8
-			jz .up
-			cmp ah, 4
-			jz .down
-			cmp ah, 2
-			jz .left
-			cmp ah, 1
-			jz .right
-		.up:
-			dec word [snake_head_y]
-			jmp .end
-		.down:
-			inc word [snake_head_y]
-			jmp .end
-		.left:
-			dec word [snake_head_x]
-			jmp .end
-		.right:
-			inc word [snake_head_x]
-		.end:
-			mov bl, [snake_direction]
-			mov ch, 0
-			mov cl, [snake_head_previous_x]
-			mov dl, [snake_head_previous_y]
-			call buffer_write
 			ret
 	check_snake_new_position:
 			mov ch, 0
@@ -251,13 +285,6 @@ section .text
 			mov dl, [snake_tail_previous_y]
 			call buffer_write
 		ret
-	create_initial_foods:
-			mov cx, 10
-		.again:
-			push cx
-			call create_food
-			pop cx
-			loop .again
 	create_food:
 		.try_again:
 			mov ah, 0
@@ -277,83 +304,6 @@ section .text
 			jnz .try_again
 			mov byte [di + bx], '*'
 			ret
-	reset:
-			mov ax, 0
-			mov word [score], ax
-			mov byte [is_game_over], al
-			mov al, 8
-			mov byte [snake_direction], al
-			mov al, 40
-			mov byte [snake_head_x], al
-			mov byte [snake_head_previous_x], al
-			mov byte [snake_tail_previous_x], al
-			mov byte [snake_tail_x], al
-			mov al, 15
-			mov byte [snake_head_y], al
-			mov byte [snake_head_previous_y], al
-			mov byte [snake_tail_y], al
-			mov byte [snake_tail_previous_y], al
-			ret
-	start_playing:
-			call reset		
-			call buffer_clear
-			call draw_border
-			call create_initial_foods
-		.main_loop:
-			mov si, 2
-			call sleep
-			call update_snake_direction
-			call update_snake_head
-			call check_snake_new_position
-			call print_score
-			call buffer_render
-			mov al, [is_game_over]
-			cmp al, 0
-			jz .main_loop
-			ret
-	draw_border:
-			mov di, 0
-		.next_x:
-			mov byte [buffer + di], 255
-			mov byte [buffer + 80 + di], 196
-			mov byte [buffer + 1920 + di], 196
-			inc di
-			cmp di, 80
-			jnz .next_x
-			mov di, 0
-		.next_y:
-			mov byte [buffer + 80 + di], 179
-			mov byte [buffer + 159 + di], 179
-			add di,80
-			cmp di, 2000
-			jnz .next_y
-		.corners:
-			mov byte [buffer + 80], 218
-			mov byte [buffer + 159], 191
-			mov byte [buffer + 1920], 192
-			mov byte [buffer + 1999], 217
-			ret
-	show_game_over:
-			mov si, .text_1
-			mov di, 880 + 32
-			call buffer_print_string
-			mov si, .text_2
-			mov di, 960 + 32
-			call buffer_print_string
-			mov si, .text_1
-			mov di, 1040 + 32
-			call buffer_print_string
-			call buffer_render
-			mov si, 48
-			call sleep
-			call clear_keyboard_buffer
-			mov ah, 0
-			int 16h
-			ret
-		.text_1:
-			db "               ", 0
-		.text_2:
-			db "   GAME OVER   ", 0
 section .bss
 		score resw 1
 		is_game_over resb 1
