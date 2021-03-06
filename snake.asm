@@ -133,8 +133,6 @@
 			mov al, [si]
 			cmp al, 0
 			jz .end
-			mov byte [buffer + di], al
-			inc di
 			inc si
 			jmp .next
 		.end:
@@ -165,7 +163,6 @@
 			jnz .next
 			ret
 	print_score:
-			mov si, .text
 			mov di, 0
 			call buffer_print_string
 			mov ax, [score]
@@ -183,8 +180,6 @@
 			cmp ax, 0
 			jnz .next_digit
 			ret
-		.text:
-			db 0
 	update_snake_direction:
 			mov ah, 1
 			int 16h
