@@ -184,7 +184,7 @@
 			jnz .next_digit
 			ret
 		.text:
-			db " SCORE: 000000", 0
+			db 0
 	update_snake_direction:
 			mov ah, 1
 			int 16h
