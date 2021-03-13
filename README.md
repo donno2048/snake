@@ -8,6 +8,10 @@ To build and run it use:
 sudo bash ./snake.bash
 ```
 
+It is so small I could fit it into a single QR:
+
+![](snake.png)
+
 It is `657` bytes.
 
 After using `Ibsen Software aPACK` it gets to only `653` bytes.
