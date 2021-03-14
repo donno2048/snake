@@ -41,12 +41,7 @@
 		mov byte [buffer + 159], 191
 		mov byte [buffer + 1920], 192
 		mov byte [buffer + 1999], 217
-		mov cx, 10
-	.again:
-		push cx
 		call create_food
-		pop cx
-		loop .again
 	.main_loop:
 		mov si, 2
 		call sleep
