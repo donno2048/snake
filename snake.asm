@@ -44,7 +44,6 @@
 		call create_food
 	.main_loop:
 		mov si, 2
-		call sleep
 		call update_snake_direction
 		mov al, [snake_head_y]
 		mov byte [snake_head_previous_y], al
@@ -83,26 +82,6 @@
 		cmp al, 0
 		jz .main_loop
 		jmp start
-	sleep:
-			mov ah, 0
-			int 1ah
-			mov bx, dx
-		.wait:
-			mov ah, 0
-			int 1ah
-			sub dx, bx
-			cmp dx, si
-			jl .wait
-			ret
-	clear_keyboard_buffer:
-			mov ah, 1
-			int 16h
-			jz .end
-			mov ah, 0h
-			int 16h
-			jmp clear_keyboard_buffer
-		.end:
-			ret
 	exit_process:
 			mov ah, 4ch
 			int 21h
