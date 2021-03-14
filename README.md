@@ -2937,22 +2937,3 @@ EDFF150000001400F9FF250002001E00FDFF1B0007001600EEFF0F00FFFF
 FEFFECFFFDFFE1FF0B00F5FF0500F0FF04000300FFFF010000000E00FAFF
 ```
 </details>
-
-The simple C cat program is:
-```c
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-int main(int argc, char *argv[]) {
-    int size = 0;
-    for(int i = 1; i < argc; i++) size += strlen(argv[i]);
-    char *string = malloc((size + argc - 1) * sizeof(char));
-    for(int i = 1; i < argc; i++){
-        strcat(string, argv[i]);
-        strcat(string, " ");
-    }
-    puts(string);
-    return 0;
-}
-```
-and after compilation it gets to 16824 bytes
