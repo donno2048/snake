@@ -1,6 +1,6 @@
 This is a snake game in assembly made for DOSBox and Linux.
 
-You can view the online [Demo](https://donno2048.github.io/snake/).
+You can view the online [Demo](https://donno2048.github.io/snake/) (Use your arrow keys on pc or swipe on mobile).
 
 It was made in order to create the smallest "fun" game possible.
 
