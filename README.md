@@ -7,6 +7,8 @@ It was made in order to create the smallest "fun" game possible.
 To build and run it use:
 
 ```
+git clone https://github.com/donno2048/snake
+cd snake
 sudo bash ./snake.bash
 ```
 
