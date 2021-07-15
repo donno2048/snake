@@ -40,7 +40,7 @@ done
 $ts
 print_food() {
 $tc $((fy+1+oy)) $((fx+1+ox))
-printf "*"
+printf "\u25aa"
 }
 nf() {
 rf=1
