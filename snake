@@ -1,5 +1,5 @@
 #!/bin/bash
-#it's basically an executable
+#it's basically an executable modified from https://codegolf.stackexchange.com/a/26073/98993
 t=tput
 tc="$t cup"
 tr="$t rev"
