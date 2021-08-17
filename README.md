@@ -14,7 +14,11 @@ sudo bash ./snake.bash
 
 It is so small I could fit it into a single QR:
 
-![](snake.png)
+<img src="./snake.png" width="250"/>
+
+And a single [JAB](https://github.com/jabcode/jabcode):
+
+<img src="./snake2.png" width="250"/>
 
 It is `617` bytes.
 
