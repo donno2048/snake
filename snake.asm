@@ -112,13 +112,12 @@ start:
 print_food:
 	pusha
 .rand:
-	mov di, 0xAB ; FIXME: not random
+	add di, 0x3
 	; cannot use clock cycles because it's 1 so it doesn't change dramatically
 	; cannot use drivers because there aren't any
 	; cannot use rdrand, rdseed etc. because it's too slow and we're on 1 cycle
 	; cannot use garbage memory because it's all set to zero on dosbox
-	cmp di, 0x0 ; overflow protection - we won't remove the add on line 133 even though we use that because then the mod calculation will be too long
-	jl .rand
+	and di, 0xfff
 	cmp di, 0x280
 	jge .rand
 	mov dx, di
