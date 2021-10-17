@@ -112,6 +112,7 @@ start:
 print_food:
 	pusha
 .rand:
+	; remove the next two lines to make it the same every game
 	mov ecx, 0xffff
 	div ecx
 	mov cx, 0xffff
@@ -130,6 +131,8 @@ print_food:
 	jge .rand
 	add di, 0xD3
 	shl di, 0x2
+	cmp byte [es:di], 0x9
+	je .rand
 	mov al, 0x7
 	stosb
 	popa
