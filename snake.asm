@@ -6,22 +6,21 @@ start:
 	mov es, ax
 	xor di, di
 	mov cx, 0x7D0
-	mov ax, 0xE20
+	mov ax, 0x220
 	pusha
 	rep stosw
-	mov ax, 0x2FE
+	mov ax, 0xFFFF
 	mov cx, 0x26
 	mov di, 0x2A8
-	mov ah, 0x77
 	rep stosw
 	mov cx, 0x11
 .draw_block:
 	stosw
 	pusha
 	mov cx, 0x29
-	xor ah, ah
+	xor ax, ax
 	rep stosw
-	mov ah, 0x77
+	mov ax, 0xFFFF
 	stosw
 	popa
 	add di, 0x9E
