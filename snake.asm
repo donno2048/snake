@@ -112,10 +112,8 @@ start:
 print_food:
 	pusha
 .rand:
-	; remove the next two lines to make it the same every game
-	mov ecx, 0xFFFF
-	div ecx
 	mov cx, 0xFFFF
+	div ecx ; remove this line to make it the same every game
 	div cx
 	mov di, dx
 	and di, 0xFFF
