@@ -1,0 +1,19 @@
+name: Update the docs
+on: [push, workflow_dispatch]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - run: |
+        nasm snake.asm -o snake.com -f bin
+        xxd -p snake.com > snake.hex
+        python update.py
+        qrencode -r snake.com -8 -o snake.png
+        rm snake.zip
+        zip snake.zip snake.com
+        git commit -m "update docs"
+        git push origin master
