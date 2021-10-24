@@ -9,11 +9,15 @@ jobs:
       with:
         python-version: '3.x'
     - run: |
+        sudo apt install qrencode nasm -y
         nasm snake.asm -o snake.com -f bin
         xxd -p snake.com > snake.hex
         python update.py
         qrencode -r snake.com -8 -o snake.png
         rm snake.zip
         zip snake.zip snake.com
+        git config --global user.email "just4now666666@gmail.com"
+        git config --global user.name "donno2048"
+        git add .
         git commit -m "update docs"
         git push origin master
