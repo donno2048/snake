@@ -113,13 +113,11 @@ print_food:
 	pusha
 .rand:
 	mov cx, 0xFFFF
-	div ecx ; remove this line to make it the same every game
-	div cx
-	mov di, dx
-	and di, 0xFFF
-	cmp di, 0x280
+	div ecx
+	and dx, 0xFFF
+	cmp dx, 0x280
 	jge .rand
-	mov dx, di
+	mov di, dx
 	add dx, 0x28
 .mod:
 	sub dx, 0x28
