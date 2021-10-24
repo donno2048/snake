@@ -36,7 +36,7 @@ It's `%i` bytes.
 
 '''
 
-hexdata = open("snake.hex").read().strip()
+hexdata = open("snake.hex").read().replace("\n", "")
 
 length = len(hexdata) // 2
 
