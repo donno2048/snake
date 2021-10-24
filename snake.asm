@@ -95,16 +95,10 @@ start:
 	add word [score], 0x1
 	mov ax, [score]
 	mov bl, 0xA
-.print_score:
 	div bl
 	xchg al, ah
 	add al, '0'
 	stosb
-	sub di, 0x3
-	mov al, ah
-	xor ah, ah
-	or al, al
-	jnz .print_score
 	call print_food
 .done:
 	pop di
