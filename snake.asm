@@ -91,14 +91,6 @@ start:
 .food:
 	inc bp
 	inc bp
-	mov di, 0x230
-	add word [score], 0x1
-	mov ax, [score]
-	mov bl, 0xA
-	div bl
-	xchg al, ah
-	add al, '0'
-	stosb
 	call print_food
 .done:
 	pop di
