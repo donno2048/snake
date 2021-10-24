@@ -20,4 +20,4 @@ jobs:
         git config --global user.name "donno2048"
         git add .
         git commit -m "update docs"
-        git push origin master
+        git push
