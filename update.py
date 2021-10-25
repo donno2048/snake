@@ -34,6 +34,8 @@ It's `%i` bytes.
 ```
 </details>
 
+You can add `32` bytes and add a score by using `git apply snake.diff`
+
 '''
 
 hexdata = open("snake.hex").read().replace("\n", "")
