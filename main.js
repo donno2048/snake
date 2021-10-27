@@ -1,7 +1,7 @@
 Dos(document.getElementById("jsdos"), { cycles: 1, autolock: true, onprogress: (stage, total, loaded) => {document.getElementById("Bar").style.width = Math.floor(loaded * 99 / total) + "%"}}).ready((fs, main) => {
     fs.extract("snake.zip").then(() => {
         document.getElementById("Bar").style.height = "0px";
-        main(["-c", "cls", "-c", "snake"]).then((ci) => {
+        main(["-c", "snake"]).then((ci) => {
             window.ci = ci;
             swipedetect(document.getElementById("jsdos"), (swipedir) => {if (swipedir) ci.simulateKeyPress(36 + swipedir);})
         })
