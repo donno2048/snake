@@ -14,7 +14,7 @@ sudo apt install dosbox nasm -y
 git clone https://github.com/donno2048/snake
 cd snake
 nasm snake.asm -o snake.com -f bin
-dosbox -c "cycles 1" -c "mount c ." -c "c:" -c "cls" -c "snake"
+dosbox -c "cycles 1" -c "mount c ." -c "c:" -c "snake"
 ```
 
 It is so small I could fit it into a single QR:
