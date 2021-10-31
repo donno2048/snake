@@ -34,7 +34,7 @@ It's `%i` bytes.
 ```
 </details>
 
-You can add `32` bytes and add a score by using `git apply snake.diff`
+You can add `32` bytes and add a score by using uncommenting the commented lines in _snake.asm_
 
 '''
 
