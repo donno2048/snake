@@ -134,5 +134,5 @@ print_food:
 	popa
 	ret
 section .bss
-score: resd 1
+;score: resd 1
 snake:
