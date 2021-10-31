@@ -39,5 +39,5 @@ f3abb91100ab60b9290031c0f3abb8ffffab6181c79e00e2ecb92600bf
 ```
 </details>
 
-You can add `32` bytes and add a score by using `git apply snake.diff`
+You can add `32` bytes and add a score by using uncommenting the commented lines in _snake.asm_
 
