@@ -92,7 +92,7 @@ start:
 	inc bp
 	inc bp
 ;	mov di, 0x230
-;	add word [score], 0x1
+;	inc word [score]
 ;	mov ax, [score]
 ;	mov bl, 0xA
 ;.print_score:
