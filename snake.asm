@@ -15,13 +15,15 @@ start:
 	rep stosw
 	mov cx, 0x11
 .draw_block:
-	stosw
+	mov [es:di], ax
+	inc di
+	inc di
 	pusha
 	mov cx, 0x29
 	xor ax, ax
 	rep stosw
 	mov ax, 0xFFFF
-	stosw
+	mov [es:di], ax
 	popa
 	add di, 0x9E
 	loop .draw_block
@@ -57,13 +59,13 @@ start:
 .move:
 	mov al, 0x9
 	cmp byte [es:di], 0x7
-	sete ah
+	mov ah, 0x1
 	je .alive
+	mov ah, 0x0
 	cmp byte [es:di], ' '
 	jne start
 .alive:
-	stosb
-	dec di
+	mov [es:di], al
 	pusha
 	push es
 	push ds
@@ -86,7 +88,7 @@ start:
 	je .food
 	mov di, [snake+bp]
 	mov al, ' '
-	stosb
+	mov [es:di], al
 	jmp .done
 .food:
 	inc bp
@@ -99,8 +101,8 @@ start:
 ;	div bl
 ;	xchg al, ah
 ;	add al, '0'
-;	stosb
-;	sub di, 0x3
+;	mov [es:di], al
+;	sub di, 0x2
 ;	mov al, ah
 ;	xor ah, ah
 ;	or al, al
@@ -130,7 +132,7 @@ print_food:
 	cmp byte [es:di], 0x9
 	je .rand
 	mov al, 0x7
-	stosb
+	mov [es:di], al
 	popa
 	ret
 section .bss
