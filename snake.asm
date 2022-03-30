@@ -1,23 +1,29 @@
 org 0x7C00
 start:
-	mov ds, ax
-	mov ss, ax
+	push ax
+	push ax
+	pop ds
+	pop ss
 	mov ax, 0xB800
-	mov es, ax
+	push ax
+	pop es
 	xor di, di
 	mov cx, 0x7D0
 	mov ax, 0x220
 	pusha
 	rep stosw
 	mov ax, 0xFFFF
-	mov cx, 0x26
+	push 0x11
+	push 0x26
+	pop cx
 	mov di, 0x2A8
 	rep stosw
-	mov cx, 0x11
+	pop cx
 .draw_block:
 	stosw
 	pusha
-	mov cx, 0x29
+	push 0x29
+	pop cx
 	xor ax, ax
 	rep stosw
 	mov ax, 0xFFFF
@@ -25,12 +31,15 @@ start:
 	popa
 	add di, 0x9E
 	loop .draw_block
-	mov cx, 0x26
+	push 0x26
+	pop cx
 	mov di, 0xD4A
 	rep stosw
 	popa
-	mov di, cx
-	mov bp, 0x6
+	push 0x6
+	push cx
+	pop di
+	pop bp
 	call print_food
 .input:
 	in al, 0x60
@@ -66,13 +75,15 @@ start:
 	dec di
 	pusha
 	push es
+	push bp
 	push ds
 	pop es
-	mov cx, bp
+	pop cx
 	inc cx
 	mov si, snake
 	add si, bp
-	mov di, si
+	push si
+	pop di
 	inc di
 	inc di
 	std
@@ -82,8 +93,8 @@ start:
 	popa
 	push di
 	mov [snake], di
-	cmp ah, 0x1
-	je .food
+	or ah, ah
+	jnz .food
 	mov di, [snake+bp]
 	mov al, ' '
 	stosb
@@ -117,7 +128,8 @@ print_food:
 	and dx, 0xFFF
 	cmp dx, 0x280
 	jge .rand
-	mov di, dx
+	push dx
+	pop di
 	add dx, 0x28
 .mod:
 	sub dx, 0x28
