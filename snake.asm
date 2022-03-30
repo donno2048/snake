@@ -65,10 +65,10 @@ start:
 	sub di, 0xA0
 .move:
 	mov al, 0x9
-	cmp byte es:di, 0x7
+	cmp byte es:[di], 0x7
 	sete ah
 	je .alive
-	cmp byte es:di, 0x20
+	cmp byte es:[di], 0x20
 	jne start
 .alive:
 	stosb
@@ -139,7 +139,7 @@ print_food:
 	jge .rand
 	add di, 0xD3
 	shl di, 0x2
-	cmp byte es:di, 0x9
+	cmp byte es:[di], 0x9
 	je .rand
 	mov al, 0x7
 	stosb
