@@ -1,6 +1,9 @@
 ;org 0x7C00
-loop 0
 start:
+	push ax
+	push ax
+	pop ds
+	pop ss
 	mov ax, 0xB800
 	push ax
 	pop es
@@ -10,17 +13,14 @@ start:
 	pusha
 	rep stosw
 	mov ax, 0xFFFF
-	push 0x11
-	push 0x26
-	pop cx
+	mov cl, 0x26
 	mov di, 0x2A8
 	rep stosw
-	pop cx
+	mov cl, 0x11
 .draw_block:
 	stosw
 	pusha
-	push 0x29
-	pop cx
+	mov cl, 0x29
 	xor ax, ax
 	rep stosw
 	mov ax, 0xFFFF
@@ -28,8 +28,7 @@ start:
 	popa
 	add di, 0x9E
 	loop .draw_block
-	push 0x26
-	pop cx
+	mov cl, 0x26
 	mov di, 0xD4A
 	rep stosw
 	popa
@@ -62,10 +61,10 @@ start:
 	sub di, 0xA0
 .move:
 	mov al, 0x9
-	cmp byte [es:di], 0x7
+	cmp BYTE [es:di], 0x7
 	sete ah
 	je .alive
-	cmp byte [es:di], 0x20
+	cmp BYTE [es:di], 0x20
 	jne start
 .alive:
 	stosb
@@ -125,18 +124,19 @@ print_food:
 	and dx, 0xFFF
 	cmp dx, 0x280
 	jge .rand
+	push 0x28
+	push dx
 	push dx
 	pop di
-	add dx, 0x28
-.mod:
-	sub dx, 0x28
-	cmp dx, 0x28
-	jge .mod
+	pop ax
+	pop cx
+	xor dx, dx
+	div cx
 	cmp dx, 0x12
 	jge .rand
 	add di, 0xD3
 	shl di, 0x2
-	cmp byte [es:di], 0x9
+	cmp BYTE [es:di], 0x9
 	je .rand
 	mov al, 0x7
 	stosb
