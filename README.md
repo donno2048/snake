@@ -4,6 +4,8 @@ This is a snake game in assembly made for DOSBox and Linux.
 
 You can view the online [Demo](https://donno2048.github.io/snake/) (Use your arrow keys on pc or swipe on mobile).
 
+Inspired by [Can you fit a whole game into a QR code?](https://youtu.be/ExwqNreocpg)
+
 It was made in order to create the smallest "fun" game possible.
 
 To build and run it use:
