@@ -49,14 +49,11 @@ start:
 	cmp al, 0x50
 	jne .input
 .down:
-	add di, 0xA0
-	jmp .move
+	add di, 0x9C
 .right:
-	add di, 0x4
-	jmp .move
+	add di, 0x8
 .left:
-	sub di, 0x4
-	jmp .move
+	add di, 0x9C
 .up:
 	sub di, 0xA0
 .move:
