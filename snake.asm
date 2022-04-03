@@ -76,12 +76,8 @@ start:
 	pop es
 	pop cx
 	inc cx
-	mov si, snake
-	add si, bp
-	push si
-	pop di
-	inc di
-	inc di
+	lea si, [snake+bp]
+	lea di, [si+2]
 	std
 	rep movsb
 	cld
