@@ -46,8 +46,9 @@ start:
 	je .left
 	cmp al, 0x4D
 	je .right
-	cmp al, 0x50
-	jne .input
+	;uncomment to disable down is default, and make every other key to pause
+	;cmp al, 0x50
+	;jne .input
 .down:
 	add di, 0x9C
 .right:
@@ -74,7 +75,7 @@ start:
 	pop cx
 	inc cx
 	lea si, [snake+bp]
-	lea di, [si+2]
+	lea di, [si+0x2]
 	std
 	rep movsb
 	cld
