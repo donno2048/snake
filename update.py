@@ -39,10 +39,10 @@ You can add `32` bytes and add a score by uncommenting the commented lines in _s
 
 hexdata = open("snake.hex").read().replace("\n", "")
 
-length = len(hexdata) // 2
+length = len(hexdata)
 
 for div in range(int(length ** .5), 0, -1):
     if not length % div:
         break
 
-open("README.md", "w").write(README % (length, "\n".join(findall('..' * (length // div), hexdata))))
+open("README.md", "w").write(README % (length // 2, "\n".join(findall('.' * (length // div), hexdata))))
