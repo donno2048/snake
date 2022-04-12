@@ -1,7 +1,6 @@
 ;org 0x7C00
 start:
-	push ax
-	push ax
+	times 2 push ax
 	pop ds
 	pop ss
 	mov ax, 0xB800
