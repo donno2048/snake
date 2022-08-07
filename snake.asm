@@ -39,23 +39,23 @@ start:
 .input:
 	in al, 0x60
 	and al, 0x7F
-	cmp al, 0x48
-	je .up
-	cmp al, 0x4B
-	je .left
 	cmp al, 0x4D
 	je .right
+	cmp al, 0x4B
+	je .left
+	cmp al, 0x48
+	je .up
 	;uncomment to disable down is default, and make every other key to pause
 	;cmp al, 0x50
 	;jne .input
 .down:
-	add di, 0x9C
-.right:
-	add di, 0x8
-.left:
-	add di, 0x9C
+	add di, 0x140
 .up:
-	sub di, 0xA0
+	sub di, 0x9C
+.left:
+	sub di, 0x8
+.right:
+	add di, 0x4
 .move:
 	mov al, 0x9
 	cmp BYTE [es:di], 0x7
