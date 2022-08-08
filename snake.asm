@@ -38,24 +38,20 @@ start:
 	call print_food
 .input:
 	in al, 0x60
-	and al, 0x7F
-	cmp al, 0x4D
-	je .right
-	cmp al, 0x4B
-	je .left
-	cmp al, 0x48
-	je .up
-	;uncomment to disable down is default, and make every other key to pause
-	;cmp al, 0x50
-	;jne .input
-.down:
-	add di, 0x140
+	and al, 0xF
+	cmp al, 0xB
+	jge .right_left
+	or al, al
+	jnz .up
+	add di, 0x160
 .up:
-	sub di, 0x9C
-.left:
-	sub di, 0x8
-.right:
-	add di, 0x4
+	sub di, 0x90
+.right_left:
+	sub di, 0x30
+	shl al, 0x2
+	xor ah, ah
+	add di, ax
+	; add di, al
 .move:
 	mov al, 0x9
 	cmp BYTE [es:di], 0x7
