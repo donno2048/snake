@@ -39,13 +39,11 @@ start:
 .input:
 	in al, 0x60
 	and al, 0xF
+	mov bx, 0xA0
 	cmp al, 0x8
 	jle .up_down
 	mov bx, 0x4
-	jmp .skip
 .up_down:
-	mov bx, 0xA0
-.skip:
 	shr al, 0x2
 	cmp al, 0x2
 	je .minus
