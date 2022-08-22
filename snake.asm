@@ -47,8 +47,7 @@ start:
 	shr al, 0x2
 	cmp al, 0x2
 	je .minus
-	not bx
-	inc bx
+	neg bx
 .minus:
 	sub di, bx
 .move:
