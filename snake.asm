@@ -39,23 +39,20 @@ start:
 .input:
 	in al, 0x60
 	and al, 0xF
-	; al = d, b -> bx = 4    al = 8, 0 -> bx = a0
 	cmp al, 0x8
 	jle .up_down
 	mov bx, 0x4
 	jmp .skip
-	.up_down:
+.up_down:
 	mov bx, 0xA0
-	.skip:
-	; al = d, 0 -> no jump    al = b, 8 -> jump to .minus
+.skip:
 	shr al, 0x2
 	cmp al, 0x2
 	je .minus
-	.plus:
-		not bx
-		inc bx
-	.minus:
-		sub di, bx
+	not bx
+	inc bx
+.minus:
+	sub di, bx
 .move:
 	mov al, 0x9
 	cmp BYTE [es:di], 0x7
