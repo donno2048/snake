@@ -39,19 +39,23 @@ start:
 .input:
 	in al, 0x60
 	and al, 0xF
-	cmp al, 0xB
-	jge .right_left
-	or al, al
-	jnz .up
-	add di, 0x160
-.up:
-	sub di, 0x90
-.right_left:
-	sub di, 0x30
-	shl al, 0x2
-	xor ah, ah
-	add di, ax
-	; add di, al
+	; al = d, b -> bx = 4    al = 8, 0 -> bx = a0
+	cmp al, 0x8
+	jle .up_down
+	mov bx, 0x4
+	jmp .skip
+	.up_down:
+	mov bx, 0xA0
+	.skip:
+	; al = d, 0 -> no jump    al = b, 8 -> jump to .minus
+	shr al, 0x2
+	cmp al, 0x2
+	je .minus
+	.plus:
+		not bx
+		inc bx
+	.minus:
+		sub di, bx
 .move:
 	mov al, 0x9
 	cmp BYTE [es:di], 0x7
