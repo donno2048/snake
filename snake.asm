@@ -3,8 +3,7 @@ start:
 	times 2 push ax
 	pop ds
 	pop ss
-	mov ax, 0xB800
-	push ax
+	push 0xB800
 	pop es
 	xor di, di
 	mov cx, 0x7D0
