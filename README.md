@@ -47,4 +47,3 @@ e2fc0f81fa9c0f7ff1525f
 ```
 </details>
 
-You can add `32` bytes and add a score by uncommenting the commented lines in _snake.asm_
