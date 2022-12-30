@@ -1,38 +1,17 @@
-;org 0x7C00
 start:
-	times 2 push ax
-	pop ds
-	pop ss
+	push ax
+	push ax
 	push 0xB800
 	pop es
+	pop ds
+	pop ss
 	xor di, di
 	mov cx, 0x7D0
 	mov ax, 0x220
-	pusha
-	rep stosw
-	mov ax, 0xFFFF
-	mov cl, 0x26
-	mov di, 0x2A8
-	rep stosw
-	mov cl, 0x11
-.draw_block:
-	stosw
-	pusha
-	mov cl, 0x29
-	xor ax, ax
-	rep stosw
-	mov ax, 0xFFFF
-	stosw
-	popa
-	add di, 0x9E
-	loop .draw_block
-	mov cl, 0x26
-	mov di, 0xD4A
-	rep stosw
-	popa
-	push 0x6
 	push cx
+	rep stosw
 	pop di
+	push 0x6
 	pop bp
 	call print_food
 .input:
@@ -50,13 +29,16 @@ start:
 .minus:
 	sub di, bx
 .move:
-	mov al, 0x9
+	cmp BYTE [es:di], 0x9
+	je start
+	cmp di, 0xF9C
+	jg start
+	cmp di, 0x0
+	jl start
+.alive:
 	cmp BYTE [es:di], 0x7
 	sete ah
-	je .alive
-	cmp BYTE [es:di], 0x20
-	jne start
-.alive:
+	mov al, 0x9
 	stosb
 	dec di
 	pusha
@@ -84,20 +66,6 @@ start:
 .food:
 	inc bp
 	inc bp
-;	mov di, 0x230
-;	inc word [score]
-;	mov ax, [score]
-;	mov bl, 0xA
-;.print_score:
-;	div bl
-;	xchg al, ah
-;	add al, '0'
-;	stosb
-;	sub di, 0x3
-;	mov al, ah
-;	xor ah, ah
-;	or al, al
-;	jnz .print_score
 	call print_food
 .done:
 	pop di
@@ -106,22 +74,12 @@ print_food:
 	pusha
 .rand:
 	mov cx, 0xFFFF
-	div ecx
-	and dx, 0xFFF
-	cmp dx, 0x280
-	jge .rand
-	push 0x28
-	push dx
+	div cx
+	and dx, 0xFFC
+	cmp dx, 0xF9C
+	jg .rand
 	push dx
 	pop di
-	pop ax
-	pop cx
-	xor dx, dx
-	div cx
-	cmp dx, 0x12
-	jge .rand
-	add di, 0xD3
-	shl di, 0x2
 	cmp BYTE [es:di], 0x9
 	je .rand
 	mov al, 0x7
@@ -129,5 +87,4 @@ print_food:
 	popa
 	ret
 section .bss
-;score: resd 1
 snake:
