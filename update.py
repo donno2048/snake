@@ -36,7 +36,6 @@ It's `%i` bytes.
 ```
 </details>
 
-You can add `32` bytes and add a score by uncommenting the commented lines in _snake.asm_
 '''
 
 hexdata = open("snake.hex").read().replace("\n", "")
