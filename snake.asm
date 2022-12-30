@@ -20,7 +20,7 @@ start:
 	mov bx, 0xA0
 	cmp al, 0x8
 	jle .up_down
-	mov bx, 0x4
+	mov bl, 0x4
 .up_down:
 	shr al, 0x2
 	cmp al, 0x2
