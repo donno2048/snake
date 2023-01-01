@@ -25,14 +25,19 @@ start:
 	neg bx
 .minus:
 	sub di, bx
-.move:
 	cmp BYTE [es:di], 0x9
 	je start
+	lea ax, [di+bx]
+	xor ax, di
+	shl al, 0x2 ; 0x1 for divisibility by 16
+	cmp al, 0xf0 ; 0xf8 for divisibility by 16
+	jne .out ; if the biggest is divisible by 8 check for divisibility by 5
+	; TODO check for divisibility by 5 for bigger
+.out:
 	cmp di, 0xF9C
 	jg start
 	cmp di, 0x0
 	jl start
-.alive:
 	cmp BYTE [es:di], 0x7
 	sete ah
 	mov al, 0x9
