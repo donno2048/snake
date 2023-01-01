@@ -5,12 +5,9 @@ start:
 	pop es
 	pop ds
 	pop ss
-	xor di, di
-	mov cx, 0x7D0
-	mov ax, 0x220
-	push cx
-	rep stosw
-	pop di
+	mov al, 0x3
+	int 16
+	mov di, 0x7D0
 	push 0x6
 	pop bp
 	call print_food
