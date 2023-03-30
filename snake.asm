@@ -1,4 +1,5 @@
 start:
+        xor ax, ax
 	push 0xB800
 	pop es
 	mov ds, ax
