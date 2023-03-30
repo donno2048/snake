@@ -1,15 +1,13 @@
 start:
-	push ax
-	push ax
+        xor ax, ax
 	push 0xB800
 	pop es
-	pop ds
-	pop ss
+	mov ds, ax
+	mov ss, ax
 	mov al, 0x3
-	int 16
+	int 0x10
 	mov di, 0x7D0
-	push 0x6
-	pop bp
+	mov bp, 0x6
 	call print_food
 .input:
 	in al, 0x60
@@ -25,14 +23,12 @@ start:
 	neg bx
 .minus:
 	sub di, bx
-.move:
 	cmp BYTE [es:di], 0x9
 	je start
 	cmp di, 0xF9C
 	jg start
 	cmp di, 0x0
 	jl start
-.alive:
 	cmp BYTE [es:di], 0x7
 	sete ah
 	mov al, 0x9
@@ -40,23 +36,21 @@ start:
 	dec di
 	pusha
 	push es
-	push bp
 	push ds
 	pop es
-	pop cx
-	inc cx
-	lea si, [snake+bp]
-	lea di, [si+0x2]
+	mov si, bp
+	lea cx, [bp+0x1]
+	lea di, [bp+0x2]
 	std
 	rep movsb
 	cld
 	pop es
 	popa
 	push di
-	mov [snake], di
+	mov [0], di
 	or ah, ah
 	jnz .food
-	mov di, [snake+bp]
+	mov di, [bp]
 	mov al, 0x20
 	stosb
 	jmp .done
@@ -75,13 +69,10 @@ print_food:
 	and dx, 0xFFC
 	cmp dx, 0xF9C
 	jg .rand
-	push dx
-	pop di
+	mov di, dx
 	cmp BYTE [es:di], 0x9
 	je .rand
 	mov al, 0x7
 	stosb
 	popa
 	ret
-section .bss
-snake:
