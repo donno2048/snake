@@ -37,9 +37,9 @@ start:
 	push es
 	push ds
 	pop es
-	lea cx, [bp+0x1]
 	mov si, bp
-	lea di, [si+0x2]
+	lea cx, [bp+0x1]
+	lea di, [bp+0x2]
 	std
 	rep movsb
 	cld
