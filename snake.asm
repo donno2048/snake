@@ -1,9 +1,8 @@
+mov ds, ax
+mov ss, ax
 start:
-        xor ax, ax
 	push 0xB800
 	pop es
-	mov ds, ax
-	mov ss, ax
 	mov al, 0x3
 	int 0x10
 	mov di, 0x7D0
