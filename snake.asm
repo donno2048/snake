@@ -26,7 +26,7 @@ start:
 	je start
 	cmp di, 0xF9C
 	jg start
-	cmp di, 0x0
+	cmp di, BYTE 0x0
 	jl start
 	sar bx, 0x1
 	lea ax, [di + bx + 0x2]
@@ -58,14 +58,13 @@ start:
 	mov di, [bp]
 	mov al, 0x20
 	stosb
-	jmp .done
+	jmp SHORT .done
 .food:
-	inc bp
-	inc bp
+	times 2 inc bp
 	call print_food
 .done:
 	pop di
-	jmp .input
+	jmp SHORT .input
 print_food:
 	pusha
 .rand:
