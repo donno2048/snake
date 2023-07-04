@@ -28,6 +28,12 @@ start:
 	jg start
 	cmp di, 0x0
 	jl start
+	sar bx, 0x1
+	lea ax, [di + bx + 0x2]
+	mov cl, 0xA0
+	div cl
+	cmp ah, 0x0
+	je start
 	cmp BYTE [es:di], 0x7
 	sete ah
 	mov al, 0x9
