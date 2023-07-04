@@ -68,8 +68,8 @@ start:
 print_food:
 	pusha
 .rand:
-	mov cx, 0xFFFF
-	div cx
+	add di, dx
+	div di
 	and dx, 0xFFC
 	cmp dx, 0xF9C
 	jg .rand
