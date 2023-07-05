@@ -26,8 +26,8 @@ start:
 	je start
 	cmp di, 0xF9C
 	jg start
-	cmp di, BYTE 0x0
-	jl start
+	test di, di
+	js start
 	sar bx, 0x1
 	lea ax, [di+bx+0x2]
 	mov cl, 0xA0
