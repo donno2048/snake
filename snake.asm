@@ -6,7 +6,7 @@ start:
 	mov al, 0x3
 	int 0x10
 	mov di, 0x7D0
-	mov bp, 0x6
+	mov bp, 0x4
 	call print_food
 .input:
 	in al, 0x60
@@ -32,8 +32,8 @@ start:
 	lea ax, [di+bx+0x2]
 	mov cl, 0xA0
 	div cl
-	cmp ah, 0x0
-	je start
+	test ah, ah
+	jz start
 	cmp BYTE [es:di], 0x7
 	sete ah
 	mov al, 0x9
