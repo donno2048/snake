@@ -1,3 +1,4 @@
+std
 push 0xB800
 pop es
 start:
@@ -20,8 +21,6 @@ start:
 	neg bx
 .minus:
 	sub di, bx
-	cmp BYTE [es:di], 0x9
-	je start
 	cmp di, 0xF9C
 	jg start
 	test di, di
@@ -32,11 +31,14 @@ start:
 	div cl
 	test ah, ah
 	jz start
+	mov ax, 0x9
+	scasb
+	je start
+	inc di
 	cmp BYTE [es:di], 0x7
 	sete ah
-	mov al, 0x9
 	stosb
-	dec di
+	inc di
 	pusha
 	push es
 	push ds
@@ -44,9 +46,7 @@ start:
 	mov si, bp
 	lea cx, [bp+0x1]
 	lea di, [bp+0x2]
-	std
 	rep movsb
-	cld
 	pop es
 	popa
 	push di
@@ -72,8 +72,10 @@ print_food:
 	cmp dx, 0xF9C
 	jg .rand
 	mov di, dx
-	cmp BYTE [es:di], 0x9
+	mov al, 0x9
+	scasb
 	je .rand
+	inc di
 	mov al, 0x7
 	stosb
 	popa
