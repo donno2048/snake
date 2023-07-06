@@ -39,7 +39,8 @@ start:
 	sete ah
 	stosb
 	inc di
-	pusha
+	push di
+	push di
 	push es
 	push ds
 	pop es
@@ -48,8 +49,7 @@ start:
 	lea di, [bp+0x2]
 	rep movsb
 	pop es
-	popa
-	push di
+	pop di
 	mov [0], di
 	test ah, ah
 	jnz .food
@@ -58,7 +58,8 @@ start:
 	stosb
 	jmp SHORT .done
 .food:
-	times 2 inc bp
+	inc bp
+	inc bp
 	call print_food
 .done:
 	pop di
