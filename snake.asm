@@ -1,6 +1,6 @@
+push 0xB800
+pop es
 start:
-	push 0xB800
-	pop es
 	mov al, 0x3
 	int 0x10
 	mov di, 0x7D0
