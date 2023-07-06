@@ -1,4 +1,3 @@
-mov ss, ax
 start:
 	push 0xB800
 	pop es
