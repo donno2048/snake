@@ -1,4 +1,3 @@
-mov ds, ax
 mov ss, ax
 start:
 	push 0xB800
@@ -55,7 +54,7 @@ start:
 	mov [0], di
 	or ah, ah
 	jnz .food
-	mov di, [bp]
+	mov di, [ds:bp]
 	mov al, 0x20
 	stosb
 	jmp SHORT .done
