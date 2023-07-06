@@ -51,7 +51,7 @@ start:
 	popa
 	push di
 	mov [0], di
-	or ah, ah
+	test ah, ah
 	jnz .food
 	mov di, [ds:bp]
 	mov al, 0x20
