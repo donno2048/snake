@@ -1,4 +1,3 @@
-std
 push 0xB800
 pop es
 start:
@@ -34,22 +33,18 @@ start:
 	mov ax, 0x9
 	scasb
 	je start
-	inc di
+	dec di
 	cmp BYTE [es:di], 0x7
 	sete ah
 	stosb
-	inc di
+	dec di
 	push di
-	push di
-	push es
-	push ds
-	pop es
-	mov si, bp
-	lea cx, [bp+0x1]
-	lea di, [bp+0x2]
-	rep movsb
-	pop es
-	pop di
+	mov bx, bp
+.next_byte:
+	mov al, [bx]
+	mov [bx + 0x2], al
+	dec bx
+	jns .next_byte
 	mov [0], di
 	test ah, ah
 	jnz .food
@@ -76,7 +71,7 @@ print_food:
 	mov al, 0x9
 	scasb
 	je .rand
-	inc di
+	dec di
 	mov al, 0x7
 	stosb
 	popa
