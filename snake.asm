@@ -21,9 +21,7 @@ start:
 .minus:
 	sub di, bx
 	cmp di, 0xF9C
-	jg start
-	test di, di
-	js start
+	ja start
 	sar bx, 0x1
 	lea ax, [di+bx+0x2]
 	mov cl, 0xA0
