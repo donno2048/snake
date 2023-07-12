@@ -8,15 +8,16 @@ start:
 	call print_food
 .input:
 	in al, 0x60
-	and al, 0xF
+	and al, 0x7F
+	push ax
 	mov bx, 0xA0
-	cmp al, 0x8
-	jle .up_down
+	and al, 0x1
+	jz .up_down
 	mov bl, 0x4
 .up_down:
-	shr al, 0x2
-	cmp al, 0x2
-	je .minus
+	pop ax
+	cmp al, 0x4D
+	jl .minus
 	neg bx
 .minus:
 	sub di, bx
@@ -40,7 +41,7 @@ start:
 	mov bx, bp
 .next_byte:
 	mov al, [bx]
-	mov [bx + 0x2], al
+	mov [bx+0x2], al
 	dec bx
 	jns .next_byte
 	mov [0], di
