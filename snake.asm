@@ -8,14 +8,12 @@ start:
 	call print_food
 .input:
 	in al, 0x60
-	and al, 0x7F
-	push ax
 	mov bx, 0xA0
-	and al, 0x1
+	test al, 0x1
 	jz .up_down
 	mov bl, 0x4
 .up_down:
-	pop ax
+	and al, 0x7F
 	cmp al, 0x4D
 	jl .minus
 	neg bx
