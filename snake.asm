@@ -35,7 +35,6 @@ start:
 	sete ah
 	stosb
 	dec di
-	push di
 	mov bx, bp
 .next_byte:
 	mov al, [bx]
@@ -45,16 +44,13 @@ start:
 	mov [bx+0x1], di
 	test ah, ah
 	jnz .food
-	mov di, [ds:bp]
-	mov al, 0x20
-	stosb
-	jmp SHORT .done
+	mov si, [ds:bp]
+	mov [es:si], BYTE 0x20
+	jmp SHORT .input
 .food:
 	inc bp
 	inc bp
 	call print_food
-.done:
-	pop di
 	jmp SHORT .input
 print_food:
 	pusha
