@@ -44,7 +44,7 @@ start:
 	mov [bx+0x1], di
 	test ah, ah
 	jnz .food
-	mov si, [ds:bp]
+	mov si, [bp]
 	mov [es:si], BYTE 0x20
 	jmp SHORT .input
 .food:
