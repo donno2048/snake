@@ -42,7 +42,7 @@ start:
 	mov [bx+0x2], al
 	dec bx
 	jns .next_byte
-	mov [0], di
+	mov [bx+0x1], di
 	test ah, ah
 	jnz .food
 	mov di, [ds:bp]
