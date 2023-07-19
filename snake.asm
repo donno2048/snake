@@ -27,12 +27,12 @@ start:
 	div cl
 	test ah, ah
 	jz start
-	mov ax, 0x9
+	cmp BYTE [es:di], 0x7
+	sete ah
+	mov al, 0x9
 	scasb
 	je start
 	dec di
-	cmp BYTE [es:di], 0x7
-	sete ah
 	stosb
 	dec di
 	mov bx, bp
