@@ -24,10 +24,8 @@ start:
 	ja start
 	sar bx, 0x1
 	lea ax, [di+bx+0x2]
-	push cx
-	mov cl, 0xA0
-	div cl
-	pop cx
+	mov bl, 0xA0
+	div bl
 	test ah, ah
 	jz start
 	cmp BYTE [es:di], 0x7
