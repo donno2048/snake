@@ -23,29 +23,27 @@ It is so small I could fit it into a single QR:
 
 <img src="./snake.png" width="250"/>
 
-It's `128` bytes.
+It's `126` bytes.
 
 <details>
   <summary>Hex</summary>
   <br/>
     
 ```
-6800b807b003cd10
-bfd007bd040031c9
-e85100e460bba000
-a8017402b304247f
-3c4d7c02f7db29df
-81ff9c0f77d6d1fb
-8d410251b1a0f6f1
-5984e474c726803d
-070f94c4b009ae74
-bb4faa4f897e0045
-84e4750b89cb8b1f
-26c6072041ebb4e8
-0200ebaf6001d7f7
-f781e2fc0f81fa9c
-0f7ff289d7b009ae
-74eb4fb007aa61c3
+6800b807b003cd10bf
+d007bd040031c9e84f
+00e460bba000a80174
+02b304247f3c4d7c02
+f7db29df81ff9c0f77
+d6d1fb8d4102b3a0f6
+f384e474c926803d07
+0f94c4b009ae74bd4f
+aa4f897e004584e475
+0b89cb8b1f26c60720
+41ebb6e80200ebb160
+01d7f7f781e2fc0f81
+fa9c0f7ff289d7b009
+ae74eb4fb007aa61c3
 ```
 </details>
 
