@@ -1,5 +1,5 @@
 push 0xB800
-pop es
+pop es ; I could use `les` but I want it to be "cross-platform"
 start:
 	mov al, 0x3
 	int 0x10
