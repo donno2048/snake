@@ -42,8 +42,8 @@ start:
 	dec bx
 	jns .next_byte
 	mov [bx+0x1], di
-	test ah, ah
-	jnz .food
+	sahf
+	jc .food
 	mov si, [bp]
 	mov [es:si], BYTE 0x20
 	jmp SHORT .input
