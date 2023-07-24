@@ -13,9 +13,8 @@ start:
 	jz .up_down
 	mov bl, 0x4
 .up_down:
-	and al, 0x7F
-	cmp al, 0x4D
-	jl .minus
+	and ax, 0x14
+	jz .minus
 	neg bx
 .minus:
 	sub di, bx
