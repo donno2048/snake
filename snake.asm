@@ -13,7 +13,7 @@ start:
 	jz .up_down
 	mov bl, 0x4
 .up_down:
-	test ax, 0x14
+	test al, 0x14
 	jz .minus
 	neg bx
 .minus:
