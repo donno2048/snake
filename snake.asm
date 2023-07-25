@@ -4,8 +4,7 @@ start:
 	mov al, 0x3
 	int 0x10
 	mov di, 0x7D0
-	mov bp, 0x4
-	xor cx, cx
+	lea si, [bp-0x4]
 	call print_food
 .input:
 	in al, 0x60
@@ -37,12 +36,13 @@ start:
 	dec di
 	mov [bp], di
 	inc bp
+	inc bp
 	sahf
 	jc .food
-	mov bx, cx
-	mov bx, [bx]
+	mov bx, [si]
 	mov [es:bx], BYTE 0x20
-	inc cx
+	inc si
+	inc si
 	jmp SHORT .input
 .food:
 	call print_food
