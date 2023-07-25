@@ -1,5 +1,5 @@
 push 0xB800
-pop es
+pop es ; I could use `les` but I want it to be "cross-platform"
 start:
 	mov al, 0x3
 	int 0x10
@@ -14,9 +14,8 @@ start:
 	jz .up_down
 	mov bl, 0x4
 .up_down:
-	and al, 0x7F
-	cmp al, 0x4D
-	jl .minus
+	test al, 0x14
+	jz .minus
 	neg bx
 .minus:
 	sub di, bx
@@ -53,9 +52,7 @@ print_food:
 .rand:
 	add di, dx
 	div di
-	and dx, 0xFFC
-	cmp dx, 0xF9C
-	jg .rand
+	and dx, 0xF9C
 	mov di, dx
 	mov al, 0x9
 	scasb
