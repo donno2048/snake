@@ -37,8 +37,8 @@ start:
 	dec di
 	mov [bp], di
 	inc bp
-	test ah, ah
-	jnz .food
+	sahf
+	jc .food
 	mov bx, cx
 	mov bx, [bx]
 	mov [es:bx], BYTE 0x20
