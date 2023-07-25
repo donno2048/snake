@@ -4,7 +4,7 @@ start:
 	mov al, 0x3
 	int 0x10
 	mov di, 0x7D0
-	mov bp, 0x4
+	lea si, [bp-0x4]
 	call print_food
 .input:
 	in al, 0x60
@@ -22,8 +22,8 @@ start:
 	ja start
 	sar bx, 0x1
 	lea ax, [di+bx+0x2]
-	mov cl, 0xA0
-	div cl
+	mov bl, 0xA0
+	div bl
 	test ah, ah
 	jz start
 	cmp BYTE [es:di], 0x7
@@ -34,21 +34,17 @@ start:
 	dec di
 	stosb
 	dec di
-	mov bx, bp
-.next_byte:
-	mov al, [bx]
-	mov [bx+0x2], al
-	dec bx
-	jns .next_byte
-	mov [bx+0x1], di
+	mov [bp], di
+	inc bp
+	inc bp
 	sahf
 	jc .food
-	mov si, [bp]
-	mov [es:si], BYTE 0x20
+	mov bx, [si]
+	mov [es:bx], BYTE 0x20
+	inc si
+	inc si
 	jmp SHORT .input
 .food:
-	inc bp
-	inc bp
 	call print_food
 	jmp SHORT .input
 print_food:
