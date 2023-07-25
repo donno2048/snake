@@ -56,9 +56,7 @@ print_food:
 .rand:
 	add di, dx
 	div di
-	and dx, 0xFFC
-	cmp dx, 0xF9C
-	jg .rand
+	and dx, 0xF9C
 	mov di, dx
 	mov al, 0x9
 	scasb
