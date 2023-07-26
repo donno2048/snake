@@ -1,7 +1,7 @@
 push 0xB800
 pop es ; I could use `les` but I want it to be "cross-platform"
 start:
-	mov al, 0x3
+	mov ax, 0x3
 	int 0x10
 	mov di, 0x7D0
 	lea si, [bp-0x4]
@@ -27,7 +27,7 @@ start:
 	test ah, ah
 	jz start
 	cmp BYTE [es:di], 0x7
-	sete ah
+	setne cl
 	mov al, 0x9
 	scasb
 	je start
@@ -37,8 +37,7 @@ start:
 	mov [bp], di
 	inc bp
 	inc bp
-	sahf
-	jc .food
+	jcxz .food
 	lodsw
 	xchg ax, bx
 	mov [es:bx], BYTE 0x20
