@@ -39,10 +39,9 @@ start:
 	inc bp
 	sahf
 	jc .food
-	mov bx, [si]
+	lodsw
+	xchg ax, bx
 	mov [es:bx], BYTE 0x20
-	inc si
-	inc si
 	jmp SHORT .input
 .food:
 	call print_food
