@@ -48,8 +48,7 @@ start:
 print_food:
 	pusha
 .rand:
-	add di, dx
-	div di
+	div bp
 	and dx, 0xF9C
 	mov di, dx
 	mov al, 0x9
