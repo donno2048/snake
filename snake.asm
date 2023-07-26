@@ -5,7 +5,13 @@ start:
 	int 0x10
 	mov di, 0x7D0
 	lea si, [bp-0x4]
-	call print_food
+.food:
+	div bp
+	and dx, 0xF9C
+	mov bx, dx
+	cmp BYTE [es:bx], 0x9
+	je .food
+	mov BYTE [es:bx], 0x7
 .input:
 	in al, 0x60
 	mov bx, 0xA0
@@ -40,22 +46,5 @@ start:
 	jcxz .food
 	lodsw
 	xchg ax, bx
-	mov [es:bx], BYTE 0x20
+	mov BYTE [es:bx], 0x20
 	jmp SHORT .input
-.food:
-	call print_food
-	jmp SHORT .input
-print_food:
-	pusha
-.rand:
-	div bp
-	and dx, 0xF9C
-	mov di, dx
-	mov al, 0x9
-	scasb
-	je .rand
-	dec di
-	mov al, 0x7
-	stosb
-	popa
-	ret
