@@ -1,5 +1,6 @@
 push 0xB800
 pop ds
+dec cx
 start:
 	mov ax, 0x3
 	int 0x10
@@ -9,7 +10,7 @@ start:
 	div bp
 	and dx, 0xF9C
 	mov bx, dx
-	cmp BYTE [bx], 0x9
+	cmp [bx], cl
 	je .food
 	mov BYTE [bx], 0x7
 .input:
@@ -32,13 +33,13 @@ start:
 	div bl
 	test ah, ah
 	jz start
-	cmp BYTE [di], 0x9
+	cmp [di], cl
 	je start
 	mov [bp], di
 	inc bp
 	inc bp
 	cmp BYTE [di], 0x7
-	mov BYTE [di], 0x9
+	mov [di], cl
 	je .food
 	es lodsw
 	xchg ax, bx
