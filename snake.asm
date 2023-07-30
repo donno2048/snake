@@ -41,8 +41,7 @@ start:
 	inc bp
 	inc bp
 	jcxz .food
-	mov bx, [es:si]
-	inc si
-	inc si
+	es lodsw
+	xchg ax, bx
 	mov BYTE [bx], 0x20
 	jmp SHORT .input
