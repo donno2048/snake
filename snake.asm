@@ -32,15 +32,14 @@ start:
 	div bl
 	test ah, ah
 	jz start
-	cmp BYTE [di], 0x7
-	setne cl
 	cmp BYTE [di], 0x9
 	je start
-	mov BYTE [di], 0x9
 	mov [bp], di
 	inc bp
 	inc bp
-	jcxz .food
+	cmp BYTE [di], 0x7
+	mov BYTE [di], 0x9
+	je .food
 	es lodsw
 	xchg ax, bx
 	mov BYTE [bx], 0x20
