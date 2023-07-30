@@ -1,6 +1,6 @@
 push 0xB800
 pop ds
-dec cx
+mov cx, 0xF9C
 start:
 	mov ax, 0x3
 	int 0x10
@@ -8,11 +8,11 @@ start:
 	lea si, [bp-0x4]
 .food:
 	div bp
-	and dx, 0xF9C
+	and dx, cx
 	mov bx, dx
 	cmp [bx], cl
 	je .food
-	mov BYTE [bx], 0x7
+	mov [bx], ch
 .input:
 	in al, 0x60
 	mov bx, 0xA0
@@ -25,7 +25,7 @@ start:
 	neg bx
 .minus:
 	sub di, bx
-	cmp di, 0xF9C
+	cmp di, cx
 	ja start
 	sar bx, 0x1
 	lea ax, [di+bx+0x2]
@@ -38,7 +38,7 @@ start:
 	mov [bp], di
 	inc bp
 	inc bp
-	cmp BYTE [di], 0x7
+	cmp [di], ch
 	mov [di], cl
 	je .food
 	es lodsw
