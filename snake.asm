@@ -10,9 +10,9 @@ start:
 	div bp
 	and dx, cx
 	mov bx, dx
-	cmp [bx], cl
+	cmp [bx], ch
 	je .food
-	mov [bx], ch
+	mov [bx], cl
 .input:
 	in al, 0x60
 	mov bx, 0xA0
@@ -33,13 +33,13 @@ start:
 	div bl
 	test ah, ah
 	jz start
-	cmp [di], cl
+	cmp [di], ch
 	je start
 	mov [bp], di
 	inc bp
 	inc bp
-	cmp [di], ch
-	mov [di], cl
+	cmp [di], cl
+	mov [di], ch
 	je .food
 	es lodsw
 	xchg ax, bx
