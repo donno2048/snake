@@ -1,6 +1,6 @@
 push 0xB800
 pop ds
-mov cx, 0xF9C
+mov cx, 0xFA0
 start:
 	mov ax, 0x3
 	int 0x10
@@ -15,10 +15,10 @@ start:
 	mov [bx], cl
 .input:
 	in al, 0x60
-	mov bx, 0xA0
+	mov bx, 0x4
 	test al, 0x1
-	jz .up_down
-	mov bl, 0x4
+	jnz .up_down
+	mov bl, cl
 .up_down:
 	test al, 0x14
 	jz .minus
@@ -29,8 +29,7 @@ start:
 	ja start
 	sar bx, 0x1
 	lea ax, [di+bx+0x2]
-	mov bl, 0xA0
-	div bl
+	div cl
 	test ah, ah
 	jz start
 	cmp [di], ch
