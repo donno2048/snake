@@ -43,5 +43,5 @@ start:
 	je .food
 	es lodsw
 	xchg ax, bx
-	mov BYTE [bx], 0x20
+	mov [bx], ah
 	jmp SHORT .input
