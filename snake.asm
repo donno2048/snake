@@ -17,13 +17,11 @@ start:
 	in al, 0x60
 	mov bx, 0x4
 	test al, 0x1
-	jnz .up_down
+	jnz $+0x4
 	mov bl, cl
-.up_down:
 	test al, 0x14
-	jz .minus
+	jz $+0x4
 	neg bx
-.minus:
 	sub di, bx
 	cmp di, cx
 	ja start
