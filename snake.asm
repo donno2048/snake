@@ -7,9 +7,8 @@ start:
 	mov di, 0x7D0
 	lea si, [bp-0x4]
 .food:
-	div bp
-	and dx, cx
-	mov bx, dx
+	imul bx, bp
+	and bx, cx
 	cmp [bx], ch
 	je .food
 	mov [bx], cl
