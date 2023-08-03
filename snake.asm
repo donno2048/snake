@@ -15,10 +15,10 @@ start:
 .input:
 	in al, 0x60
 	mov bx, 0x4
-	test al, 0x1
-	jnz $+0x4
+	and al, 0x1E
+	jp $+0x4
 	mov bl, cl
-	test al, 0x14
+	and al, 0x14
 	jz $+0x4
 	neg bx
 	sub di, bx
@@ -27,7 +27,7 @@ start:
 	sar bx, 0x1
 	lea ax, [di+bx+0x2]
 	div cl
-	test ah, ah
+	and ah, ah
 	jz start
 	cmp [di], ch
 	je start
