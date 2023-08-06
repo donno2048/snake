@@ -1,13 +1,14 @@
 push 0xB800
 pop ds
 mov cx, 0xFA0
+std
 start:
 	mov ax, 0x3
 	int 0x10
 	mov di, 0x7D0
-	lea si, [bp-0x4]
+	mov si, sp
 .food:
-	imul bx, bp
+	imul bx, sp
 	and bx, cx
 	cmp [bx], ch
 	je .food
@@ -31,9 +32,7 @@ start:
 	jz start
 	cmp [di], ch
 	je start
-	mov [bp], di
-	inc bp
-	inc bp
+	push di
 	cmp [di], cl
 	mov [di], ch
 	je .food
