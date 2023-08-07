@@ -6,7 +6,7 @@ start:                  ; Start new game setup
 mov ax, 0x3             ; Set ah=0 (change video mode) and al=3 (80x25 16 color text mode)
 int 0x10                ; Initiate Video BIOS interrupt
 mov di, 0x7D0           ; Set the initial position of the snake's head at the middle of the screen (0xFA0/2)
-mov si, sp              ; Point si to the stack (using the stack pointer) to access user input
+mov si, sp              ; Setting si to the stack pointer for loading stack data using lodsw
 .food:                  ; Position new food
 imul bx, sp             ; Multiply bx by sp to pseudo-randomize bx, which points to the food position
 and bx, cx              ; Make bx divisible by 4 to fit on the screen (align with character positions). After anding, we now know that bx < cx (size of the screen) therefore it fits inside
