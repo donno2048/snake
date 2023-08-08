@@ -44,6 +44,6 @@ cmp [di], cl            ; Compare the character at the new position with the foo
 mov [di], ch            ; Move the snake body character to the new position
 je .food                ; If it's food, place new food and skip tail removal
 es lodsw                ; Load the previous position (tail) from the stack into ax using the fact that si was set to point to the stack (mov si, sp)
-xchg ax, bx             ; Swap the values of ax and bx for tail removal
-mov [bx], ah            ; Erase the tail character at the memory location indicated by bx. bh (invisible in cp437) is being loaded into ah
+xchg ax, bx             ; Swap the values of ax and bx for tail removal. bh (invisible in cp437) is being loaded into ah
+mov [bx], ah            ; Erase the tail character at the memory location indicated by bx
 jmp SHORT .input        ; Loop back to process more keyboard input
