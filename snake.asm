@@ -27,12 +27,12 @@ sub di, bx              ; Update snake's head position based on movement
 cmp di, cx              ; Check if snake's head position is beyond screen boundaries
 ja start                ; If out of bounds, restart the game
 ; The comparison is unsigned (ja) to determine if snake's head has moved beyond screen boundaries
-; In unsigned comparison every negative value will be bigger than every positive numbet as the sign bit 
+; In unsigned comparison every negative value will be bigger than every positive number as the sign bit 
 ; is considered as a power of two
 ; this is crucial, because memory addresses like di are treated as unsigned, so the comparison
 ; ensures that if di > cx (screen size) or di < 0, the jump will happen, preventing the snake from
 ; moving outside the screen area.
-sar bx, 0x1             ; Shift the value in bx right by 1 bit (right arithmetic shift)
+sar bx, 0x1             ; Shift the value in bx right by 1 bit (right arithmetic shift) so in the next operation after bx+2 [4 -> 4, -4 -> 0, ±160 -> something indivisible by 4]
 lea ax, [di+bx+0x2]     ; di+bx+2 will find the minimum of previous position and current position plus 4 for horizontal movement and something not divisible by 4 for vertical
 div cl                  ; Divide by screen width (cl) to check if a row was crossed (irrelevant for vertical movement, since it's divisible by 4)
 and ah, ah              ; Check if the remainder is zero (if the movement is horizontal and snake hit a side wall)
@@ -46,12 +46,9 @@ je .food                ; If it's food, place new food and skip tail removal
 es lodsw                ; Load the previous position (tail) from the stack into ax
 ; The instruction above retrieves the last position of the snake's tail from the stack,
 ; using the fact that si was set to point to the stack (mov si, sp)
-; After loading the value with lodsw, the stack pointer (sp) needs manual adjustment
-; to "pop" the read value, ensuring proper stack management
 xchg ax, bx             ; Swap the values of ax and bx for tail removal
 mov [bx], ah            ; Erase the tail character at the memory location indicated by bx
-; This line updates the display by replacing the tail character at its previous position
-; with an invisible character. This process is vital for simulating the snake's movement;
-; as the snake advances, its tail is effectively removed from its previous location,
+; Replacing the tail character at its previous position with an invisible character
+; as the snake advances, its tail is removed from its previous location,
 ; creating the illusion of continuous motion, (just like in original snake game)
 jmp SHORT .input        ; Loop back to process more keyboard input
