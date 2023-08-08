@@ -16,7 +16,7 @@ je .food                ; If the comparison is true, jump to .food label to gene
 mov [bx], cl            ; Place a food character at the calculated position
 .input:                 ; Process keyboard input
 in al, 0x60             ; Read keyboard input from port 0x60
-mov bx, 0x4             ; Set default distance for snake movement to 4 (leftwards)
+mov bx, 0x4             ; Set default distance for snake movement to 4 (one step leftwards)
 and al, 0x1E            ; Mask out non-arrow key bits (up, down, left, right)
 jp $+0x4                ; Jump if the parity flag is set (skip the next instruction if input is left or right arrow key)
 mov bl, cl              ; Set distance for horizontal movement based on screen width (cl)
