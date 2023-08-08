@@ -1,6 +1,5 @@
 push 0xB800             ; Push the offset to video memory for DMA (Direct Memory Access)
-pop ds                  ; Load the value into the data segment register to access video memory
-; Every data access will read/write to video memory
+pop ds                  ; Load the value into the data segment register to access video memory. Every data access will read/write to video memory
 mov cx, 0xFA0           ; Store the screen size (80x25 characters) in text mode 3 into cx, also hold cp437 values for food and snake body, and the screen width in cl
 std                     ; Set the direction flag to reverse the operation of lodsw for FIFO processing
 start:                  ; Start new game setup
@@ -17,21 +16,15 @@ mov [bx], cl            ; Place a food character at the calculated position
 .input:                 ; Process keyboard input
 in al, 0x60             ; Read keyboard input from port 0x60
 mov bx, 0x4             ; Set default distance for snake movement to 4 (one step leftwards)
-and al, 0x1E            ; Mask out non-arrow key bits (up, down, left, right)
+and al, 0x1E            ; and al with 1e which will result in a different parity bit whether the key was one of the sides of up/down
 jp $+0x4                ; Jump if the parity flag is set (skip the next instruction if input is left or right arrow key)
 mov bl, cl              ; Set the value of the move to cl which is the width of the screen (i.e. one step up)
 and al, 0x14            ; Extract only the left and right arrow key bits
-jz $+0x4                ; Jump if the zero flag is set (skip the next instruction if input is left or right)
-neg bx                  ; Invert direction for left or right movement
+jz $+0x4                ; Jump if the zero flag is set (skip the next instruction if input is left or up)
+neg bx                  ; Invert direction for right or down movement 
 sub di, bx              ; Update snake's head position based on movement
 cmp di, cx              ; Check if snake's head position is beyond screen boundaries
-ja start                ; If out of bounds, restart the game
-; The comparison is unsigned (ja) to determine if snake's head has moved beyond screen boundaries
-; In unsigned comparison every negative value will be bigger than every positive number as the sign bit 
-; is considered as a power of two
-; this is crucial, because memory addresses like di are treated as unsigned, so the comparison
-; ensures that if di > cx (screen size) or di < 0, the jump will happen, preventing the snake from
-; moving outside the screen area.
+ja start                ; Unsigned comparison (ja) to make sure the snake's head remains within the screen by checking if its position > cl (screen size) or < 0, jump if true to keep snake inside
 sar bx, 0x1             ; Shift the value in bx right by 1 bit (right arithmetic shift) so in the next operation after bx+2 [4 -> 4, -4 -> 0, ±160 -> something indivisible by 4]
 lea ax, [di+bx+0x2]     ; di+bx+2 will find the minimum of previous position and current position plus 4 for horizontal movement and something not divisible by 4 for vertical
 div cl                  ; Divide by screen width (cl) to check if a row was crossed (irrelevant for vertical movement, since it's divisible by 4)
