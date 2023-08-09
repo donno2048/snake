@@ -8,7 +8,8 @@ start:
 	mov di, 0x7D0
 	mov si, sp
 .food:
-	imul bx, sp
+	in ax, 0x40
+	xchg bx, ax
 	and bx, cx
 	cmp [bx], ch
 	je .food
