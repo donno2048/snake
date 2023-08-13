@@ -16,7 +16,7 @@ mov [bx], cl            ; Place a food character at the calculated position
 .input:                 ; Process keyboard input
 in al, 0x60             ; Read keyboard input from port 0x60
 mov bx, 0x4             ; Set default distance for snake movement to 4 (one step leftwards)
-and al, 0x1E            ; and al with 1e which will result in a different parity bit whether the key was one of the sides of up/down
+and al, 0x1E            ; and al with 1e which will result in a different parity bit whether the key was one of the sides or up/down
 jp $+0x4                ; Jump if the parity flag is set (skip the next instruction if input is left or right arrow key)
 mov bl, cl              ; Set the value of the move to cl which is the width of the screen (i.e. one step up)
 and al, 0x14            ; Extract only the left and right arrow key bits
