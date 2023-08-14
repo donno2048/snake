@@ -2,7 +2,9 @@ from re import findall
 
 README = '''# Snake
 
-This is a snake game in assembly made for DOSBox and Linux.
+This is a snake game in assembly made for DOS.
+
+The game was covered in [Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/).
 
 You can view the online [Demo](https://donno2048.github.io/snake/) (Use your arrow keys on pc or swipe on mobile).
 
