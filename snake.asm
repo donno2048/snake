@@ -1,7 +1,6 @@
-push 0xB800
-pop ds
-mov cx, 0xFA0
 std
+lds cx, [si+0x4]
+mov al, [0xF]
 start:
 	mov ax, 0x3
 	int 0x10
