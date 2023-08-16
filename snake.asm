@@ -1,6 +1,6 @@
 std
-lds cx, [si+4]
-mov al, [0xf]
+lds cx, [si+0x4]
+mov al, [0xF]
 start:
 	mov ax, 0x3
 	int 0x10
