@@ -15,12 +15,13 @@ It was made in order to create the smallest "fun" game possible.
 To build and run it use:
 
 ```sh
+sudo add-apt-repository ppa:feignint/dosbox-staging
 sudo apt update
-sudo apt install dosbox nasm -y
+sudo apt install nasm libsdl2-2.0-0 libsdl2-image-2.0-0 libsdl2-net-2.0-0 libopusfile0 dosbox-staging -y
 git clone https://github.com/donno2048/snake
 cd snake
 nasm snake.asm -o snake.com -f bin
-dosbox -c "cycles 1" -c "mount c ." -c "c:" -c "snake"
+dosbox snake.com -c "cycles 1"
 ```
 
 It is so small I could fit it into a single QR:
