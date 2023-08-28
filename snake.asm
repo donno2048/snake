@@ -20,7 +20,7 @@ start:
 	aad 0x28
 	add al, 0x7
 	cbw
-	imul bx, ax, -4
+	imul bx, ax, -0x4
 	sub di, bx
 	cmp di, cx
 	ja start
