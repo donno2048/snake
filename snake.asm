@@ -15,13 +15,12 @@ start:
 	mov [bx], cl
 .input:
 	in al, 0x60
-	mov bx, 0x4
-	and al, 0x1E
-	jp $+0x4
-	mov bl, cl
-	and al, 0x14
-	jz $+0x4
-	neg bx
+	inc ax
+	aam 0x4
+	aad 0x28
+	add al, 0x7
+	cbw
+	imul bx, ax, -0x4
 	sub di, bx
 	cmp di, cx
 	ja start
