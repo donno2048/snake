@@ -22,7 +22,7 @@ start:                  ; reset game
     in al, 0x60         ;   read scancode from keyboard controller - bit 7 is set in case key was released
     inc ax              ;   we want to map scancodes for arrow up (0x48/0xC8), left (0x4B/0xCB), right (0x4D/0xCD), down (0x50/0xD0) to movement offsets on screen
     aam 0x4             ;     INC, AAM, AAD, ADD with some magic constants map scancodes to intermediate result, up => -40, left => -1, right => 1, down => 40
-    aad 0x28            ;     using arithmetic instructions is more compact than checks and conditonal jumps to evaluate the keyboard input
+    aad 0x28            ;     using arithmetic instructions is more compact than checks and conditional jumps to evaluate the keyboard input
     add al, 0x7         ;     this method causes weird snake movements though when other keys than the arrow keys are pressed
     cbw                 ;   sign extend intermediate result and multiply by -4 into BX to get the final offset (+-160 / +-4)
     imul bx, ax, -0x4   ;     negative 4 because it is subtracted from the head position
