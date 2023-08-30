@@ -1,6 +1,6 @@
 ; register usage during main loop
 ; DS: 0xB800, segment of screen buffer
-; CX: 0xFA0, size of the screen (80x25x16bit). CH (0xF) is also used as the snake character, CL (0xA0) as the food character
+; CX: 0xFA0, size of the screen (80x25x16bit). CH (0xF) is also used as the snake character, CL (0xA0) as the food character and the screen width
 ; DI: position of the snake head (only every second horizontal position is ever used to compensate the speed difference between horizonal and vertical movements)
 ; SI: memory location on the stack where the current position of the snake tail is stored
 std                     ; set direction flag so LODSW moves SI in the same direction as PUSH moves SP, creating a FIFO buffer of snake cells on the stack
