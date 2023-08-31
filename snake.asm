@@ -13,7 +13,7 @@ start:                     ; reset game
     mov si, sp             ;   set tail pointer to current stack pointer
 .food:                     ; create new food item
     in ax, 0x40            ;   read 16 bit timer counter into AX for randomization
-    and ax, cx             ;     mask with screen size and make AX divisible by 4 (this causes food to appear off screen if the timer counter is exactly 0xFA0 but saves 1 byte compared to AND AX, 0xF9C)
+    and ax, 0xF9C          ;     mask with 0xF9C to make AX divisible by 4 and less than CX
     xchg bx, ax            ;     move into BX because indirect addressing is not possible with AX, using XCHG instead of MOV saves 1 byte
     cmp [bx], BYTE 0x20    ;   check if new food position is empty
     jne .food              ;     if not => try again
