@@ -1,6 +1,6 @@
 ; register usage during main loop
 ; DS: 0xB800, segment of screen buffer
-; CX: 0xFA0, size of the screen (80x25x16bit). CH (0xF) is also used as the snake character, CL (0xA0) as the food character and the screen width
+; CX: 0xFA0, size of the screen (80x25x16bit). CH (0xF) is also used as the food character, CL (0xA0) for the snake character and the screen width
 ; DI: position of the snake head (only every second horizontal position is ever used to compensate the speed difference between horizonal and vertical movements)
 ; SI: memory location on the stack where the current position of the snake tail is stored
 std                        ; set direction flag so LODSW moves SI in the same direction as PUSH moves SP, creating a FIFO buffer of snake cells on the stack
@@ -15,9 +15,9 @@ start:                     ; reset game
     in ax, 0x40            ;   read 16 bit timer counter into AX for randomization
     and ax, cx             ;     mask with screen size and make AX divisible by 4 (this causes food to appear off screen if the timer counter is exactly 0xFA0 but saves 1 byte compared to AND AX, 0xF9C)
     xchg bx, ax            ;     move into BX because indirect addressing is not possible with AX, using XCHG instead of MOV saves 1 byte
-    cmp [bx], ch           ;   check if new food position is occupied by snake
-    je .food               ;     if so => try again
-    mov [bx], cl           ;   place new food item on screen
+    cmp [bx], BYTE 0x20    ;   check if new food position is empty
+    jne .food              ;     if not => try again
+    mov [bx], ch           ;   place new food item on screen
 .input:                    ; handle keyboard input
     in al, 0x60            ;   read scancode from keyboard controller - bit 7 is set in case key was released
     inc ax                 ;   we want to map scancodes for arrow up (0x48/0xC8), left (0x4B/0xCB), right (0x4D/0xCD), down (0x50/0xD0) to movement offsets on screen
@@ -34,13 +34,11 @@ start:                     ; reset game
     div cl                 ;   divide AX by 160 (width of a screen line)
     and ah, ah             ;   check if remainder in AH is 0, which is the case only when head is on the left edge and movement was right (-4) or head is on the right edge and movement was left (4)
     jz start               ;     if so => game over
-    cmp [di], ch           ; check if head position already contains snake
-    je start               ;   if so => game over
+    xor [di], cl           ; XOR head position with snake character
+    jns start              ;   if it already had snake in it, SF=0 from XOR => game over
     push di                ; push new head position onto the stack
-    cmp [di], cl           ; check if head position contains food item
-    mov [di], ch           ;   and place snake character onto screen
-    je .food               ; if food was consumed => generate new food
+    jp .food               ; if food was consumed, PF=1 from XOR => generate new food
     es lodsw               ; no food was consumed so load old tail position into AX and update SI to point to new tail position
-    xchg ax, bx            ; swap AX and BX, BX now contains old tail position and AX previous movement offset
-    mov [bx], ah           ; high byte of movement offset is either 0x00 or 0xFF, which are invisible characters and can be used to clear old tail on screen saving 1 byte compared to immediate MOV
+    xchg ax, bx            ; move into BX because indirect addressing is not possible with AX, using XCHG instead of MOV saves 1 byte
+    mov [bx], BYTE 0x20    ; clear old tail position on screen
     jmp SHORT .input       ; loop to keyboard input
