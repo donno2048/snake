@@ -5,7 +5,7 @@
 ; DI: position of the snake head (only every second horizontal position is ever used to compensate the speed difference between horizonal and vertical movements)
 ; SI: memory location on the stack where the current position of the snake tail is stored
 std                  ; set direction flag so LODSW moves SI in the same direction as PUSH moves SP, creating a FIFO buffer of snake cells on the stack
-mov dx, 0xA20        ; DH (0xA) is used in the keyboard handling, DL (0x20) is the empty character
+mov dx, 0xA20        ; initialize DX also used to initialize DI later
 lds cx, [si+0x7]     ; SI=0x100 at program start in most DOS versions, this loads DS and CX with 4 bytes located at the beginning of the next instruction (offset 0x107)
 mov al, [0xF]        ; dummy instruction, machine code from here on is a0 0f 00 b8... which is what is needed in DS and CX. LDS saves 1 byte compared to conventional initialization
 start:               ; reset game
