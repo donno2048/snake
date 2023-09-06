@@ -6,7 +6,7 @@
 ; SI: memory location on the stack where the current position of the snake tail is stored
 std                  ; set direction flag so LODSW moves SI in the same direction as PUSH moves SP, creating a FIFO buffer of snake cells on the stack
 mov cx, 0xF9C        ; initialize CX
-lds dx, [si+0x7]     ; SI=0x100 at program start in most DOS versions, this loads DS and CX with 4 bytes located at the beginning of the next instruction (offset 0x107)
+lds dx, [si+0x7]     ; SI=0x100 at program start in most DOS versions, this loads DS and DX with 4 bytes located at the beginning of the next instruction (offset 0x107)
 mov al, [0x20]       ; dummy instruction, machine code from here on is a0 20 00 b8... which is what is needed in DS and DX. LDS saves 1 byte compared to conventional initialization
 start:               ; reset game
     mov ax, 0x3      ;   set video mode (AH=0x00) to mode 3 (AL=0x3), text mode 80x25 16 colors
