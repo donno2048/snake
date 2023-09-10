@@ -23,4 +23,4 @@ jobs:
         git add .
         git commit -m "update docs and demo"
         git push
-        git subtree push --prefix demo origin gh-pages
+        git subtree push --prefix demo origin gh-pages -f
