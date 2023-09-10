@@ -10,14 +10,16 @@ jobs:
         python-version: '3.x'
     - run: |
         sudo apt install qrencode nasm -y
-        nasm snake.asm -o snake.com -f bin
+        nasm snake.asm -o docs/snake.com -f bin
+        cd docs
         xxd -p snake.com > snake.hex
         python update.py
         qrencode -r snake.com -8 -o snake.png
-        rm snake.zip
-        zip snake.zip snake.com
+        rm ../demo/snake.zip
+        zip ../demo/snake.zip snake.com
         git config --global user.email "just4now666666@gmail.com"
         git config --global user.name "donno2048"
         git add .
-        git commit -m "update docs"
+        git commit -m "update docs and demo"
         git push
+        git subtree push --prefix demo origin gh-pages

@@ -1,6 +1,4 @@
-from re import findall
-
-README = '''# Snake
+# Snake
 
 This is a snake game in assembly made for DOS.
 
@@ -84,14 +82,3 @@ It's `%i` bytes.
 ```
 </details>
 
-'''
-
-hexdata = open("snake.hex").read().replace("\n", "")
-
-length = len(hexdata)
-
-for div in range(int(length ** .5), 0, -1):
-    if not length % div:
-        break
-
-open("README.md", "w").write(README % (length // 2, "\n".join(findall('.' * (length // div), hexdata))))
