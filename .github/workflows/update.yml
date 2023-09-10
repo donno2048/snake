@@ -15,9 +15,9 @@ jobs:
         xxd -p snake.com > snake.hex
         python update.py
         qrencode -r snake.com -8 -o snake.png
+        rm ../demo/snake.zip
+        zip ../demo/snake.zip snake.com
         cd ..
-        rm ./demo/snake.zip
-        zip ./demo/snake.zip ./docs/snake.com
         git config --global user.email "just4now666666@gmail.com"
         git config --global user.name "donno2048"
         git add .
