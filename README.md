@@ -69,7 +69,7 @@ dosbox snake.com -c "cycles 1"
 
 It is so small I could fit it into a single QR:
 
-<img src="./snake.png" width="250"/>
+<img src="/docs/snake.png" width="250"/>
 
 It's `70` bytes.
 
