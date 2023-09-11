@@ -91,3 +91,13 @@ d8f6f238cc77d2
 ```
 </details>
 
+<details>
+  <summary>Compared to other versions</summary>
+  <br/>
+    
+||My version|MattKC's version|ibara's version|
+|-|-|-|-|
+|Bytes|70|~1400|2024|
+|QR|<img src="/docs/snake.png" width="250"/>|<img src="https://mattkc.com/etc/snakeqr/code.png" width="250"/>|<img src="https://raw.githubusercontent.com/ibara/snakeqr/master/snakeqr.png" width="250"/>|
+|Link||https://mattkc.com/etc/snakeqr/|https://github.com/ibara/snakeqr|
+</details>
