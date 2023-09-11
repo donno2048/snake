@@ -71,14 +71,14 @@ It is so small I could fit it into a single QR:
 
 <img src="/docs/snake.png" width="250"/>
 
-It's `%i` bytes.
+It's `{size}` bytes.
 
 <details>
   <summary>Hex</summary>
   <br/>
     
 ```
-%s
+{hex}
 ```
 </details>
 
