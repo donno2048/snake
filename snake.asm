@@ -11,7 +11,7 @@ mov al, [0x20]        ; dummy instruction, machine code from here on is a0 20 00
 start:                ; reset game
     mov ax, 0x3       ;   set video mode (AH=0x00) to mode 3 (AL=0x3), text mode 80x25 16 colors
     int 0x10          ;     using BIOS interrupt call, also clears the screen
-    mov di, bp        ;   set head position to screen center
+    mov di, bp        ;   reset head position
     mov si, sp        ;   set tail pointer to current stack pointer
 .food:                ; create new food item
     in ax, 0x40       ;   read 16 bit timer counter into AX for randomization
