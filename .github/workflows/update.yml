@@ -1,19 +1,23 @@
 name: Update the docs
 on: [push, workflow_dispatch]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+    - uses: actions/checkout@v3
     - run: |
-        sudo apt install qrencode nasm -y
+        sudo apt install qrencode nasm python3 -y
         nasm snake.asm -o docs/snake.com -f bin
         cd docs
         xxd -p snake.com > snake.hex
-        python update.py
+        python3 update.py
         qrencode -r snake.com -8 -o snake.png
         rm ../demo/snake.zip
         zip ../demo/snake.zip snake.com
@@ -23,4 +27,8 @@ jobs:
         git add .
         git commit -m "update docs and demo"
         git push
-        git push origin `git subtree split --prefix demo master`:gh-pages --force
+    - uses: actions/configure-pages@v3
+    - uses: actions/upload-pages-artifact@v2
+      with:
+        path: 'demo/'
+    - uses: actions/deploy-pages@v2
