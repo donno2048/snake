@@ -1,5 +1,7 @@
 # Snake
 
+<img src="https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg"/>
+
 This is a snake game in assembly made for DOS.
 
 The game was [covered in Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/).
