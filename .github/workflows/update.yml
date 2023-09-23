@@ -14,7 +14,6 @@ concurrency:
   cancel-in-progress: false
 jobs:
   deploy:
-    if: 
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
