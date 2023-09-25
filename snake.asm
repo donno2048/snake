@@ -15,8 +15,8 @@ start:                ; reset game
     mov si, sp        ;   set tail pointer to current stack pointer
 .food:                ; create new food item
     in ax, 0x40       ;   read 16 bit timer counter into AX for randomization
-    and ax, cx        ;     mask with 0xF9C to make AX divisible by 4 and less than CX
-    xchg bx, ax       ;     move into BX because indirect addressing is not possible with AX, using XCHG instead of MOV saves 1 byte
+    and ax, cx        ;     mask with CX to make AX divisible by 4 and less than CX
+    xchg bx, ax       ;     swap AX and BX because indirect addressing is not possible with AX, using XCHG instead of MOV saves 1 byte
     cmp [bx], dh      ;   check if new food position is empty
     jne .food         ;     if not => try again
     mov [bx], ch      ;   place new food item on screen
@@ -39,6 +39,6 @@ start:                ; reset game
     push di           ; push new head position onto the stack
     jp .food          ; if food was consumed, PF=1 from XOR => generate new food
     es lodsw          ; no food was consumed so load old tail position into AX and update SI to point to new tail position
-    xchg bx, ax       ; move into BX because indirect addressing is not possible with AX, using XCHG instead of MOV saves 1 byte
+    xchg bx, ax       ; swap AX and BX because indirect addressing is not possible with AX, using XCHG instead of MOV saves 1 byte
     mov [bx], dh      ; clear old tail position on screen
     jmp SHORT .input  ; loop to keyboard input
