@@ -73,19 +73,15 @@ It is so small I could fit it into a single QR:
 
 <img src="/docs/snake.png" width="250"/>
 
-It's `69` bytes.
+It's `67` bytes.
 
 <details>
   <summary>Hex</summary>
   <br/>
     
 ```
-fdb99c0fc55407a02000b80
-300cd108b3f89e6e54021c8
-93383775f7882fe4606bc00
-ad414d5449801c79701c739
-cf77d9f6f238cc77d330157
-9cf577ad526ad938837ebd9
+fdb99c0fc55407a02000b80300cd108b3f89e6e54021c893fe0778f7e4606bc00ad
+414d5449801c79701c739cf77dbf6f238cc77d5301579d1577ad726ad938837ebd9
 ```
 </details>
 
@@ -95,7 +91,7 @@ cf77d9f6f238cc77d330157
     
 ||My version|MattKC's version|ibara's version|
 |-|-|-|-|
-|Bytes|69|~1400|2024|
+|Bytes|67|~1400|2024|
 |QR|<img src="/docs/snake.png" width="250"/>|<img src="https://mattkc.com/etc/snakeqr/code.png" width="250"/>|<img src="https://raw.githubusercontent.com/ibara/snakeqr/master/snakeqr.png" width="250"/>|
 |Link|https://github.com/donno2048/snake|https://mattkc.com/etc/snakeqr/|https://github.com/ibara/snakeqr|
 </details>
