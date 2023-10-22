@@ -1,6 +1,6 @@
 ; register usage during main loop
 ; DS: 0xB800, segment of screen buffer
-; CX: 0xF9C, screen size (80x25x16bit) - 4, used in food generation (CX as mask and CH as food character) and edge checks
+; CX: 0xF9C, screen size (80x25x16bit) - 4, used in food generation and edge checks
 ; DX: 0x20A0, DH (0x20) is the empty character, DL (0xA0) is the screen width and also used for the snake character
 ; DI: position of the snake head (only every second horizontal position is ever used to compensate the speed difference between horizonal and vertical movements)
 ; SI: memory location on the stack where the current position of the snake tail is stored
@@ -15,11 +15,10 @@ start:                ; reset game
     mov si, sp        ;   set tail pointer to current stack pointer
 .food:                ; create new food item
     in ax, 0x40       ;   read 16 bit timer counter into AX for randomization
-    and ax, cx        ;     mask with CX to make AX divisible by 4 and less than CX
+    and ax, cx        ;     mask with CX to make AX divisible by 4 and less than or equal to CX
     xchg bx, ax       ;     swap AX and BX because indirect addressing is not possible with AX, using XCHG instead of MOV saves 1 byte
-    cmp [bx], dh      ;   check if new food position is empty
-    jne .food         ;     if not => try again
-    mov [bx], ch      ;   place new food item on screen
+    inc BYTE [bx]     ;   place food item and check if position was empty by incrementing character
+    js .food          ;     if position was occupied by snake => try again
 .input:               ; handle keyboard input
     in al, 0x60       ;   read scancode from keyboard controller - bit 7 is set in case key was released
     imul ax, BYTE 0xA ;   we want to map scancodes for arrow up (0x48/0xC8), left (0x4B/0xCB), right (0x4D/0xCD), down (0x50/0xD0) to movement offsets
