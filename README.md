@@ -4,17 +4,17 @@
 
 This is a snake game in assembly made for DOS.
 
-The game was [covered in Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/).
+The game was [covered on Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/).
 
 You can view the online [Demo](https://donno2048.github.io/snake/) (Use your arrow keys on PC or swipe on mobile).
 
-Inspired by [Can you fit a whole game into a QR code?](https://youtu.be/ExwqNreocpg) by @itsmattkc which was also [featured in Hackaday](https://hackaday.com/2020/08/17/fitting-snake-into-a-qr-code/).
+Inspired by "[Can you fit a whole game into a QR code?](https://youtu.be/ExwqNreocpg)" by @itsmattkc which was also [featured on Hackaday](https://hackaday.com/2020/08/17/fitting-snake-into-a-qr-code/).
 
 <details>
   <summary>It was made to create the smallest "fun" game possible.</summary>
   <br/>
 
-For the countless people saying I'm intentionally not mentioning the __Hugi Size Coding Competition__ (a competition in which the competitors had to make the smallest nibbles game to win) here is my reply to one such comment (from when the game was still 133 bytes):
+For the countless people saying I'm intentionally not mentioning the _Hugi Size Coding Competition_ (a competition in which the competitors had to make the smallest nibbles game to win) here is my reply to one such comment (from when the game was still 133 bytes):
 
 > Firstly, it seems that you didn't even read the rules of the "Nibbles" game:
 >
@@ -57,7 +57,7 @@ For the countless people saying I'm intentionally not mentioning the __Hugi Size
 AFAIK This is the smallest snake game ever made.
 </details>
 
-To build and run it use:
+To build and run it:
 
 ```sh
 sudo add-apt-repository ppa:feignint/dosbox-staging
