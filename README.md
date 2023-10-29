@@ -73,7 +73,11 @@ It is so small I could fit it into a single QR:
 
 <img src="/docs/snake.png" width="250"/>
 
-It's `67` bytes.
+It's 67 bytes.
+
+How little is 67 bytes? Well, this line of text weights more than 70 bytes.
+
+And so does this arbitrary sequence of emojis: 👩🏼‍❤️‍💋‍👨🏼🧔🏽‍♀️👩🏼‍❤️‍💋‍👨🏼
 
 <details>
   <summary>Hex</summary>
