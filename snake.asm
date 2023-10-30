@@ -26,8 +26,7 @@ start:                ; reset game
     aad 0x44          ;     which is only half the screen offset, but we can use it for the horizontal edge check
     cbw               ;     using arithmetic instructions is more compact than checks and conditional jumps but causes weird snake movements though with other keys
     add di, ax        ; add sign extended offset to head position
-    xchg di, ax       ; swap AX and DI, now DI=offset and AX=position+offset
-    add di, ax        ; update head position all the way, now DI=position+2*offset
+    xadd di, ax       ; update head position all the way and store half-updated position in AX, now DI=position+2*offset and AX=position+offset
     cmp di, cx        ; check if head crossed vertical edge by comparing against screen size in CX, needs to be done before DIV to avoid exception when DI<0
     ja start          ;   if DI<0 or DI>CX => game over
     div dl            ; divide AX by 160 (width of a screen line)
