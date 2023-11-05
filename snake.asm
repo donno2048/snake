@@ -39,4 +39,4 @@ start:                ; reset game
     es lodsw          ; no food was consumed so load old tail position into AX and update SI to point to new tail position
     xchg bx, ax       ; swap AX and BX because indirect addressing is not possible with AX, using XCHG instead of MOV saves 1 byte
     mov [bx], dh      ; clear old tail position on screen
-    jmp SHORT .input  ; loop to keyboard input
+    jnp .input        ; loop to keyboard input
