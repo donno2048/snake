@@ -5,11 +5,11 @@
 ; DI: position of the snake head (only every second horizontal position is ever used to compensate the speed difference between horizonal and vertical movements)
 ; SI: memory location on the stack where the current position of the snake tail is stored
 std                   ; set direction flag so LODSW moves SI in the same direction as PUSH moves SP, creating a FIFO buffer of snake cells on the stack
-lds dx, [si+0x4]      ; SI=0x100 at program start in most DOS versions, this loads DS and DX with 4 bytes located at the beginning of the next instruction (offset 0x104)
-mov al, [0x20]        ; dummy instruction, machine code from here on is a0 20 00 b8... which is what is needed in DS and DX. LDS saves 1 byte compared to conventional initialization
+lds ax, [bx+si]       ; SI=0x100 and BX=0x0 at program start in most DOS versions, this initializes DS using only 2 bytes (machine code at 0x100 is fd c5 00 b8)
 start:                ; reset game
     mov ax, 0x3       ;   set video mode (AH=0x00) to mode 3 (AL=0x3), text mode 80x25 16 colors
     int 0x10          ;     using BIOS interrupt call, also clears the screen
+    mov dx, 0x20A0    ;   initialize DX
     mov di, [bx]      ;   reset head position, BX always points to a valid screen position containing 0x720 after setting video mode
     mov si, sp        ;   set tail pointer to current stack pointer
 .food:                ; create new food item
