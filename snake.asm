@@ -1,7 +1,7 @@
 ; register usage during main loop
 ; DS: 0xB800, segment of screen buffer
 ; DL: 0xA0, screen width
-; BX: 0xF9C, screen size (80x25x16bit) - 4, used in food generation, edge checks and for snake character, also used for screen accesses but constantly reinitialized
+; BX: 0xF9C, screen size (80x25x16bit) - 4, used in food generation and edge checks, also used for screen accesses but constantly reinitialized
 ; DI: position of the snake head (only every second horizontal position is ever used to compensate the speed difference between horizonal and vertical movements)
 ; SI: pointer to memory location where the current position of the snake head is stored (actual pointer is BP+SI because it defaults to SS)
 lds si, [bx+si]       ; SI=0x100 and BX=0x0 at program start in most DOS versions, this initializes DS and loads SI with 0x30C5 (machine code at 0x100 is c5 30 00 b8)
@@ -30,9 +30,10 @@ start:                ; reset game
     ja start          ;   if DI<0 or DI>BX => game over
     div dl            ; divide AX by 160 (width of a screen line)
     cmp ah, bl        ;   check if remainder is > 0x9C, which is the case only when head is on the left edge and movement was right or head is on the right edge and movement was left
-    ja start          ;     if so => game over
-    xor [di], bl      ; XOR head position with snake character
-    jns start         ;   if it already had snake in it, SF=0 from XOR => game over
+    salc              ;     if so, set AL to zero, else to 0xFF
+    das               ;     if the snake hit a wall AL will now be 0 else it will be 0x99
+    xor [di], al      ; XOR head position with snake character
+    jns start         ;   if it already had snake in it or it hasn't but AL was 0, SF=0 from XOR => game over
     lodsw             ; load 0x2007 into AX from off-screen screen buffer and advance head pointer
     mov [bp+si], di   ; store head position, use BP+SI to default to SS
     jp .food          ; if food was consumed, PF=1 from XOR => generate new food
