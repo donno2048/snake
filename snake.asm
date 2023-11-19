@@ -31,12 +31,12 @@ start:                ; reset game
     div dl            ; divide AX by 160 (width of a screen line)
     cmp ah, bl        ;   check if remainder is > 0x9C, which is the case only when head is on the left edge and movement was right or head is on the right edge and movement was left
     salc              ;     if so, set AL to zero, else to 0xFF
-    das               ;     if the snake hit a wall AL will now be 0 else it will be 0x99
     xor [di], al      ; XOR head position with snake character
     jns start         ;   if it already had snake in it or it hasn't but AL was 0, SF=0 from XOR => game over
     lodsw             ; load 0x2007 into AX from off-screen screen buffer and advance head pointer
     mov [bp+si], di   ; store head position, use BP+SI to default to SS
     jp .food          ; if food was consumed, PF=1 from XOR => generate new food
+    sahf              ; MSB of AH is 0 => clear SF
     pop bx            ; no food was consumed so pop tail position into BX
-    and [bx], ah      ; clear old tail position on screen, AND also clears SF
+    mov [bx], ah      ; clear old tail position on screen
     jns .input        ; loop to keyboard input
