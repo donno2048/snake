@@ -86,12 +86,12 @@ And so does this arbitrary sequence of emojis: 👩🏼‍❤️‍💋‍👨�
 ```
 c53000b80300cd10
 b2a08b3f8d22e540
-21c3fe07bb9c0f78
-f5e4606bc00ad414
-d5449801c70fc1c7
-39df77d7f6f238dc
-d6300579cead893a
-7ad49e5b882779d4
+21c3800730bb9c0f
+72f4e4606bc00ad4
+14d5449801c70fc1
+c739df77d6f6f238
+dcd6300579cdad89
+3a7ad35b882773d5
 ```
 </details>
 
