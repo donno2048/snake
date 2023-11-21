@@ -2,8 +2,6 @@ on:
   push:
     branches:
       - '**'
-    tags-ignore:
-      - '**'
     paths-ignore:
       - 'README.md'
       - 'demo/snake.zip'
