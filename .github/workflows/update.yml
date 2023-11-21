@@ -1,7 +1,7 @@
 on: 
   push:
-    branches:
-      - '**'
+    branches-ignore:
+      - 'dependabot/**'
     paths-ignore:
       - 'README.md'
       - 'demo/snake.zip'
