@@ -13,7 +13,7 @@ permissions:
   pages: write
   id-token: write
 concurrency:
-  group: ${{ github.workflow }}
+  group: $GITHUB_WORKFLOW
   cancel-in-progress: false
 jobs:
   deploy:
@@ -26,8 +26,8 @@ jobs:
         xxd -p snake.com | python3 docs/update.py
         qrencode -r snake.com -8 -o docs/snake.png
         zip demo/snake.zip snake.com
-        git config --global user.email "just4now666666@gmail.com"
-        git config --global user.name "donno2048"
+        git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
+        git config --global user.name "$GITHUB_REPOSITORY_OWNER"
         git add .
         git commit -m "${GITHUB_WORKFLOW,,}"
         git push
