@@ -1,3 +1,4 @@
+name: Update docs and demo
 on: 
   push:
     branches-ignore:
@@ -28,7 +29,7 @@ jobs:
         git config --global user.email "just4now666666@gmail.com"
         git config --global user.name "donno2048"
         git add .
-        git commit -m "update docs and demo"
+        git commit -m "${GITHUB_WORKFLOW,,}"
         git push
     - uses: actions/configure-pages@v3
     - uses: actions/upload-pages-artifact@v2
