@@ -2,7 +2,7 @@
 
 <img src="https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg"/>
 
-This is a x86 snake game made for DOS.
+This is an x86 snake game made for DOS.
 
 The game was [covered on Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/).
 
@@ -10,11 +10,11 @@ The game was [covered on Hackaday](https://hackaday.com/2023/08/03/its-snake-in-
 
 ### Online demo
 
-To test the code you can view the online [Demo](https://donno2048.github.io/snake/) which updates for every change in [snake.asm](/snake.asm) (Use your arrow keys on PC or swipe on mobile).
+To test the code you can view the online [demo](https://donno2048.github.io/snake/) which updates for every change in [snake.asm](/snake.asm) (Use your arrow keys on PC or swipe on mobile).
 
-### Self hosting
+### Self-hosting
 
-If you want to test the code yourself you need to install the requirements for the build process and run it on you computer.
+If you want to test the code yourself you need to install the requirements for the build process and run it on your computer.
 
 #### Installation
 
@@ -83,7 +83,7 @@ It is so small I could fit it into a single QR:
 
 It's {size} bytes.
 
-How little is {size} bytes? Well, this line of text weights more than 70 bytes.
+How little is {size} bytes? Well, this line of text weighs more than 70 bytes.
 
 And so does this arbitrary sequence of emojis: 👩🏼‍❤️‍💋‍👨🏼🧔🏽‍♀️👩🏼‍❤️‍💋‍👨🏼
 
