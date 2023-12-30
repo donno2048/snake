@@ -20,7 +20,7 @@ I'm using `nasm` and `lighttpd` which can be installed with `apt install nasm li
 
 #### Testing
 
-To test it just run [main.sh](./main.sh).
+To test it just run [main.sh](./main.sh) and open http://localhost:3000.
 
 ## Motivation
 
