@@ -6,11 +6,13 @@ This is a x86 snake game made for DOS.
 
 The game was [covered on Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/).
 
-## Demo
+## Running
 
-To test the code you can view the online [Demo](https://donno2048.github.io/snake/) which updates for every change in [snake.asm](./snake.asm) (Use your arrow keys on PC or swipe on mobile).
+### Online demo
 
-### Building
+To test the code you can view the online [Demo](https://donno2048.github.io/snake/) which updates for every change in [snake.asm](/snake.asm) (Use your arrow keys on PC or swipe on mobile).
+
+### Self hosting
 
 If you want to test the code yourself you need to install the requirements for the build process and run it on you computer.
 
@@ -18,9 +20,9 @@ If you want to test the code yourself you need to install the requirements for t
 
 I'm using `nasm` and `lighttpd` which can be installed with `apt install nasm lighttpd -y`.
 
-#### Testing
+#### Building
 
-To test it just run [main.sh](./main.sh) and open http://localhost:3000.
+To test it just run [main.sh](/main.sh) and open http://localhost:3000.
 
 ## Motivation
 
@@ -73,7 +75,7 @@ For the countless people saying I'm intentionally not mentioning the _Hugi Size 
 AFAIK This is the smallest snake game ever made.
 </details>
 
-## Perspective
+## Perspectives
 
 It is so small I could fit it into a single QR:
 
