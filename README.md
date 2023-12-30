@@ -2,11 +2,29 @@
 
 <img src="https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg"/>
 
-This is a snake game in assembly made for DOS.
+This is an x86 snake game made for DOS.
 
 The game was [covered on Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/).
 
-You can view the online [Demo](https://donno2048.github.io/snake/) (Use your arrow keys on PC or swipe on mobile).
+## Running
+
+### Online demo
+
+To test the code you can view the online [demo](https://donno2048.github.io/snake/) which updates for every change in [snake.asm](/snake.asm) (Use your arrow keys on PC or swipe on mobile).
+
+### Self-hosting
+
+If you want to test the code yourself you need to install the requirements for the build process and run it on your computer.
+
+#### Installation
+
+I'm using `nasm` and `lighttpd` which can be installed with `apt install nasm lighttpd -y`.
+
+#### Building
+
+To test it just run [main.sh](/main.sh) and open http://localhost:3000.
+
+## Motivation
 
 Inspired by "[Can you fit a whole game into a QR code?](https://youtu.be/ExwqNreocpg)" by @itsmattkc which was also [featured on Hackaday](https://hackaday.com/2020/08/17/fitting-snake-into-a-qr-code/).
 
@@ -57,25 +75,15 @@ For the countless people saying I'm intentionally not mentioning the _Hugi Size 
 AFAIK This is the smallest snake game ever made.
 </details>
 
-To build and run it:
-
-```sh
-sudo add-apt-repository ppa:feignint/dosbox-staging
-sudo apt update
-sudo apt install nasm libsdl2-2.0-0 libsdl2-image-2.0-0 libsdl2-net-2.0-0 libopusfile0 dosbox-staging -y
-git clone https://github.com/donno2048/snake
-cd snake
-nasm snake.asm -o snake.com -f bin
-dosbox snake.com -c "cycles 1"
-```
+## Perspectives
 
 It is so small I could fit it into a single QR:
 
-<img src="/docs/snake.png" width="250"/>
+<img src="/demo/qr.png" width="250"/>
 
 It's 64 bytes.
 
-How little is 64 bytes? Well, this line of text weights more than 70 bytes.
+How little is 64 bytes? Well, this line of text weighs more than 70 bytes.
 
 And so does this arbitrary sequence of emojis: 👩🏼‍❤️‍💋‍👨🏼🧔🏽‍♀️👩🏼‍❤️‍💋‍👨🏼
 
@@ -95,13 +103,10 @@ d5449801c70fc1c7
 ```
 </details>
 
-<details>
-  <summary>Compared to other versions</summary>
-  <br/>
-    
+### Comparison
+
 ||My version|MattKC's version|ibara's version|
 |-|-|-|-|
 |Bytes|64|~1400|2024|
-|QR|<img src="/docs/snake.png" width="250"/>|<img src="https://mattkc.com/etc/snakeqr/code.png" width="250"/>|<img src="https://raw.githubusercontent.com/ibara/snakeqr/master/snakeqr.png" width="250"/>|
+|QR|<img src="/demo/qr.png" width="250"/>|<img src="https://mattkc.com/etc/snakeqr/code.png" width="250"/>|<img src="https://raw.githubusercontent.com/ibara/snakeqr/master/snakeqr.png" width="250"/>|
 |Link|https://github.com/donno2048/snake|https://mattkc.com/etc/snakeqr/|https://github.com/ibara/snakeqr|
-</details>

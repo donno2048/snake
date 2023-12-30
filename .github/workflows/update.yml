@@ -6,7 +6,7 @@ on:
     paths-ignore:
       - 'README.md'
       - 'demo/snake.zip'
-      - 'demo/snake.png'
+      - 'demo/qr.png'
   workflow_dispatch:
 permissions:
   contents: write
@@ -24,7 +24,7 @@ jobs:
         sudo apt install qrencode nasm python3 -y
         nasm snake.asm -o snake.com
         xxd -p snake.com | python3 docs/update.py
-        qrencode -r snake.com -8 -o docs/snake.png
+        qrencode -r snake.com -8 -o demo/qr.png
         zip demo/snake.zip snake.com
         git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"

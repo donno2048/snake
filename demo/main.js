@@ -7,6 +7,7 @@ Dos(canvas, { cycles: 1, onprogress: ()=>{} }).ready((fs, main) =>
         main(["snake.com"]).then(ci => {
             delayId = setInterval(runLag, 1);
             swipedetect(swipedir => swipedir && ci.simulateKeyPress(36 + swipedir));
+            document.title = "Snake";
         })
     )
 );
