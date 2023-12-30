@@ -6,6 +6,16 @@ This is an x86 snake game made for DOS.
 
 The game was [covered on Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/).
 
+- [Snake](#snake)
+  - [Running](#running)
+    - [Online demo](#online-demo)
+    - [Self-hosting](#self-hosting)
+      - [Installation](#installation)
+      - [Building](#building)
+  - [Motivation](#motivation)
+  - [Perspectives](#perspectives)
+    - [Comparison](#comparison)
+
 ## Running
 
 ### Online demo
