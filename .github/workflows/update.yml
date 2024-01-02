@@ -35,4 +35,4 @@ jobs:
     - uses: actions/upload-pages-artifact@v3
       with:
         path: 'demo/'
-    - uses: actions/deploy-pages@v2
+    - uses: actions/deploy-pages@v4
