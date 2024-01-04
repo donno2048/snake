@@ -31,7 +31,7 @@ start:                  ; reset game
     mov [bp+si], di     ; store head position, use BP+SI to default to SS
     jnp .food           ; if food was consumed, PF=0 from XOR => generate new food
 .wall:                  ; draw a wall on the left side
-    mov [bx], BYTE 0xB1 ;   store wall character (every character between 0x80 and 0xFE will work)
+    mov [bx], BYTE 0xFA ;   store wall character (every character between 0x80 and 0xFE will work)
     sub bx, 0x50        ;   go one line backwards
     jns .wall           ; jump to draw the next wall
     pop bx              ; no food was consumed so pop tail position into BX
