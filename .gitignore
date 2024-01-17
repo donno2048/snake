@@ -1,1 +1,7 @@
-snake.com
+*.bak
+*.com
+*.log
+*.o
+*.swp
+*.tmp
+*.zip
