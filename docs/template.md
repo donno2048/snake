@@ -18,11 +18,11 @@ If you want to test the code yourself you need to install the requirements for t
 
 #### Installation
 
-I'm using `nasm` and `lighttpd` which can be installed with `apt install nasm lighttpd -y`.
+I'm using `nasm` and `python3` which can be installed with `apt install nasm python3 -y`.
 
 #### Building
 
-To test it just run [main.sh](/main.sh) and open http://localhost:3000.
+To test it just run [main.sh](/main.sh) and open http://localhost:8000.
 
 ## Motivation
 
