@@ -81,9 +81,9 @@ It is so small I could fit it into a single QR:
 
 <img src="/demo/qr.png" width="250"/>
 
-It's 61 bytes.
+It's 60 bytes.
 
-How little is 61 bytes? Well, this line of text weighs more than 70 bytes.
+How little is 60 bytes? Well, this line of text weighs more than 70 bytes.
 
 And so does this arbitrary sequence of emojis: 👩🏼‍❤️‍💋‍👨🏼🧔🏽‍♀️👩🏼‍❤️‍💋‍👨🏼
 
@@ -92,8 +92,18 @@ And so does this arbitrary sequence of emojis: 👩🏼‍❤️‍💋‍👨�
   <br/>
     
 ```
-c53000b80000cd108b3f8d22e54021c3fe07bbd00778f5e4606bc00ad414d
-5449801c739df73dc301d79d8ad893a7bdcc607fa83eb5079f85b202779d5
+c53000b800
+00cd108b3f
+8d22e54021
+c30837bbd0
+0778f5e460
+6bc00ad414
+d5449801c7
+39df73dc30
+1d79d8ad89
+3a7bdc880f
+83eb5079f9
+5b202779d6
 ```
 </details>
 
@@ -101,6 +111,6 @@ c53000b80000cd108b3f8d22e54021c3fe07bbd00778f5e4606bc00ad414d
 
 ||My version|MattKC's version|ibara's version|
 |-|-|-|-|
-|Bytes|61|~1400|2024|
+|Bytes|60|~1400|2024|
 |QR|<img src="/demo/qr.png" width="250"/>|<img src="https://mattkc.com/etc/snakeqr/code.png" width="250"/>|<img src="https://raw.githubusercontent.com/ibara/snakeqr/master/snakeqr.png" width="250"/>|
 |Link|https://github.com/donno2048/snake|https://mattkc.com/etc/snakeqr/|https://github.com/ibara/snakeqr|
