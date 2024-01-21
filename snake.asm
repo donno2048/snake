@@ -13,7 +13,7 @@ start:                  ; reset game
 .food:                  ; create new food item
     in ax, 0x40         ;   read 16 bit timer counter into AX for randomization
     and bx, ax          ;     mask with BX to make divisible by 4 and less than or equal to screen size
-    inc BYTE [bx]       ;   place food item and check if position was empty by incrementing character
+    or [bx], dh         ;   place food item and check if position was empty by applying OR with DH (assumed to be 1)
 .input:                 ; handle keyboard input
     mov bx, 0x7D0       ; initialize BX
     js .food            ;     if position was occupied by snake or wall in food generation => try again, if we came from main loop SF=0
@@ -30,8 +30,8 @@ start:                  ; reset game
     lodsw               ; load 0x2007 into AX from off-screen screen buffer and advance head pointer
     mov [bp+si], di     ; store head position, use BP+SI to default to SS
     jnp .food           ; if food was consumed, PF=0 from XOR => generate new food
-.wall:                  ; draw a wall on the left side
-    mov [bx], BYTE 0xFA ;   store wall character (every character between 0x80 and 0xFE will work)
+.wall:                  ; draw an invisible wall on the left side
+    mov [bx], cl        ;   store wall character
     sub bx, 0x50        ;   go one line backwards
     jns .wall           ; jump to draw the next wall
     pop bx              ; no food was consumed so pop tail position into BX
