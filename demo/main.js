@@ -5,6 +5,7 @@ Dos(canvas, { cycles: 2, onprogress: ()=>{} }).ready((fs, main) =>
         main(["snake.com"]).then(ci => {
             swipedetect(swipedir => swipedir && ci.simulateKeyPress(36 + swipedir));
             document.title = "Snake";
+            canvas.style.width = "100%";
         })
     )
 );
