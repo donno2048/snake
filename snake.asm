@@ -3,7 +3,7 @@
 ; BX: 0x7D0, screen size (40x25x2 bytes), used in food generation, edge checks and for snake character, also used for screen accesses but constantly reinitialized
 ; DI: position of the snake head
 ; SI: pointer to memory location where the current position of the snake head is stored (actual pointer is BP+SI because it defaults to SS)
-lds si, [bx+si]         ; SI=0x100 and BX=0x0 at program start in most DOS versions, this initializes DS and loads SI with 0x30C5 (machine code at 0x100 is c5 30 00 b8)
+lds si, [bx+si]         ; SI=0x100 and BX=0x0 at program start in most DOS versions, this initializes DS and SI (machine code at 0x100 is c5 30 00 b8)
 db 0x0                  ; dummy byte for LDS. this with 'mov ax, 0x0' is actually 'add [bx+si+0x0], bh' but player dies immediately and loop returns to start
 start:                  ; reset game
     mov ax, 0x0         ;   set video mode (AH=0x00) to mode 0 (AL=0x0), text mode 40x25 16 colors
