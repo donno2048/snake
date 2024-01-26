@@ -31,8 +31,9 @@ jobs:
         tar cvf artifact.tar demo
     - uses: actions/upload-artifact@v4
       with:
-        path: artifact.tar 
+        path: snake/artifact.tar 
     - run: |
+        cd snake
         curl -L \
          -X POST \
          -H "Accept: application/vnd.github+json" \
