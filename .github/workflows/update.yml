@@ -22,7 +22,6 @@ jobs:
     - run: |
         sudo apt install curl qrencode nasm python3 -y
         rm -rf snake
-        git config --global url.https://$GITHUB_TOKEN@github.com/.insteadOf $GITHUB_SERVER_URL
         git clone --depth=1 -b "$GITHUB_REF_NAME" "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
         cd snake
         nasm snake.asm -o snake.com
@@ -45,4 +44,6 @@ jobs:
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
         git add .
         git commit -m "${GITHUB_WORKFLOW,,}"
+        git config --global credential.$GITHUB_SERVER_URL.username $GITHUB_REPOSITORY_OWNER
+        git config --global credential.$GITHUB_SERVER_URL.password $GITHUB_TOKEN
         git push
