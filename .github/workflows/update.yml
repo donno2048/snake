@@ -22,7 +22,7 @@ jobs:
     - run: |
         sudo apt install curl qrencode nasm python3 -y
         rm -rf snake
-        git clone --depth=1 -b "$GITHUB_REF_NAME" "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+        git clone --depth=1 -b "$GITHUB_REF_NAME" "git@github.com:$GITHUB_REPOSITORY.git"
         cd snake
         nasm snake.asm -o snake.com
         xxd -p snake.com | python3 docs/update.py
@@ -44,4 +44,4 @@ jobs:
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
         git add .
         git commit -m "${GITHUB_WORKFLOW,,}"
-        git push "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+        git push
