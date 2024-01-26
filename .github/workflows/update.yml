@@ -44,4 +44,4 @@ jobs:
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
         git add .
         git commit -m "${GITHUB_WORKFLOW,,}"
-        git push
+        git push "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
