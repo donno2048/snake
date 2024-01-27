@@ -22,8 +22,12 @@ jobs:
     - run: |
         sudo apt install curl qrencode nasm python3 -y
         rm -rf snake
-        git clone --depth=1 -b "$GITHUB_REF_NAME" "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+        mkdir snake
         cd snake
+        git init
+        git remote origin add "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+        git fetch $GITHUB_REF_NAME
+        git checkout $GITHUB_REF_NAME
         nasm snake.asm -o snake.com
         xxd -p snake.com | python3 docs/update.py
         qrencode -r snake.com -8 -o demo/qr.png
@@ -34,13 +38,13 @@ jobs:
         path: snake/artifact.tar 
     - run: |
           cd snake
-          ID=$(curl -H "Authorization: donno2048 $ACTIONS_RUNTIME_TOKEN" -H "Accept: application/json; api-version=2.0" -H "Content-Type: application/json" "$ACTIONS_ID_TOKEN_REQUEST_URL" -d "{}" | jq -r '.value')
-          curl -L \
-           -X POST \
-           -H "Accept: application/vnd.github+json" \
-           -H "Authorization: donno2048 $GITHUB_TOKEN" \
-           "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments" \
-           -d '{"owner":"$GITHUB_REPOSITORY_OWNER","repo":"snake","artifact_id":"${{ steps.artifact-upload-step.outputs.artifact-id }}","pages_build_version":"$GITHUB_SHA","oidc_token":"$ID"}'
+          #ID=$(curl -H "Authorization: donno2048 $ACTIONS_RUNTIME_TOKEN" -H "Accept: application/json; api-version=2.0" -H "Content-Type: application/json" "$ACTIONS_ID_TOKEN_REQUEST_URL" -d "{}" | jq -r '.value')
+          #curl -L \
+          # -X POST \
+          # -H "Accept: application/vnd.github+json" \
+          # -H "Authorization: donno2048 $GITHUB_TOKEN" \
+          # "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments" \
+          # -d '{"owner":"$GITHUB_REPOSITORY_OWNER","repo":"snake","artifact_id":"${{ steps.artifact-upload-step.outputs.artifact-id }}","pages_build_version":"$GITHUB_SHA","oidc_token":"$ID"}'
           git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
           git config --global user.name "$GITHUB_REPOSITORY_OWNER"
           git add .
