@@ -31,6 +31,7 @@ jobs:
         zip demo/snake.zip snake.com
         tar cvf artifact.tar demo
     - uses: actions/upload-artifact@v4
+      id: artifact
       with:
         path: snake/artifact.tar
     - uses: actions/github-script@v6
@@ -45,7 +46,7 @@ jobs:
            -H "Accept: application/vnd.github+json" \
            -H "Authorization: Bearer ${{ secrets.PAT }}" \
            "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments" \
-           -d '{"artifact_id":"${{ steps.artifact-upload-step.outputs.artifact-id }}","pages_build_version":"$GITHUB_SHA","oidc_token":"${{ steps.script.outputs.TOKEN }}"}'
+           -d '{"artifact_id":${{ steps.artifact.outputs.artifact-id }},"pages_build_version":"$GITHUB_SHA","oidc_token":"${{ steps.script.outputs.TOKEN }}"}'
           git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
           git config --global user.name "$GITHUB_REPOSITORY_OWNER"
           git add .
