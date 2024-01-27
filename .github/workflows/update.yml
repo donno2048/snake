@@ -49,5 +49,6 @@ jobs:
           git config --global user.name "$GITHUB_REPOSITORY_OWNER"
           git add .
           git commit -m "${GITHUB_WORKFLOW,,}"
+          git config --global url.https://$GITHUB_TOKEN@github.com/.insteadOf https://github.com/
           git push origin $GITHUB_REF_NAME
  
