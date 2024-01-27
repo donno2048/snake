@@ -40,7 +40,7 @@ jobs:
            -H "Accept: application/vnd.github+json" \
            -H "Authorization: donno2048 $GITHUB_TOKEN" \
            "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments" \
-           -d '{"owner":"$GITHUB_REPOSITORY_OWNER","repo":"snake","artifact_id":"${{ steps.artifact-upload-step.outputs.artifact-id }}","pages_build_version":"$GITHUB_SHA","oidc_token":"$ID"}'
+           -d '{"owner":"$GITHUB_REPOSITORY_OWNER","repo":"snake","artifact_id":"${{ steps.artifact-upload-step.outputs.artifact-id }}","pages_build_version":"${{ env.GITHUB_SHA }}","oidc_token":"$ID"}'
           git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
           git config --global user.name "$GITHUB_REPOSITORY_OWNER"
           git add .
