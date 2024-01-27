@@ -24,10 +24,11 @@ jobs:
         rm -rf snake
         mkdir snake
         cd snake
+        git config --global init.defaultBranch master
         git init
         git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
-        git fetch $GITHUB_REF
-        git checkout $GITHUB_REF
+        git fetch $GITHUB_REF_NAME
+        git checkout $GITHUB_REF_NAME
         nasm snake.asm -o snake.com
         xxd -p snake.com | python3 docs/update.py
         qrencode -r snake.com -8 -o demo/qr.png
