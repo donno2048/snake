@@ -34,13 +34,14 @@ jobs:
         path: snake/artifact.tar 
     - run: |
           cd snake
-          ID=$(curl "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq -r '.value')
+          ID=$(curl "$ACTIONS_ID_TOKEN_REQUEST_URL")
+          echo $ID
           curl -L \
            -X POST \
            -H "Accept: application/vnd.github+json" \
            -H "Authorization: donno2048 $GITHUB_TOKEN" \
            "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments" \
-           -d '{"artifact_id":"${{ steps.artifact-upload-step.outputs.artifact-id }}","pages_build_version":"$GITHUB_SHA","oidc_token":"$ID"}'
+           -d '{"artifact_id":"${{ steps.artifact-upload-step.outputs.artifact-id }}","pages_build_version":"$GITHUB_SHA","oidc_token":"$(echo "$ID" | jq -r '.value')"}'
           git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
           git config --global user.name "$GITHUB_REPOSITORY_OWNER"
           git add .
