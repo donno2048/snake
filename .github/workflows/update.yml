@@ -44,5 +44,7 @@ jobs:
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
         git add .
         git commit -m "${GITHUB_WORKFLOW,,}"
+        git config --global credential.helper cache
         git config --global credential.$GITHUB_SERVER_URL.username $GITHUB_TOKEN
-        git push
+        git config --global credential.$GITHUB_SERVER_URL.password $GITHUB_TOKEN
+        git push $GITHUB_SERVER_URL/$GITHUB_REPOSITORY $GITHUB_REF_NAME -v
