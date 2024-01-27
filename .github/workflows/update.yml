@@ -34,7 +34,7 @@ jobs:
         path: snake/artifact.tar 
     - run: |
           cd snake
-          ID=$(curl -A "actions/oidc-client" -H "Authorization: Bearer $ACTIONS_RUNTIME_TOKEN" -H "Accept: application/json" "$ACTIONS_ID_TOKEN_REQUEST_URL")
+          ID=$(curl -A "actions/oidc-client" -H "Authorization: Bearer $ACTIONS_RUNTIME_TOKEN" -H "Accept: application/json" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY_OWNER")
           echo $ID
           curl -L \
            -X POST \
