@@ -44,5 +44,9 @@ jobs:
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
         git add .
         git commit -m "${GITHUB_WORKFLOW,,}"
+        git status
         git config --global credential.$GITHUB_SERVER_URL.username $GITHUB_TOKEN
-        git push $GITHUB_SERVER_URL/$GITHUB_REPOSITORY $GITHUB_REF_NAME -v > /dev/stdout
+        git remote remove origin
+        git remote add origin https://$GITHUB_TOKEN:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
+        git push origin $GITHUB_REF_NAME
+ 
