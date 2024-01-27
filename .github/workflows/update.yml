@@ -34,7 +34,7 @@ jobs:
         path: snake/artifact.tar 
     - run: |
         cd snake
-        ID=$(curl -H "Authorization: donno2048 $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL")
+        ID=$(curl -H "Authorization: donno2048 $ACTIONS_RUNTIME_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" -d "{}")
         echo $ID
         curl -L \
          -X POST \
