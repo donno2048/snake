@@ -34,8 +34,7 @@ jobs:
         path: snake/artifact.tar 
     - run: |
         cd snake
-        ID=$(curl -H "Authorization: donno2048 $ACTIONS_RUNTIME_TOKEN" -H "Accept: application/json; api-version=2.0" -H "Content-Type: application/json" "$ACTIONS_ID_TOKEN_REQUEST_URL" -d "{}")
-        echo $ID
+        ID=$(curl -H "Authorization: donno2048 $ACTIONS_RUNTIME_TOKEN" -H "Accept: application/json; api-version=2.0" -H "Content-Type: application/json" "$ACTIONS_ID_TOKEN_REQUEST_URL" -d "{}" | jq -r '.value')
         curl -L \
          -X POST \
          -H "Accept: application/vnd.github+json" \
