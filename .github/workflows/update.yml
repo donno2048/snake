@@ -32,9 +32,7 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         path: snake/artifact.tar 
-    - uses: actions/github-script@v6
-      with:
-        script: |
+    - run: |
           cd snake
           ID=$(curl -H "Authorization: donno2048 $ACTIONS_RUNTIME_TOKEN" -H "Accept: application/json; api-version=2.0" -H "Content-Type: application/json" "$ACTIONS_ID_TOKEN_REQUEST_URL" -d "{}" | jq -r '.value')
           curl -L \
