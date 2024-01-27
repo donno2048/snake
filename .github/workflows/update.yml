@@ -25,7 +25,7 @@ jobs:
         mkdir snake
         cd snake
         git init
-        git remote origin add "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+        git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
         git fetch $GITHUB_REF_NAME
         git checkout $GITHUB_REF_NAME
         nasm snake.asm -o snake.com
