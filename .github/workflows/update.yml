@@ -21,6 +21,7 @@ jobs:
     steps:
     - run: |
         sudo apt install curl qrencode nasm python3 -y
+        npm i @actions/core@1.6.0
         rm -rf snake
         git clone --depth=1 -b "$GITHUB_REF_NAME" "https://${{ secrets.PAT }}@github.com/$GITHUB_REPOSITORY"
         cd snake
@@ -29,7 +30,6 @@ jobs:
         qrencode -r snake.com -8 -o demo/qr.png
         zip demo/snake.zip snake.com
         tar cvf artifact.tar demo
-        npm i -g @actions/core@1.6.0
     - uses: actions/upload-artifact@v4
       with:
         path: snake/artifact.tar
