@@ -40,7 +40,7 @@ jobs:
         script: require('@actions/core').setOutput('TOKEN', await require('@actions/core').getIDToken())
     - run: |
           cd snake
-          # ID=$(curl -A "actions/oidc-client" -H "Authorization: Bearer ${{ secrets.PAT }}" -H "Accept: application/json" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY_OWNER")
+          curl -A "actions/oidc-client" -H "Authorization: Bearer ${{ secrets.PAT }}" -H "Accept: application/json" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY_OWNER")
           curl -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
