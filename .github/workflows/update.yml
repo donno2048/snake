@@ -23,6 +23,7 @@ jobs:
         sudo apt install curl qrencode nasm python3 -y
         rm -rf snake
         git clone --depth=1 -b $GITHUB_REF_NAME "https://$ACTIONS_RUNTIME_TOKEN@github.com/$GITHUB_REPOSITORY"
+        cd snake
         nasm snake.asm -o snake.com
         xxd -p snake.com | python3 docs/update.py
         qrencode -r snake.com -8 -o demo/qr.png
