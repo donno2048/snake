@@ -36,7 +36,7 @@ jobs:
     - uses: actions/github-script@v6
       id: script
       with:
-        script: coredemo.setOutput('TOKEN', await require('@actions/core').getIDToken())
+        script: require('@actions/core').setOutput('TOKEN', await require('@actions/core').getIDToken())
     - run: |
           cd snake
           # ID=$(curl -A "actions/oidc-client" -H "Authorization: Bearer $ACTIONS_RUNTIME_TOKEN" -H "Accept: application/json" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY_OWNER")
