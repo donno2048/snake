@@ -29,13 +29,18 @@ jobs:
         qrencode -r snake.com -8 -o demo/qr.png
         zip demo/snake.zip snake.com
         tar cvf artifact.tar demo
+        npm i -g @actions/core@1.6.0
     - uses: actions/upload-artifact@v4
       with:
-        path: snake/artifact.tar 
+        path: snake/artifact.tar
+    - uses: actions/github-script@v6
+      id: script
+      with:
+        script: coredemo.setOutput('TOKEN', await require('@actions/core').getIDToken())
     - run: |
           cd snake
-          ID=$(curl -A "actions/oidc-client" -H "Authorization: Bearer $ACTIONS_RUNTIME_TOKEN" -H "Accept: application/json" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY_OWNER")
-          echo $ID
+          # ID=$(curl -A "actions/oidc-client" -H "Authorization: Bearer $ACTIONS_RUNTIME_TOKEN" -H "Accept: application/json" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY_OWNER")
+          echo ${{ steps.script.outputs.TOKEN }}
           curl -L \
            -X POST \
            -H "Accept: application/vnd.github+json" \
