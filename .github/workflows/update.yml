@@ -47,7 +47,7 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.PAT }}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments" \
-            -d '{"artifact_id":${{ steps.artifact.outputs.artifact-id }},"environment":"github-pages","pages_build_version":"$GITHUB_SHA","oidc_token":"${{ steps.script.outputs.TOKEN }}","preview":false}'
+            -d '{"artifact_id":1200726044,"environment":"github-pages","pages_build_version":"$GITHUB_SHA","oidc_token":"${{ steps.script.outputs.TOKEN }}","preview":false}'
           git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
           git config --global user.name "$GITHUB_REPOSITORY_OWNER"
           git add .
