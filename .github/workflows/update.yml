@@ -35,7 +35,7 @@ jobs:
         path: snake/artifact.tar
     - run: |
           cd snake
-          curl -H "Authorization: Bearer ${{ secrets.PAT }}" "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments" -d '{"artifact_id":${{ steps.artifact.outputs.artifact-id }},"pages_build_version":"${{ github.sha }}","oidc_token":"$( curl -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" )"}'
+          curl -H "Authorization: Bearer ${{ secrets.PAT }}" "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments" -d '{"artifact_id":${{ steps.artifact.outputs.artifact-id }},"pages_build_version":"${{ github.sha }}","oidc_token":"$( curl -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq '.value' )"}'
           git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
           git config --global user.name "$GITHUB_REPOSITORY_OWNER"
           git add .
