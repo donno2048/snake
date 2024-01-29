@@ -40,7 +40,7 @@ jobs:
         script: require('@actions/core').setOutput('TOKEN', await require('@actions/core').getIDToken())
     - run: |
           cd snake
-          curl -A "actions/oidc-client" -H "Authorization: Bearer ${{ github.token }}" -H "Accept: application/json" "${ACTIONS_ID_TOKEN_REQUEST_URL%%+(/)}&audience=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY_OWNER"
+          curl -A "actions/oidc-client" -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" -H "Accept: application/json" "${ACTIONS_ID_TOKEN_REQUEST_URL%%+(/)}&audience=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY_OWNER"
           curl -H "Authorization: Bearer ${{ secrets.PAT }}" "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments" -d '{"artifact_id":${{ steps.artifact.outputs.artifact-id }},"pages_build_version":"${{ github.sha }}","oidc_token":"${{ steps.script.outputs.TOKEN }}"}'
           git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
           git config --global user.name "$GITHUB_REPOSITORY_OWNER"
