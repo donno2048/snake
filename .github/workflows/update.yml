@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
 permissions:
   pages: write
+  contents: write
   id-token: write
 concurrency:
   group: $GITHUB_WORKFLOW
