@@ -1,17 +1,11 @@
 name: Update docs and demo
 on: 
   push:
-    branches-ignore:
-      - 'dependabot/**'
     paths-ignore:
       - 'README.md'
       - 'demo/snake.zip'
       - 'demo/qr.png'
   workflow_dispatch:
-permissions:
-  contents: write
-  pages: write
-  id-token: write
 concurrency:
   group: $GITHUB_WORKFLOW
   cancel-in-progress: false
