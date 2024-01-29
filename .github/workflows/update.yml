@@ -19,7 +19,7 @@ jobs:
     - run: |
         sudo apt install curl qrencode nasm python3 -y
         rm -rf snake
-        git clone --depth=1 -b "$GITHUB_REF_NAME" "https://${{ secrets.PAT }}@github.com/$GITHUB_REPOSITORY"
+        git clone --depth=1 -b "$GITHUB_REF_NAME" "https://$((curl -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq '.value' )@github.com/$GITHUB_REPOSITORY"
         cd snake
         nasm snake.asm -o snake.com
         xxd -p snake.com | python3 docs/update.py
