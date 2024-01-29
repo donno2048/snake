@@ -7,7 +7,6 @@ on:
       - 'demo/qr.png'
   workflow_dispatch:
 permissions:
-  pages: write
   id-token: write
 concurrency:
   group: $GITHUB_WORKFLOW
