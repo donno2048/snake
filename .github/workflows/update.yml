@@ -26,7 +26,7 @@ jobs:
         zip demo/snake.zip snake.com
         tar cvf artifact.tar demo
         curl -X POST \
-         -H "Authorization: token $GITHUB_TOKEN" \
+         -H "Authorization: Bearer ${{ secrets.PAT }}" \
          "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/artifacts" \
          -d '{"name": "artifact.tar", "path": "."}'
     - uses: actions/upload-artifact@v4
