@@ -28,7 +28,7 @@ jobs:
         curl -X POST \
          -H "Authorization: token $GITHUB_TOKEN" \
          "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/artifacts" \
-         -d '{"name": "artifact.tar", "path": "."}')
+         -d '{"name": "artifact.tar", "path": "."}'
     - uses: actions/upload-artifact@v4
       id: artifact
       with:
