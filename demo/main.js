@@ -6,6 +6,10 @@ Dos(canvas, { cycles: 2, onprogress: ()=>{} }).ready((fs, main) =>
             swipedetect(swipedir => swipedir && ci.simulateKeyPress(36 + swipedir));
             document.title = "Snake";
             canvas.style.width = "100%";
+            if (canvas.offsetHeight > document.documentElement.clientHeight) {
+                canvas.style.width = "auto";
+                canvas.style.height = "75vh";
+            }
         })
     )
 );
