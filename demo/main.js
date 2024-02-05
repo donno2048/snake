@@ -5,14 +5,19 @@ Dos(canvas, { cycles: 2, onprogress: ()=>{} }).ready((fs, main) =>
         main(["snake.com"]).then(ci => {
             swipedetect(swipedir => swipedir && ci.simulateKeyPress(36 + swipedir));
             document.title = "Snake";
-            canvas.style.width = "100%";
-            if (canvas.offsetHeight > document.documentElement.clientHeight) {
-                canvas.style.width = "auto";
-                canvas.style.height = "75vh";
-            }
+            span(canvas);
         })
     )
 );
+
+function span(element) {
+    element.style.height = "auto";
+    element.style.width = "100%";
+    if (element.offsetHeight > document.documentElement.clientHeight) {
+        element.style.width = "auto";
+        element.style.height = "75vh";
+    }
+}
 
 function swipedetect(callback) {
     var startX, startY;
@@ -30,3 +35,5 @@ function swipedetect(callback) {
         callback(swipedir);
     }, false);
 }
+
+window.addEventListener("resize", () => span(canvas));
