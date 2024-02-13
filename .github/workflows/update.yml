@@ -25,7 +25,7 @@ jobs:
         qrencode -r snake.com -8 -o demo/qr.png
         zip demo/snake.zip snake.com
         tar cvf artifact.tar demo
-        npm i @actions/artifact
+        npm i @actions/artifact@v3
         export ACTIONS_RESULTS_URL
         id=$(ACTIONS_RUNTIME_TOKEN=$ACTIONS_ID_TOKEN_REQUEST_TOKEN node -e "console.log((async () => await (new (require('@actions/artifact').DefaultArtifactClient)()).uploadArtifact('artifact', ['./artifact.tar'], '.')[0])())")
         rm -rf package*.json node_modules
