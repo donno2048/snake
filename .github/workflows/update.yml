@@ -26,9 +26,10 @@ jobs:
         zip demo/snake.zip snake.com
         tar cvf artifact.tar demo
         npm i @actions/artifact@v1.1.2
-        id=$(ACTIONS_RUNTIME_TOKEN=$ACTIONS_ID_TOKEN_REQUEST_TOKEN ACTIONS_RUNTIME_URL=$(echo $ACTIONS_ID_TOKEN_REQUEST_URL | grep -Po 'https://[^/]+/[^/]+/') node -e "console.log((async () => await require('@actions/artifact').create().uploadArtifact('artifact', ['./artifact.tar'], '.'))().id)")
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_ID_TOKEN_REQUEST_TOKEN ACTIONS_RUNTIME_URL=$(grep -Po 'https://[^/]+/[^/]+/' <<< $ACTIONS_ID_TOKEN_REQUEST_URL) node -e "(async () => await require('@actions/artifact').create().uploadArtifact('artifact', ['./artifact.tar'], '.'))()"
+        id=$(curl "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/artifacts?per_page=1" -s | jq '.artifacts[0].id')
         rm -rf package*.json node_modules
-        curl -H "Authorization: Bearer ${{ secrets.PAT }}" "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments" -d '{"artifact_id":'"$id"',"pages_build_version":"${{ github.sha }}","oidc_token":'"$( curl -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq '.value' )}"
+        curl -H "Authorization: Bearer ${{ secrets.PAT }}" "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments" -s -d '{"artifact_id":'"$id"',"pages_build_version":"${{ github.sha }}","oidc_token":'"$( curl -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq '.value' )}"
         git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
         git add .
