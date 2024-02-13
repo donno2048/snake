@@ -17,7 +17,6 @@ jobs:
     steps:
     - run: |
         sudo apt install curl qrencode nasm python3 nodejs npm -y
-        npm i -g @actions/artifact
         rm -rf snake
         git clone --depth=1 -b "$GITHUB_REF_NAME" "https://${{ secrets.PAT }}@github.com/$GITHUB_REPOSITORY"
         cd snake
@@ -26,7 +25,9 @@ jobs:
         qrencode -r snake.com -8 -o demo/qr.png
         zip demo/snake.zip snake.com
         tar cvf artifact.tar demo
+        npm i @actions/artifact
         id=$(node -e "(async () => await (new require('@actions/artifact').DefaultArtifactClient()).uploadArtifact('artifact', ['./artifact.tar'])[0])()")
+        rm -rf package*.json node_modules
         curl -H "Authorization: Bearer ${{ secrets.PAT }}" "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments" -d '{"artifact_id":'"$id"',"pages_build_version":"${{ github.sha }}","oidc_token":'"$( curl -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq '.value' )}"
         git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
