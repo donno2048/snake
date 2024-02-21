@@ -23,6 +23,7 @@ jobs:
     - run: |
         sudo apt install qrencode nasm python3 -y
         nasm snake.asm -o snake.com
+        gcc -Os -w -xc - <<< "main;"
         xxd -p snake.com | python3 docs/update.py
         qrencode -r snake.com -8 -o demo/qr.png
         zip demo/snake.zip snake.com
