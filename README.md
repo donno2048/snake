@@ -87,7 +87,7 @@ How little is 60 bytes? Well, this line of text weighs more than 70 bytes.
 
 And so does this arbitrary sequence of emojis: 👩🏼‍❤️‍💋‍👨🏼🧔🏽‍♀️👩🏼‍❤️‍💋‍👨🏼
 
-An **empty** C program on linux-x86_64 generated with `gcc -Os -w -xc - <<< "main;"` is 15776 bytes.
+An **empty** C program generated with `gcc -Os -w -xc - <<< "main;"` on linux-x86_64 is 15776 bytes.
 
 <details>
   <summary>Hex</summary>
