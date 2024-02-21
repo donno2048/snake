@@ -87,6 +87,8 @@ How little is {size} bytes? Well, this line of text weighs more than 70 bytes.
 
 And so does this arbitrary sequence of emojis: 👩🏼‍❤️‍💋‍👨🏼🧔🏽‍♀️👩🏼‍❤️‍💋‍👨🏼
 
+An **empty** C program on {platform} generated with `gcc -Os -w -xc - <<< "main;"` is {empty_size} bytes.
+
 <details>
   <summary>Hex</summary>
   <br/>
