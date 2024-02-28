@@ -1,73 +1,57 @@
 <svg fill="none" viewBox="0 0 800 400" width="800" height="400" xmlns="http://www.w3.org/2000/svg">
-  <foreignObject width="100%" height="100%">
-    <div xmlns="http://www.w3.org/1999/xhtml">
-      <style>
-        body {
-          background: black;
-        }
-        #h, #f, #t {
-          color: white;
-          position: absolute;
-          font-size: 2vh;
-          animation-duration: 4s;
-          animation-iteration-count: infinite;
-          animation-timing-function: linear;
-        }
-        #f, #t {
-          bottom: 36vh;
-          right: 30vw;
-        }
-        #h {
-          bottom: 12vh;
-          right: 15vw;
-          animation-name: head;
-        #f {
-          animation-name: food;
-        }
-        #t {
-          animation-name: tall;
-        }
-        @keyframes head {
-          0% {transform: translate(0, 0);}
-          29% {transform: translate(0, -24vh);}
-          54% {transform: translate(-15vw, -24vh);}
-          100% {transform: translate(-15vw, 12vh);}
-        }
-        @keyframes food {
-          53% {
-            opacity: 1;
-          }
-          54% {
-            opacity: 0;
-            transform: translate(0, 0);
-          }
-          55% {
-            opacity: 0;
-            transform: translate(-30vw, -24vh);
-          }
-          56% {
-            opacity: 1;
-          }
-          100% {
-             transform: translate(-30vw, -24vh);
-          }
-        }
-        @keyframes tail {
-          0%, 55% {
-            opacity: 0;
-          }
-          56% {
-            transform: translateY(0);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(34vh);
-          }
-        }
-      </style>
-      <div id="h">&equiv;</div>
-      <div id="f">!</div>
-      <div id="t">&equiv;</div>
-    </div>
-  </foreignObject>
+	<foreignObject width="100%" height="100%">
+		<div xmlns="http://www.w3.org/1999/xhtml">
+			<style>
+				div {
+					background: black;
+					color: white;
+					position: absolute;
+					font-size: 2vh;
+					animation-duration: 4s;
+					animation-iteration-count: infinite;
+					animation-timing-function: linear;
+				}
+				@keyframes head {
+					0% {transform: translate(0, 0);}
+					29% {transform: translate(0, -24vh);}
+					54% {transform: translate(-15vw, -24vh);}
+					100% {transform: translate(-15vw, 12vh);}
+				}
+				@keyframes food {
+					53% {
+						opacity: 1;
+					}
+					54% {
+						opacity: 0;
+						transform: translate(0, 0);
+					}
+					55% {
+						opacity: 0;
+						transform: translate(-30vw, -24vh);
+					}
+					56% {
+						opacity: 1;
+					}
+					100% {
+						 transform: translate(-30vw, -24vh);
+					}
+				}
+				@keyframes tail {
+					0%, 55% {
+						opacity: 0;
+					}
+					56% {
+						transform: translateY(0);
+						opacity: 1;
+					}
+					100% {
+						transform: translateY(34vh);
+					}
+				}
+			</style>
+			<div style="animation-name: head; bottom: 12vh; right: 15vw;">&equiv;</div>
+			<div style="animation-name: food; bottom: 36vh; right: 30vw;">!</div>
+			<div style="animation-name: tall; bottom: 36vh; right: 30vw;">&equiv;</div>
+		</div>
+	</foreignObject>
 </svg>
