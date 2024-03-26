@@ -1,0 +1,31 @@
+name: Update docs and demo
+on: [push, workflow_dispatch]
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: $GITHUB_WORKFLOW
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - run: |
+        sudo apt install qrencode nasm python3 -y
+        nasm snake.asm -o snake.com
+        gcc -Os -w -xc - <<< "main;"
+        xxd -p snake.com | python3 docs/update.py
+        qrencode -r snake.com -8 -o demo/qr.png
+        zip demo/snake.zip snake.com
+        git -c user.name='$GITHUB_REPOSITORY_OWNER' \
+            -c user.email='<>' commit -a --amend --no-edit
+        git push -f
+    
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    - uses: actions/upload-pages-artifact@v3
+      with:
+        path: 'demo/'
+    - uses: actions/deploy-pages@v4
