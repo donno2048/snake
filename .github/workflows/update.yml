@@ -19,8 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: |
-        export DEBIAN_FRONTEND=noninteractive
-        apt install qrencode nasm python3 -y
+        sudo apt -qq install qrencode nasm python3 -y
         nasm snake.asm -o snake.com
         gcc -Os -w -xc - <<< "main;"
         xxd -p snake.com | python3 docs/update.py
