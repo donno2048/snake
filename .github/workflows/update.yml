@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: |
-        sudo apt-get -qq install qrencode nasm python3 -y
+        sudo apt-get install qrencode nasm python3 -y > /dev/null
         nasm snake.asm -o snake.com
         gcc -Os -w -xc - <<< "main;"
         xxd -p snake.com | python3 docs/update.py
