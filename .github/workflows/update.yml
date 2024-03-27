@@ -1,8 +1,6 @@
 name: Update docs and demo
 on: 
   push:
-    branches-ignore:
-      - 'dependabot/**'
     paths-ignore:
       - 'README.md'
       - 'demo/snake.zip'
@@ -21,18 +19,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: |
-        sudo apt install qrencode nasm python3 -y
+        sudo apt -qq -o=Dpkg::Use-Pty=0 install qrencode nasm python3 -y
         nasm snake.asm -o snake.com
         gcc -Os -w -xc - <<< "main;"
         xxd -p snake.com | python3 docs/update.py
         qrencode -r snake.com -8 -o demo/qr.png
-        zip demo/snake.zip snake.com
+        zip demo/snake.zip snake.com -q
         git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
-        git add .
-        git commit -m "${GITHUB_WORKFLOW,,}"
-        git push
-    - uses: actions/configure-pages@v4
+        git commit -am "${GITHUB_WORKFLOW,,}" -q
+        git push -q
     - uses: actions/upload-pages-artifact@v3
       with:
         path: 'demo/'
