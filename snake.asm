@@ -24,9 +24,9 @@ start:                  ; reset game
     cbw                 ;     but causes weird snake movements though with other keys
     add di, ax          ; add offset to head position
     cmp di, bx          ; check if head crossed vertical edge by comparing against screen size in BX
-    adc BYTE [di], 0x20 ; ADC head position with 0x20 to set snake character
-    jnp start           ;   if it already had snake or wall in it or if it crossed a vertical edge, PF=0 from ADC => game over
     lodsw               ; load 0x2007 into AX from off-screen screen buffer and advance head pointer
+    adc [di], ah        ; ADC head position with 0x20 to set snake character
+    jnp start           ;   if it already had snake or wall in it or if it crossed a vertical edge, PF=0 from ADC => game over
     mov [bp+si], di     ; store head position, use BP+SI to default to SS
     jz .food            ; if food was consumed, ZF=1 from ADC => generate new food
 .wall:                  ; draw an invisible wall on the left side
