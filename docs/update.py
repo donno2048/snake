@@ -4,8 +4,8 @@ from sysconfig import get_platform
 
 hexdata = open(0).read().replace("\n", "")
 
-length = len(hexdata) // 2
+length = len(hexdata)
 
 div = next(filter(lambda x: not length % x, range(int(length ** .5), length + 1)))
 
-open("README.md", "w").write(open(Path(__file__).parent.resolve() / 'template.md').read().format(size = length, hex = "\n".join(findall('..' * div, hexdata)), platform = get_platform(), empty_size = Path("a.out").stat().st_size))
+open("README.md", "w").write(open(Path(__file__).parent.resolve() / 'template.md').read().format(size = length // 2, hex = "\n".join(findall('.' * div, hexdata)), platform = get_platform(), empty_size = Path("a.out").stat().st_size))
