@@ -26,7 +26,7 @@ jobs:
         qrencode -r demo/snake.com -8 -o demo/qr.png
         git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
-        git commit -am "${GITHUB_WORKFLOW,,}" -q
+        git diff-index --quiet HEAD || git commit -am "${GITHUB_WORKFLOW,,}" -q
         git push -q
     - uses: actions/upload-pages-artifact@v3
       with:
