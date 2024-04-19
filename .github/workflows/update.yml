@@ -3,7 +3,7 @@ on:
   push:
     paths-ignore:
       - 'README.md'
-      - 'demo/snake.zip'
+      - 'demo/snake.com'
       - 'demo/qr.png'
   workflow_dispatch:
 permissions:
@@ -20,11 +20,10 @@ jobs:
     - uses: actions/checkout@v4
     - run: |
         sudo apt-get install qrencode nasm python3 -y > /dev/null
-        nasm snake.asm -o snake.com
+        nasm snake.asm -o demo/snake.com
         gcc -Os -w -xc - <<< "main;"
-        xxd -p snake.com | python3 docs/update.py
-        qrencode -r snake.com -8 -o demo/qr.png
-        zip demo/snake.zip snake.com -q
+        xxd -p demo/snake.com | python3 docs/update.py
+        qrencode -r demo/snake.com -8 -o demo/qr.png
         git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
         git commit -am "${GITHUB_WORKFLOW,,}" -q
