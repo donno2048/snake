@@ -1,10 +1,10 @@
 name: Update docs and demo
-on: 
+on:
   push:
     paths-ignore:
-      - 'README.md'
-      - 'demo/snake.com'
-      - 'demo/qr.png'
+      - README.md
+      - demo/snake.com
+      - demo/qr.png
   workflow_dispatch:
 permissions:
   contents: write
@@ -17,18 +17,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - run: |
-        sudo apt-get install qrencode nasm python3 -y > /dev/null
-        nasm snake.asm -o demo/snake.com
-        gcc -Os -w -xc - <<< "main;"
-        xxd -p demo/snake.com | python3 docs/update.py
-        qrencode -r demo/snake.com -8 -o demo/qr.png
-        git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
-        git config --global user.name "$GITHUB_REPOSITORY_OWNER"
-        git commit -am "${GITHUB_WORKFLOW,,}" -q || true
-        git push -q
-    - uses: actions/upload-pages-artifact@v3
-      with:
-        path: 'demo/'
-    - uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get install qrencode nasm python3 -y > /dev/null
+          nasm snake.asm -o demo/snake.com
+          gcc -Os -w -xc - <<< "main;"
+          xxd -p demo/snake.com | python3 docs/update.py
+          qrencode -r demo/snake.com -8 -o demo/qr.png
+          git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
+          git config --global user.name "$GITHUB_REPOSITORY_OWNER"
+          git commit -am "${GITHUB_WORKFLOW,,}" -q || true
+          git push -q
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: demo/
+      - uses: actions/deploy-pages@v4
