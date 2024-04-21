@@ -1,6 +1,8 @@
 name: Update docs and demo
 on: 
   push:
+    branches:
+      - '**'
     paths-ignore:
       - 'README.md'
       - 'demo/snake.com'
