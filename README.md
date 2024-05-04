@@ -32,6 +32,8 @@ Inspired by "[Can you fit a whole game into a QR code?](https://youtu.be/ExwqNre
   <summary>It was made to create the smallest "fun" game possible.</summary>
   <br/>
 
+For the people mentioning jinX's snake64 I'd note that without disparaging the achievement made by jinX, his implementation does not obey the same restrictions mine does: In his version, the snake can go through the right side directly to the left side but not from top to bottom, food items randomly spawn so there could be 30 simultaneously, some random pixels are turning white, you need to use 4, 6, 8, 2 keys to move instead of the arrows, you must start the game with downwards movement or it crashes, you have to `clear` the screen before starting the game, you have to initialize the correct video mode ahead, when you go through the top and supposed to lose you can just go back down, and as jinX stated "It will not work if you run a game from DOSBox terminal. It requires 0 (or 50h, 80h, 0D0h...) value in port 60h on start."
+
 For the countless people saying I'm intentionally not mentioning the _Hugi Size Coding Competition_ (a competition in which the competitors had to make the smallest nibbles game to win) here is my reply to one such comment (from when the game was still 133 bytes):
 
 > Firstly, it seems that you didn't even read the rules of the "Nibbles" game:
