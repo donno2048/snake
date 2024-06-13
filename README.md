@@ -1,6 +1,6 @@
 # Snake
 
-<img src="https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg"/>
+<img src="https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg"/> <a href="https://idx.google.com/import?url=https%3A%2F%2Fgithub.com%2Fdonno2048%2Fsnake"><img src="https://cdn.idx.dev/btn/open_dark_32.svg"></a>
 
 This is an x86 snake game made for DOS.
 
