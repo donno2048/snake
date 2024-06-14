@@ -4,7 +4,7 @@
     pkgs.nasm
   ];
   idx.previews.previews.web = {
-    command = ["bash" "main.sh"];
+    command = ["./main.sh"];
     manager = "web";
     env = { PORT = "$PORT"; };
   };
