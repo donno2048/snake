@@ -14,7 +14,7 @@ To test the code you can view the online [demo](https://donno2048.github.io/snak
 
 ### Building on IDX
 
-<a href="https://idx.google.com/import?url=https%3A%2F%2Fgithub.com%2Fdonno2048%2Fsnake"><img src="https://cdn.idx.dev/btn/open_dark_32.svg"></a>
+![https://idx.google.com/import?url=https%3A%2F%2Fgithub.com%2Fdonno2048%2Fsnake](https://cdn.idx.dev/btn/open_dark_32.svg)
 
 ### Self-hosting
 
