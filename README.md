@@ -105,8 +105,8 @@ a74de880f83eb5079f95b88277bd8
 
 ### Comparison
 
-||My version|MattKC's version|ibara's version|
-|-|-|-|-|
-|Bytes|58|~1400|2024|
-|QR|<img src="/demo/qr.png" width="250"/>|<img src="https://mattkc.com/etc/snakeqr/code.png" width="250"/>|<img src="https://raw.githubusercontent.com/ibara/snakeqr/master/snakeqr.png" width="250"/>|
-|Link|https://github.com/donno2048/snake|https://mattkc.com/etc/snakeqr/|https://github.com/ibara/snakeqr|
+||My version|MattKC's version|ibara's version|EimaMei's version|
+|-|-|-|-|-|
+|Bytes|58|~1400 (compressed)|2024|2953|
+|QR|<img src="/demo/qr.png" width="250"/>|<img src="https://mattkc.com/etc/snakeqr/code.png" width="250"/>|<img src="https://raw.githubusercontent.com/ibara/snakeqr/master/snakeqr.png" width="250"/>|<img src="https://raw.githubusercontent.com/EimaMei/snake-qr/main/images/code.png" width="250"/>|
+|Link|https://github.com/donno2048/snake|https://mattkc.com/etc/snakeqr/|https://github.com/ibara/snakeqr|https://github.com/EimaMei/snake-qr|
