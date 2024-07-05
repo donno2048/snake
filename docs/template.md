@@ -10,7 +10,11 @@ The game was [covered on Hackaday](https://hackaday.com/2023/08/03/its-snake-in-
 
 ### Online demo
 
-To test the code you can view the online [demo](https://donno2048.github.io/snake/) which updates for every change in [snake.asm](/snake.asm) (Use your arrow keys on PC or swipe on mobile).
+To test the code you can view the online [demo](https://donno2048.github.io/snake/) which updates for every change in [snake.asm](/snake.asm) (use your arrow keys on PC or swipe on mobile).
+
+### Building on IDX
+
+<a href="https://idx.google.com/import?url=https%3A%2F%2Fgithub.com%2Fdonno2048%2Fsnake"><img src="https://cdn.idx.dev/btn/open_dark_32.svg"></a>
 
 ### Self-hosting
 
@@ -22,7 +26,7 @@ I'm using `nasm` and `python3` which can be installed with `apt install nasm pyt
 
 #### Building
 
-To test it just run [main.sh](/main.sh) and open http://localhost:8000.
+To test it just run [main.sh](/main.sh) and open http://localhost:8000 (or you could use another port by setting the `PORT` environment variable).
 
 ## Motivation
 
