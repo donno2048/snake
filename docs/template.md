@@ -2,7 +2,7 @@
 
 <img src="https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg"/>
 
-This is an x86 snake game made for DOS.
+This is an x86 snake game made for DOS, but there is also a [version](https://github.com/donno2048/snake-bios) that requires no BIOS, bootloader or OS.
 
 The game was [covered on Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/).
 
