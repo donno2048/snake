@@ -98,8 +98,8 @@ An **empty** C program generated with `gcc -Os -w -xc - <<< "main;"` on linux-x8
 ```
 c53800b80000cd108b3789fce5402
 1c3300fbbd0077af5e4606bc00ad4
-14d5449801f039d8ab96d710047bd
-774de83eb50880f79f95b88077bd8
+14d5449801f039c3ab96181c7bd87
+7df83eb50880f79f95bc607207bd8
 ```
 </details>
 
