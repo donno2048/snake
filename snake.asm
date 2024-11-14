@@ -24,17 +24,16 @@ start:                  ; reset game
     aad 0x44            ;     using arithmetic instructions is more compact than checks and conditional jumps
     cbw                 ;     but causes weird snake movements though with other keys
     add ax, si          ; set AX to new head position
-    cmp ax, bx          ; check if head crossed vertical edge by comparing against BX
+    cmp bx, ax          ; check if head crossed vertical edge by comparing against BX
     stosw               ; store head position (SS=ES by default) and advance head pointer
     xchg ax, si         ; save new head position to SI
-    xlatb               ; set AL to 0x20 as BX+AL will always be empty
-    adc [si], al        ; ADC head position with 0x20 to set snake character
-    jnp start           ;   if it already had snake or wall in it or if it crossed a vertical edge, PF=0 from ADC => game over
-    jz .food            ; if food was consumed, ZF=1 from ADC => generate new food
+    sbb [si], bl        ; SBB head position with 0xD0 to set snake character
+    jnp start           ;   if it already had snake or wall in it or if it crossed a vertical edge, PF=0 from SBB => game over
+    ja .food            ; if food was consumed, CF=0 from SBB => generate new food
 .wall:                  ; draw an invisible wall on the left side
     sub bx, BYTE 0x50   ;   go one line backwards
     mov [bx], cl        ;   store wall character
     jns .wall           ; jump to draw the next wall
     pop bx              ; no food was consumed so pop tail position into BX
-    mov [bx], al        ; clear old tail position on screen
+    mov [bx], BYTE 0x20 ; clear old tail position on screen
     jnp .input          ; loop to keyboard input, PF=0 from SUB
