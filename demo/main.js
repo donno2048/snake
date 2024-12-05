@@ -16,7 +16,7 @@ xhr.open('GET', 'snake.com', true);
 xhr.responseType = 'arraybuffer';
 
 xhr.onload = _ =>
-    Dos(canvas, { cycles: 2, onprogress: ()=>{} }).ready((fs, main) =>
+    Dos(canvas, { cycles: 6, onprogress: ()=>{} }).ready((fs, main) =>
         fs.extract(URL.createObjectURL(new Blob([zip(new Uint8Array(xhr.response))]))).then(() =>
             main(["main.com"]).then(ci => {
                 swipedetect(swipedir => swipedir && ci.simulateKeyPress(36 + swipedir));
