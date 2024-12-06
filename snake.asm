@@ -5,12 +5,12 @@
 ; SI: position of the snake head
 ; DI: pointer to memory location where the current position of the snake head is stored
 ; SP: pointer to memory location where the current position of the snake tail is stored
-db 0xC5, 0x78, 0x00     ; encodes `LDS DI, [BX+SI+0]` (hardcoded since nasm always drops the 0) SI=0x100 and BX=0x0 at program start, this initializes DS and DI and the 0 serves as a a dummy byte for the LDS
+db 0xC5, 0x78, 0x00     ; encodes `LDS DI, [BX+SI+0]` (hardcoded since nasm always drops the 0) SI=0x100 and BX=0x0 at program start, this initializes DS and DI and the 0 serves as a dummy byte for the LDS itself
 start:                  ; reset game
     mov ax, 0x200A      ;   first byte of the instruction is 0xB8 used for LDS, also sets AX to the initial value for DX to swap later: DH set to empty space, DL to 0xA, DX satisfies DX*8%0x10000=0x50 so good for the wall building
     cwd                 ;   set DX to 0x0 to swap later with AX to set video mode (AH=0x0) to mode 0 (AL=0x0), text mode 40x25 16 colors
     xchg ax, dx         ;   swap AX and DX
-    int 0x10            ;   using BIOS interrupt call, also clears the screen
+    int 0x10            ;   set video mode using BIOS interrupt call, also clears the screen
     mov si, [bx]        ;   reset head position, BX always points to a valid screen position containing 0x720 after setting video mode
     mov sp, di          ;   set SP to current head pointer
 .food:                  ; create new food item
