@@ -1,0 +1,8 @@
+main.sh -linguist-detectable
+demo/qr.png linguist-generated
+demo/snake.com linguist-generated
+README.md linguist-generated
+demo/js-dos.js linguist-vendored
+demo/js-dos.js.map linguist-vendored
+demo/wdosbox.js linguist-vendored
+demo/wdosbox.wasm.js linguist-vendored
