@@ -14,12 +14,12 @@ start:                   ; reset game
     mov si, [bx]         ;   reset head position, BX always points to a valid screen position containing 0x720 after setting video mode
     mov sp, di           ;   set SP to current head pointer
 .food:                   ; create new food item
-    in ax, 0x40          ;   read 16 bit timer counter into AX for randomization
-    and bx, ax           ;     mask with BX to make divisible by 4 and less than or equal to screen size
+    xchg ax, bx          ;   alternate BX between the last head position (not to iterate over the same food locations) and the end of the screen
+    dec bh               ;     decreasing BH for randomization ensures BX is still divisble by 2 and if the snake isn't filling all the possible options, below 0x7D0
     add [bx], cl         ;   place food item and check if position was empty by applying ADD with CL (assumed to be 0xFF)
+    js .food             ;     if position was occupied by snake or wall in food generation => try again
 .input:                  ; handle keyboard input
     mov bx, 0x7D0        ; initialize BX
-    js .food             ;     if position was occupied by snake or wall in food generation => try again, if we came from main loop SF=0
     in al, 0x60          ;   read scancode from keyboard controller - bit 7 is set in case key was released
     imul dl              ;   we want to map scancodes for arrow up (0x48/0xC8), left (0x4B/0xCB), right (0x4D/0xCD), down (0x50/0xD0) to movement offsets
     aam 0x14             ;     IMUL (AH is irrelevant here), AAM and AAD with some magic constants maps up => -80, left => -2, right => 2, down => 80
