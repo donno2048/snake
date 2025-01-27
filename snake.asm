@@ -11,13 +11,13 @@ start:                   ; reset game
     cwd                  ;   set DX to 0x0 to swap later with AX to set video mode (AH=0x0) to mode 0 (AL=0x0), text mode 40x25 16 colors
     xchg ax, dx          ;   swap AX and DX
     int 0x10             ;   set video mode using BIOS interrupt call, also clears the screen
-    mov si, [bx]         ;   reset head position, BX always points to a valid screen position containing 0x720 after setting video mode
     mov sp, di           ;   set SP to current head pointer
+    mov si, [bx]         ;   reset head position, BX always points to a valid screen position containing 0x720 after setting video mode, also second byte is AAA for randomization algorithm
 .food:                   ; create new food item
     xchg ax, bx          ;   alternate BX between the last head position (not to iterate over the same food locations) and the end of the screen
     dec bh               ;     decreasing BH for randomization ensures BX is still divisble by 2 and if the snake isn't filling all the possible options, below 0x7D0
     add [bx], cl         ;   place food item and check if position was empty by applying ADD with CL (assumed to be 0xFF)
-    js .food             ;     if position was occupied by snake or wall in food generation => try again
+    js .food-1           ;     if position was occupied by snake or wall in food generation => try again, jump to .food-1 to randomize with prepending AAA
 .input:                  ; handle keyboard input
     mov bx, 0x7D0        ; initialize BX
     in al, 0x60          ;   read scancode from keyboard controller - bit 7 is set in case key was released
