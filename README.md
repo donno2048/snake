@@ -4,7 +4,7 @@
 
 This is an x86 snake game made for DOS, but there is also a [version](https://github.com/donno2048/snake-bios) that requires no BIOS, bootloader or OS.
 
-The game was covered on [Techspot](https://www.techspot.com/news/106339-coder-shrinks-classic-snake-game-down-56-byte.html), [Tom's Hardware](https://www.tomshardware.com/video-games/pc-gaming/snake-game-port-is-only-56-bytes-big-and-and-fits-in-a-qr-code) and [Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/).
+The game was covered on [Techspot](https://www.techspot.com/news/106339-coder-shrinks-classic-snake-game-down-56-byte.html), [Tom's Hardware](https://www.tomshardware.com/video-games/pc-gaming/snake-game-port-is-only-56-bytes-big-and-and-fits-in-a-qr-code), [Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/) and more.
 
 ## Running
 
