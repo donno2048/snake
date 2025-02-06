@@ -107,7 +107,7 @@ d872e129d3880f
 How little is 56 bytes?
 
 - Even a simple sentance like this one weighs more than 60 bytes.
-- And so does this arbitrary sequence of emojis: 👩🏼‍❤️‍💋‍👨🏼🧔🏽‍♀️👩🏼‍❤️‍💋‍👨🏼
+- And so does this arbitrary pair of emojis: 👩🏼‍❤️‍💋‍👨🏼👩🏼‍❤️‍💋‍👨🏼
 - An **empty** C program compiled with `gcc -Os -w -xc - <<< "main;"` on linux-x86_64 is 15776 bytes.
 
 ### Comparison
