@@ -100,7 +100,7 @@ The entire game fits in {size} bytes.
 How little is {size} bytes?
 
 - Even a simple sentance like this one weighs more than 60 bytes.
-- And so does this arbitrary sequence of emojis: 👩🏼‍❤️‍💋‍👨🏼🧔🏽‍♀️👩🏼‍❤️‍💋‍👨🏼
+- And so does this arbitrary pair of emojis: 👩🏼‍❤️‍💋‍👨🏼👩🏼‍❤️‍💋‍👨🏼
 - An **empty** C program compiled with `gcc -Os -w -xc - <<< "main;"` on {platform} is {empty_size} bytes.
 
 ### Comparison
