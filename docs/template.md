@@ -1,20 +1,23 @@
 # Snake
 
-<img src="https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg"/>
+[![Build status](https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg)](https://github.com/donno2048/snake/actions/workflows/update.yml)
 
 This is an x86 snake game made for DOS, but there is also a [version](https://github.com/donno2048/snake-bios) that requires no BIOS, bootloader or OS.
 
-The game was covered on [Techspot](https://www.techspot.com/news/106339-coder-shrinks-classic-snake-game-down-56-byte.html), [Tom's Hardware](https://www.tomshardware.com/video-games/pc-gaming/snake-game-port-is-only-56-bytes-big-and-and-fits-in-a-qr-code), [Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/) and more.
+The game has been featured on many sites, among them:
+ - [Techspot](https://www.techspot.com/news/106339-coder-shrinks-classic-snake-game-down-56-byte.html)
+ - [Tom's Hardware](https://www.tomshardware.com/video-games/pc-gaming/snake-game-port-is-only-56-bytes-big-and-and-fits-in-a-qr-code)
+ - [Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/)
 
 ## Running
 
 ### Online demo
 
-To test the code you can view the online [demo](https://donno2048.github.io/snake/) which updates for every change in [snake.asm](/snake.asm) (Use your arrow keys on PC or swipe on mobile).
+You can try the game in the [online demo](https://donno2048.github.io/snake/), which updates for every change to [`snake.asm`](/snake.asm). Use your arrow keys on PC or swipe on mobile.
 
 ### Self-hosting
 
-If you want to test the code yourself you need to install the requirements for the build process and run it on your computer.
+To run the game locally you'll have to install the dependencies and build the game from source:
 
 #### Installation
 
@@ -22,11 +25,11 @@ I'm using `nasm` and `python3` which can be installed with `apt install nasm pyt
 
 #### Building
 
-To test it just run [main.sh](/main.sh) and open http://localhost:8000.
+To test it just run [`main.sh`](/main.sh) and open http://localhost:8000.
 
 ## Motivation
 
-Inspired by "[Can you fit a whole game into a QR code?](https://youtu.be/ExwqNreocpg)" by @itsmattkc which was also [featured on Hackaday](https://hackaday.com/2020/08/17/fitting-snake-into-a-qr-code/).
+The project was inspired by [MattKC's video](https://youtu.be/ExwqNreocpg), _"Can you fit a whole game into a QR code?"_, which was also [featured on Hackaday](https://hackaday.com/2020/08/17/fitting-snake-into-a-qr-code/).
 
 <details>
   <summary>It was made to create the smallest "fun" game possible.</summary>
@@ -83,13 +86,7 @@ It is so small I could fit it into a single QR:
 
 <img src="/demo/qr.png" width="250"/>
 
-It's {size} bytes.
-
-How little is {size} bytes? Well, this line of text weighs more than 70 bytes.
-
-And so does this arbitrary sequence of emojis: 👩🏼‍❤️‍💋‍👨🏼🧔🏽‍♀️👩🏼‍❤️‍💋‍👨🏼
-
-An **empty** C program generated with `gcc -Os -w -xc - <<< "main;"` on {platform} is {empty_size} bytes.
+The entire game fits in {size} bytes.
 
 <details>
   <summary>Hex</summary>
@@ -99,6 +96,12 @@ An **empty** C program generated with `gcc -Os -w -xc - <<< "main;"` on {platfor
 {hex}
 ```
 </details>
+
+How little is {size} bytes?
+
+- Even a simple sentance like this one weighs more than 60 bytes.
+- And so does this arbitrary pair of emojis: 👩🏼‍❤️‍💋‍👨🏼👩🏼‍❤️‍💋‍👨🏼
+- An **empty** C program compiled with `gcc -Os -w -xc - <<< "main;"` on {platform} is {empty_size} bytes.
 
 ### Comparison
 

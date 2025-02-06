@@ -1,5 +1,4 @@
 const canvas = document.getElementById("jsdos");
-const xhr = new XMLHttpRequest();
 const zip = hex => {
     const int2hex = x => [x, x >> 8, x >> 16, x >> 24].map(i => i & 0xff);
     const length = int2hex(hex.length);
@@ -12,22 +11,17 @@ const zip = hex => {
       ...int2hex(hex.length + 0x26), 0, 0]);
 };
 
-xhr.open('GET', 'snake.com', true);
-xhr.responseType = 'arraybuffer';
-
-xhr.onload = _ =>
-    Dos(canvas, { cycles: 5, onprogress: ()=>{} }).ready((fs, main) =>
-        fs.extract(URL.createObjectURL(new Blob([zip(new Uint8Array(xhr.response))]))).then(() =>
+fetch('snake.com')
+    .then(response => response.arrayBuffer())
+    .then(data => Dos(canvas, { cycles: 5, onprogress: ()=>{} }).ready((fs, main) =>
+        fs.extract(URL.createObjectURL(new Blob([zip(new Uint8Array(data))]))).then(() =>
             main(["main.com"]).then(ci => {
                 swipedetect(swipedir => swipedir && ci.simulateKeyPress(36 + swipedir));
                 document.title = "Snake";
                 span(canvas);
             })
         )
-    )
-;
-
-xhr.send();
+    ));
 
 function span(element) {
     element.style.height = "auto";
@@ -47,11 +41,12 @@ function swipedetect(callback) {
     }, false);
 
     canvas.addEventListener("touchend", function(e) {
-        distX = e.changedTouches[0].pageX - startX;
-        distY = e.changedTouches[0].pageY - startY;
+        let swipedir = 0;
+        const distX = e.changedTouches[0].pageX - startX;
+        const distY = e.changedTouches[0].pageY - startY;
         if (Math.abs(distX) >= 100) swipedir = (distX < 0) ? 1 : 3;
         else if (Math.abs(distY) >= 100) swipedir = (distY < 0) ? 2 : 4;
-        callback(swipedir);
+        if (swipedir) callback(swipedir);
     }, false);
 }
 

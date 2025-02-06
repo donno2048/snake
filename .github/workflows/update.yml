@@ -1,8 +1,6 @@
 name: Update docs and demo
 on: 
   push:
-    branches:
-      - '**'
     paths-ignore:
       - 'README.md'
       - 'demo/snake.com'
@@ -21,7 +19,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: |
-        sudo apt-get install qrencode nasm python3 -y > /dev/null
+        sudo apt-get update
+        sudo apt-get install qrencode nasm python3 -y --no-install-recommends > /dev/null
         nasm snake.asm -o demo/snake.com
         gcc -Os -w -xc - <<< "main;"
         xxd -p demo/snake.com | python3 docs/update.py
