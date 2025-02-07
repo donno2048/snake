@@ -20,18 +20,18 @@ fetch("snake.com")
                 URL.revokeObjectURL(url);
                 swipedetect(swipedir => swipedir && ci.simulateKeyPress(36 + swipedir));
                 document.title = "Snake";
-                span(canvas);
+                span();
             })
         )
     ))
     .catch(console.error);
 
-function span(element) {
-    element.style.height = "auto";
-    element.style.width = "100%";
-    if (element.offsetHeight > document.documentElement.clientHeight) {
-        element.style.width = "auto";
-        element.style.height = "75vh";
+function span() {
+    canvas.style.height = "auto";
+    canvas.style.width = "100%";
+    if (canvas.offsetHeight > document.documentElement.clientHeight) {
+        canvas.style.width = "auto";
+        canvas.style.height = "75vh";
     }
 }
 
@@ -53,4 +53,5 @@ function swipedetect(callback) {
     }, false);
 }
 
-window.addEventListener("resize", () => span(canvas));
+window.addEventListener("resize", span);
+window.addEventListener("orientationchange", span);
