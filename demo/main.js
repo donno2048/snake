@@ -11,17 +11,20 @@ const zip = hex => {
       ...int2hex(hex.length + 0x26), 0, 0]);
 };
 
-fetch('snake.com')
+fetch("snake.com")
     .then(response => response.arrayBuffer())
-    .then(data => Dos(canvas, { cycles: 5, onprogress: ()=>{} }).ready((fs, main) =>
-        fs.extract(URL.createObjectURL(new Blob([zip(new Uint8Array(data))]))).then(() =>
+    .then(data => URL.createObjectURL(new Blob([zip(new Uint8Array(data))])))
+    .then(url => Dos(canvas, { cycles: 5, onprogress: ()=>{} }).ready((fs, main) =>
+        fs.extract(url).then(() =>
             main(["main.com"]).then(ci => {
+                URL.revokeObjectURL(url);
                 swipedetect(swipedir => swipedir && ci.simulateKeyPress(36 + swipedir));
                 document.title = "Snake";
                 span(canvas);
             })
         )
-    ));
+    ))
+    .catch(console.error);
 
 function span(element) {
     element.style.height = "auto";
