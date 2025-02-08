@@ -23,7 +23,7 @@ jobs:
         sudo apt-get install qrencode nasm python3 -y --no-install-recommends > /dev/null
         nasm -f bin snake.asm -o demo/snake.com
         gcc -w -xc - -o empty.out <<< "main;" 
-        gcc -Os -nostartfiles -nostdlib --entry 0 -Wl,--strip-all -xc /dev/null -o optimized.out
+        gcc -Os -nostartfiles -nodefaultlibs --entry 0 -Wl,--strip-all -xc /dev/null -o optimized.out
         xxd -p demo/snake.com | python3 docs/update.py
         qrencode -r demo/snake.com -8 -o demo/qr.png
         git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
