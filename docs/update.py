@@ -15,5 +15,6 @@ open("README.md", "w").write(open("docs/template.md").read().format(
   size = length // 2,
   hex = "\n".join(findall('.' * div, hexdata)),
   platform = get_platform(),
-  empty_size = Path("a.out").stat().st_size
+  empty_size = Path("empty.out").stat().st_size,
+  optimized_size = Path("optimized.out").stat().st_size
 ))

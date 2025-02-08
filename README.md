@@ -108,7 +108,8 @@ How little is 56 bytes?
 
 - Even a simple sentance like this one weighs more than 60 bytes.
 - And so does this arbitrary pair of emojis: 👩🏼‍❤️‍💋‍👨🏼👩🏼‍❤️‍💋‍👨🏼
-- An **empty** C program compiled with `gcc -Os -w -xc - <<< "main;"` on linux-x86_64 is 15776 bytes.
+- An **empty** C program compiled with `gcc -w -xc - <<< "main;"` on linux-x86_64 is 15776 bytes.
+- An empty C program compiled with size optimization, no startup code, no standard libraries, no `main` or `_start` functions, no symbol information, and no code at all, compiled with `gcc -Os -nostartfiles -nodefaultlibs --entry 0 -Wl,--strip-all -xc /dev/null` on linux-x86_64 is 9056 bytes.
 
 ### Comparison
 
