@@ -17,14 +17,6 @@ You can try the game in the [online demo](https://donno2048.github.io/snake/), w
 
 ### Self-hosting
 
-To run the game locally you'll have to install the dependencies and build the game from source:
-
-#### Installation
-
-I'm using `nasm` and `python3` which can be installed with `apt install nasm python3 -y`.
-
-#### Building
-
 To test it just run [`main.sh`](/main.sh) and open http://localhost:8000.
 
 ## Motivation
