@@ -17,7 +17,7 @@ You can try the game in the [online demo](https://donno2048.github.io/snake/), w
 
 ### Self-hosting
 
-To test it just run [`main.sh`](/main.sh) and open http://localhost:8000.
+To test it just run [`main.sh`](/main.sh) or [`main.bat`](/main.bat) and open http://localhost:8000.
 
 ## Motivation
 

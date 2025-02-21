@@ -1,4 +1,5 @@
 main.sh -linguist-detectable
+main.bat -linguist-detectable
 demo/qr.png linguist-generated
 demo/snake.com linguist-generated
 README.md linguist-generated
