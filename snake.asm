@@ -35,7 +35,7 @@ start:                   ; reset game
 .wall:                   ; draw an invisible wall on the left side
     sub bx, dx           ;   go one line and 0x2000 bytes backwards (the added bytes wrap nicely as 0x10000%0x2000=0)
     mov [bx], cl         ;   store wall character
-    jnz .wall            ; jump to draw the next wall
+    jnz .wall            ; jump to draw the next wall, jumping using DX and not 0x50 makes this a delay loop
     pop bx               ; no food was consumed so pop tail position into BX
     mov [bx], dh         ; clear old tail position on screen
     jns .input           ; loop to keyboard input, SF=0 from SUB
