@@ -30,7 +30,7 @@ jobs:
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
         git commit -am "${GITHUB_WORKFLOW,,}" -q || true
         git push -q
-    - uses: actions/upload-pages-artifact@v3
+    - uses: actions/upload-pages-artifact@v4
       with:
         path: 'demo/'
     - uses: actions/deploy-pages@v4
