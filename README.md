@@ -86,13 +86,13 @@ The entire game fits in 56 bytes.
     
 ```
 c57800b80a2099
-92cd1089fc8b37
-93fecf300f7af9
-bbd007e460f6ea
-d414d5449801f0
-39c3ab9680141f
-78e27bd12f29d3
-75fa5b883779dd
+92cd1089fc8b1c
+00cc96300c7af9
+bed007e460f6ea
+d414d5449801d8
+39c6ab9380171f
+78e27bd12c29d6
+75fa5e883479dd
 ```
 </details>
 
