@@ -78,25 +78,26 @@ It is so small I could fit it into a single QR:
 
 <img src="/demo/qr.png" width="250"/>
 
-The entire game fits in 56 bytes.
+The entire game fits in 54 bytes.
 
 <details>
   <summary>Hex</summary>
   <br/>
     
 ```
-c57800b80a2099
-92cd1089fc8b37
-93fecf000f78f8
-bbd007e460f6ea
-d414d5449801f0
-39d8ab96d01c71
-d872e129d3880f
-75fa5b883779dd
+c57800b80a20
+9992cd105b89
+fc00cc96300c
+7af9bed007e4
+60f6ead414d5
+44980fc1c301
+f0ab103074e3
+7b890c29d675
+fa5e883479de
 ```
 </details>
 
-How little is 56 bytes?
+How little is 54 bytes?
 
 - Even a simple sentance like this one weighs more than 60 bytes.
 - And so does this arbitrary pair of emojis: 👩🏼‍❤️‍💋‍👨🏼👩🏼‍❤️‍💋‍👨🏼
@@ -107,6 +108,6 @@ How little is 56 bytes?
 
 ||My version|MattKC's version|ibara's version|EimaMei's version|
 |-|-|-|-|-|
-|Bytes|56|~1400 (compressed)|2024|2953|
+|Bytes|54|~1400 (compressed)|2024|2953|
 |QR|<img src="/demo/qr.png" width="250"/>|<img src="https://mattkc.com/etc/snakeqr/code.png" width="250"/>|<img src="https://raw.githubusercontent.com/ibara/snakeqr/master/snakeqr.png" width="250"/>|<img src="https://raw.githubusercontent.com/EimaMei/snake-qr/main/images/code.png" width="250"/>|
 |Link|https://github.com/donno2048/snake|https://mattkc.com/etc/snakeqr/|https://github.com/ibara/snakeqr|https://github.com/EimaMei/snake-qr|
