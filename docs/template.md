@@ -91,7 +91,7 @@ The entire game fits in {size} bytes.
 
 How little is {size} bytes?
 
-- Even a simple sentance like this one weighs more than 60 bytes.
+- Even a simple sentence like this one weighs more than 60 bytes.
 - And so does this arbitrary pair of emojis: 👩🏼‍❤️‍💋‍👨🏼👩🏼‍❤️‍💋‍👨🏼
 - An **empty** C program compiled with `gcc -w -xc - <<< "main;"` on {platform} is {empty_size} bytes.
 - An empty C program compiled with size optimization, no startup code, no standard libraries, no `main` or `_start` functions, no symbol information, and no code at all, compiled with `gcc -Os -nostartfiles -nodefaultlibs --entry 0 -Wl,--strip-all -xc /dev/null` on {platform} is {optimized_size} bytes.
@@ -103,3 +103,4 @@ How little is {size} bytes?
 |Bytes|{size}|~1400 (compressed)|2024|2953|
 |QR|<img src="/demo/qr.png" width="250"/>|<img src="https://mattkc.com/etc/snakeqr/code.png" width="250"/>|<img src="https://raw.githubusercontent.com/ibara/snakeqr/master/snakeqr.png" width="250"/>|<img src="https://raw.githubusercontent.com/EimaMei/snake-qr/main/images/code.png" width="250"/>|
 |Link|https://github.com/donno2048/snake|https://mattkc.com/etc/snakeqr/|https://github.com/ibara/snakeqr|https://github.com/EimaMei/snake-qr|
+
