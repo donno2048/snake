@@ -32,9 +32,10 @@ start:                       ; used for game reset
     jz .food                 ; if food was consumed, ZF=1 from ADC => generate new food
     jnp start-0x4B           ; if it already had snake or wall in it or if it crossed a vertical edge, PF=0 from ADC => game over, going to `start-0x4B` adds 0x4B null bytes before the LDS thus changing it into 0x25 (=(0x4b-1)/2) repetitions of `add [bx+si],al` which we don't care for as there's an `int 0x10` afterwards to clear the screen, then, `add ch,al` which also doesn't matter as CH's only affect is the wall color (as we'll soon show) which we don't care for, then `js $+2` which is practically a NOP, then we continue at `start`, also after doing JNZ to .wall-1 we get here byte 0x89
 .wall:                       ; draw an invisible wall on the left side
-    or al,0x29               ; it's obvious this instruction will always set ZF=0
+    or al, 0x29              ; it's obvious this instruction will always set ZF=0
     salc                     ; we don't care about AL at this point so this is practically a NOP, however, after `jnz .wall-1` we get the bytes 0x89 (from the JNP), 0x0C,0x29 (from the OR) and then 0xD6 (from this SALC) which encode the instruction `mov [si], cx`, `sub si, dx`, the new SUB makes us go one line and 0x2000 bytes backwards (the added bytes wrap nicely as 0x10000%0x2000=0) [using DX like that - and not 0x50 - makes this loop a delay loop also] and the new MOV sets all wall position characters to 0
-    jnz .wall-1              ; on first enrty to .wall this will always jump as ZF=0 from OR, after the first loop it jumps to draw the next wall because we jump to .wall-1 and will stop at the last wall at DS:0
+    jnz .wall-0x1            ; on first enrty to .wall this will always jump as ZF=0 from OR, after the first loop it jumps to draw the next wall because we jump to .wall-1 and will stop at the last wall at DS:0
     pop si                   ; no food was consumed so pop tail position into SI
     mov [si], dh             ; clear old tail position on screen
     jns .input               ; loop to keyboard input, SF=0 from SUB
+
