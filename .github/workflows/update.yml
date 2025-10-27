@@ -21,7 +21,7 @@ jobs:
     - run: |
         sudo apt-get update
         sudo apt-get install qrencode nasm python3 -y --no-install-recommends > /dev/null
-        nasm -f bin snake.asm -o demo/snake.com
+        nasm -f bin snake.asm -o demo/snake.com -O0
         gcc -w -xc - -o empty.out <<< "main;" 
         gcc -Os -nostartfiles -nodefaultlibs --entry 0 -Wl,--strip-all -xc /dev/null -o optimized.out
         xxd -p demo/snake.com | python3 docs/update.py
@@ -34,3 +34,4 @@ jobs:
       with:
         path: 'demo/'
     - uses: actions/deploy-pages@v4
+
