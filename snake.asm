@@ -28,7 +28,7 @@ start:                   ; used for game reset
     xadd bx, ax          ; set AX to offset of old head position and BX to new offset
     add ax, si           ; set AX to old head position, also, checks if head crossed vertical edge, since AX is between -0x7D0 and 0 if inside the screen so after the ADD we get CF=1 iff head is in the screen
     stosw                ; store old head position (SS=ES by default) and advance head pointer
-    adc BYTE [bx+si], dh ; ADC head position (0x7D0 + offset) to set snake character
+    adc [bx+si], dh      ; ADC head position (0x7D0 + offset) to set snake character
     jz .food             ; if food was consumed, ZF=1 from ADC => generate new food
     jnp start-0x4B       ; if it already had snake or wall in it or if it crossed a vertical edge, PF=0 from ADC => game over, going to `start-0x4B` adds 0x4B null bytes before the LDS thus changing it into 0x25 (=(0x4b-1)/2) repetitions of `add [bx+si],al` which we don't care for as there's an `int 0x10` afterwards to clear the screen, then, `add ch,al` which also doesn't matter as CH's only affect is the wall color (as we'll soon show) which we don't care for, then `js $+2` which is practically a NOP, then we continue at `start`, also after doing JNZ to .wall-1 we get here byte 0x89
 .wall:                   ; draw an invisible wall on the left side
