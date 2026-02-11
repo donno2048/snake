@@ -1,13 +1,11 @@
-# Snake
+# {size}-byte snake game
 
 [![Build status](https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg)](https://github.com/donno2048/snake/actions/workflows/update.yml)
 
-This is an x86 snake game made for DOS, but there is also a [version](https://github.com/donno2048/snake-bios) that requires no BIOS, bootloader or OS.
+This is a minimal x86 assembly snake game for DOS.
+This code golfing project shows the extreme binary footprint optimizations possible on x86.
 
-The game has been featured on many sites, among them:
- - [Techspot](https://www.techspot.com/news/106339-coder-shrinks-classic-snake-game-down-56-byte.html)
- - [Tom's Hardware](https://www.tomshardware.com/video-games/pc-gaming/snake-game-port-is-only-56-bytes-big-and-and-fits-in-a-qr-code)
- - [Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/)
+There is also a [version](https://github.com/donno2048/snake-bios) that requires no BIOS, bootloader or OS.
 
 ## Running
 
@@ -74,11 +72,9 @@ AFAIK This is the smallest snake game ever made.
 
 ## Perspectives
 
-It is so small I could fit it into a single QR:
+At {size} bytes the compiled binary is so small it can fit it into a single QR:
 
 <img src="/demo/qr.png" width="250"/>
-
-The entire game fits in {size} bytes.
 
 <details>
   <summary>Hex</summary>
@@ -103,4 +99,22 @@ How little is {size} bytes?
 |Bytes|{size}|~1400 (compressed)|2024|2953|
 |QR|<img src="/demo/qr.png" width="250"/>|<img src="https://mattkc.com/etc/snakeqr/code.png" width="250"/>|<img src="https://raw.githubusercontent.com/ibara/snakeqr/master/snakeqr.png" width="250"/>|<img src="https://raw.githubusercontent.com/EimaMei/snake-qr/main/images/code.png" width="250"/>|
 |Link|https://github.com/donno2048/snake|https://mattkc.com/etc/snakeqr/|https://github.com/ibara/snakeqr|https://github.com/EimaMei/snake-qr|
+
+## Media coverage
+
+The game has been featured on many sites, among them:
+ - [Techspot](https://www.techspot.com/news/106339-coder-shrinks-classic-snake-game-down-56-byte.html)
+ - [Tom's Hardware](https://www.tomshardware.com/video-games/pc-gaming/snake-game-port-is-only-56-bytes-big-and-and-fits-in-a-qr-code)
+ - [Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/)
+
+## Technical details
+
+- Assembled with NASM
+- Written in 16-bit x86 assembly
+- Running in real mode
+- QR Code encoded using `qrencode`
+- Currently using a version 4 QR Code
+- Demo deployed using GH actions
+- Demo hosted using GH pages
+- Local hosting using Python
 
