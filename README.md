@@ -1,13 +1,12 @@
-# Snake
+# 54-byte snake game
 
 [![Build status](https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg)](https://github.com/donno2048/snake/actions/workflows/update.yml)
 
-This is an x86 snake game made for DOS, but there is also a [version](https://github.com/donno2048/snake-bios) that requires no BIOS, bootloader or OS.
+This is a minimal x86 assembly snake game for DOS.
 
-The game has been featured on many sites, among them:
- - [Techspot](https://www.techspot.com/news/106339-coder-shrinks-classic-snake-game-down-56-byte.html)
- - [Tom's Hardware](https://www.tomshardware.com/video-games/pc-gaming/snake-game-port-is-only-56-bytes-big-and-and-fits-in-a-qr-code)
- - [Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/)
+This code golfing project shows the extreme binary footprint optimizations possible on x86.
+
+There is also a [version](https://github.com/donno2048/snake-bios) that requires no BIOS, bootloader or OS.
 
 ## Running
 
@@ -21,7 +20,7 @@ To test it just run [`main.sh`](/main.sh) or [`main.bat`](/main.bat) and open ht
 
 ## Motivation
 
-The project was inspired by [MattKC's video](https://youtu.be/ExwqNreocpg), _"Can you fit a whole game into a QR code?"_, which was also [featured on Hackaday](https://hackaday.com/2020/08/17/fitting-snake-into-a-qr-code/).
+The project was inspired by [MattKC's video](https://youtu.be/ExwqNreocpg), _"Can you fit a whole game into a QR code?"_.
 
 <details>
   <summary>It was made to create the smallest "fun" game possible.</summary>
@@ -74,11 +73,9 @@ AFAIK This is the smallest snake game ever made.
 
 ## Perspectives
 
-It is so small I could fit it into a single QR:
+At 54 bytes the compiled binary is so small it can fit it into a single QR:
 
 <img src="/demo/qr.png" width="250"/>
-
-The entire game fits in 54 bytes.
 
 <details>
   <summary>Hex</summary>
@@ -111,4 +108,24 @@ How little is 54 bytes?
 |Bytes|54|~1400 (compressed)|2024|2953|
 |QR|<img src="/demo/qr.png" width="250"/>|<img src="https://mattkc.com/etc/snakeqr/code.png" width="250"/>|<img src="https://raw.githubusercontent.com/ibara/snakeqr/master/snakeqr.png" width="250"/>|<img src="https://raw.githubusercontent.com/EimaMei/snake-qr/main/images/code.png" width="250"/>|
 |Link|https://github.com/donno2048/snake|https://mattkc.com/etc/snakeqr/|https://github.com/ibara/snakeqr|https://github.com/EimaMei/snake-qr|
+
+## Media coverage
+
+The game has been featured on many sites, among them:
+ - [Techspot](https://www.techspot.com/news/106339-coder-shrinks-classic-snake-game-down-56-byte.html)
+ - [Tom's Hardware](https://www.tomshardware.com/video-games/pc-gaming/snake-game-port-is-only-56-bytes-big-and-and-fits-in-a-qr-code)
+ - [Hackaday](https://hackaday.com/2023/08/03/its-snake-in-a-qr-code-but-smaller/)
+
+## Technical details
+
+- Assembled with NASM
+- Written in 16-bit x86 assembly
+- Running in real mode
+- QR Code encoded using `qrencode`
+- Currently using a version 4 QR Code
+- Demo deployed using GH actions
+- Demo hosted using GH pages
+- Local hosting using Python
+
+
 
