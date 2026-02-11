@@ -3,6 +3,7 @@
 [![Build status](https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg)](https://github.com/donno2048/snake/actions/workflows/update.yml)
 
 This is a minimal x86 assembly snake game for DOS.
+
 This code golfing project shows the extreme binary footprint optimizations possible on x86.
 
 There is also a [version](https://github.com/donno2048/snake-bios) that requires no BIOS, bootloader or OS.
@@ -117,4 +118,5 @@ The game has been featured on many sites, among them:
 - Demo deployed using GH actions
 - Demo hosted using GH pages
 - Local hosting using Python
+
 
