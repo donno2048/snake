@@ -20,7 +20,7 @@ To test it just run [`main.sh`](/main.sh) or [`main.bat`](/main.bat) and open ht
 
 ## Motivation
 
-The project was inspired by [MattKC's video](https://youtu.be/ExwqNreocpg), _"Can you fit a whole game into a QR code?"_, which was also [featured on Hackaday](https://hackaday.com/2020/08/17/fitting-snake-into-a-qr-code/).
+The project was inspired by [MattKC's video](https://youtu.be/ExwqNreocpg), _"Can you fit a whole game into a QR code?"_.
 
 <details>
   <summary>It was made to create the smallest "fun" game possible.</summary>
@@ -118,5 +118,6 @@ The game has been featured on many sites, among them:
 - Demo deployed using GH actions
 - Demo hosted using GH pages
 - Local hosting using Python
+
 
 
