@@ -1,6 +1,6 @@
 # 54-byte snake game
 
-[![Build status](https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg)](https://github.com/donno2048/snake/actions/workflows/update.yml)
+[![Snake QR Code and README generation, and site deployment](https://github.com/donno2048/snake/actions/workflows/update.yml/badge.svg)](https://github.com/donno2048/snake/actions/workflows/update.yml)
 
 This is a minimal x86 assembly snake game for DOS.
 
