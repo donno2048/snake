@@ -12,7 +12,9 @@ There is also a [version](https://github.com/donno2048/snake-bios) that requires
 
 ### Online demo
 
-You can try the game in the [online demo](https://donno2048.github.io/snake/), which updates for every change to [`snake.asm`](/snake.asm). Use your arrow keys on PC or swipe on mobile.
+You can try the game in the [online demo](https://donno2048.github.io/snake/), which updates for every change to [`snake.asm`](/snake.asm).
+
+Use your arrow keys, and the <kbd>pause</kbd> key to pause/unpause on PC, or swipe on mobile.
 
 ### Self-hosting
 
