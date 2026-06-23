@@ -30,6 +30,11 @@ jobs:
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
         git commit -am "${GITHUB_WORKFLOW,,}" -q || true
         git push -q
+        cd demo
+        wget https://v8.js-dos.com/latest/js-dos.js -q
+        wget https://v8.js-dos.com/latest/emulators/emulators.js -q
+        wget https://v8.js-dos.com/latest/emulators/wdosbox.wasm -q
+        wget https://v8.js-dos.com/latest/emulators/wdosbox.js -q
     - uses: actions/upload-pages-artifact@v5
       with:
         path: 'demo/'
