@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="description" content="An x86 snake game" />
         <meta name="author" content="Elisha Hollander" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <meta property="og:title" content="Snake" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://donno2048.github.io/snake/" />
@@ -12,11 +12,25 @@
         <link rel="icon" href="qr.png" />
         <title>Snake</title>
         <script src="js-dos.js"></script>
+        <style>
+        body {
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+        p {
+            text-wrap: balance;
+            text-align: center;
+        }
+        .sidebar {
+            visibility: hidden;
+        }
+        </style>
     </head>
-    <body style="display:flex;justify-content:center">
+    <body>
         <div id="jsdos"></canvas>
         <noscript>
-            <p style="text-wrap:balance;text-align:center">Please enable JavaScript and refresh to play the game.</p>
+            <p>Please enable JavaScript and refresh to play the game.</p>
         </noscript>
         <script src="main.js"></script>
     </body>
