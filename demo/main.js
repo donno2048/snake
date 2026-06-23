@@ -21,6 +21,7 @@ fetch("snake.com")
         initFs: [{ path: "snake.com", contents: new Uint8Array(arrayBuffer) }],
         autoStart: true,
         noCursor: true,
+        pathPrefix: ""
     }))
     .catch(console.error);
 
