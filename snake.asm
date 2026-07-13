@@ -25,7 +25,8 @@ start:                   ; used for game reset
     aam 0x14             ;     IMUL (AH is irrelevant here), AAM and AAD with some magic constants maps up => -80, left => -2, right => 2, down => 80
     aad 0x44             ;     using arithmetic instructions is more compact than checks and conditional jumps
     cbw                  ;     but causes weird snake movements though with other keys
-    xadd bx, ax          ; set AX to offset of old head position and BX to new offset
+    xchg bx, ax          ; set AX to offset of old head position
+    add bx, ax           ;   and BX to new offset
     add ax, si           ; set AX to old head position, also, checks if head crossed vertical edge, since AX is between -0x7D0 and 0 if inside the screen so after the ADD we get CF=1 iff head is in the screen
     stosw                ; store old head position (SS=ES by default) and advance head pointer
     adc [bx+si], dh      ; ADC head position (0x7D0 + offset) to set snake character
