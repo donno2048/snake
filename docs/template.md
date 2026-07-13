@@ -114,6 +114,7 @@ The game has been featured on many sites, among them:
 
 - Assembled with NASM
 - Written in 16-bit x86 assembly
+- Compatible with all x86 CPUs
 - Running in real mode
 - QR Code encoded using `qrencode`
 - Currently using a version 4 QR Code
