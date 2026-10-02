@@ -1,3 +1,4 @@
 *.out
 demo/*.js
 demo/*.wasm
+!demo/main.js

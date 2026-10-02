@@ -11,7 +11,7 @@ length = len(hexdata)
 
 div = next(filter(lambda x: length % x == 0, range(int(length ** .5), length)))
 
-open("README.md", "w").write(open("docs/template.md").read().format(
+open("README.md", "w", encoding="utf-8").write(open("docs/template.md", encoding="utf-8").read().format(
   size = length // 2,
   hex = "\n".join(findall('.' * div, hexdata)),
   platform = get_platform(),

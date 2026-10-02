@@ -21,8 +21,8 @@ if errorlevel 1 (
 )
 
 nasm -f bin snake.asm -o demo\snake.com || (pause && exit /b 1)
-curl -O https://v8.js-dos.com/latest/js-dos.js -sS --output-dir demo -C - || (pause && exit /b 1)
-curl -O https://v8.js-dos.com/latest/emulators/emulators.js -sS --output-dir demo -C - || (pause && exit /b 1)
-curl -O https://v8.js-dos.com/latest/emulators/wdosbox.wasm -sS --output-dir demo -C - || (pause && exit /b 1)
-curl -O https://v8.js-dos.com/latest/emulators/wdosbox.js -sS --output-dir demo -C - || (pause && exit /b 1)
+curl -O https://v8.js-dos.com/latest/js-dos.js -sS -f --output-dir demo -C - || (pause && exit /b 1)
+curl -O https://v8.js-dos.com/latest/emulators/emulators.js -sS -f --output-dir demo -C - || (pause && exit /b 1)
+curl -O https://v8.js-dos.com/latest/emulators/wdosbox.wasm -sS -f --output-dir demo -C - || (pause && exit /b 1)
+curl -O https://v8.js-dos.com/latest/emulators/wdosbox.js -sS -f --output-dir demo -C - || (pause && exit /b 1)
 python -m http.server -d demo
