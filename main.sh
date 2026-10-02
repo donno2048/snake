@@ -13,8 +13,8 @@ if ! command -v python3 >/dev/null; then
     exit 1
 fi
 nasm -f bin snake.asm -o demo/snake.com
-wget https://v8.js-dos.com/latest/js-dos.js -q -P demo -nc
-wget https://v8.js-dos.com/latest/emulators/emulators.js -q -P demo -nc
-wget https://v8.js-dos.com/latest/emulators/wdosbox.wasm -q -P demo -nc
-wget https://v8.js-dos.com/latest/emulators/wdosbox.js -q -P demo -nc
+wget https://v8.js-dos.com/latest/js-dos.js -nv -P demo -nc
+wget https://v8.js-dos.com/latest/emulators/emulators.js -nv -P demo -nc
+wget https://v8.js-dos.com/latest/emulators/wdosbox.wasm -nv -P demo -nc
+wget https://v8.js-dos.com/latest/emulators/wdosbox.js -nv -P demo -nc
 python3 -m http.server -d demo
