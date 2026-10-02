@@ -5,7 +5,7 @@ if errorlevel 1 (
     pause
     exit /b 1
 )
- 
+
 where /Q curl
 if errorlevel 1 (
     echo 'curl' not installed
