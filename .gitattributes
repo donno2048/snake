@@ -1,7 +1,5 @@
-main.sh -linguist-detectable
-main.sh text eol=lf
-main.bat -linguist-detectable
-main.bat text eol=crlf
+main.sh text eol=lf -linguist-detectable
+main.bat text eol=crlf -linguist-detectable
 demo/qr.png linguist-generated
 demo/snake.com linguist-generated
 README.md linguist-generated
