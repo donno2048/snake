@@ -92,7 +92,7 @@ How little is {size} bytes?
 
 - Even a simple sentence like this one weighs more than 60 bytes.
 - And so does this arbitrary pair of emojis: 👩🏼‍❤️‍💋‍👨🏼👩🏼‍❤️‍💋‍👨🏼
-- An **empty** C program is {empty_size} bytes. [^1]
+- An **empty** C program compiled is {empty_size} bytes. [^1]
 - An empty C program compiled with aggressive size optimizations is {optimized_size} bytes. [^2]
 
 ### Comparison
