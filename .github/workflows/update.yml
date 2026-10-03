@@ -1,5 +1,5 @@
 name: Update docs and demo
-on: 
+on:
   push:
     paths-ignore:
       - 'README.md'
@@ -22,9 +22,9 @@ jobs:
         sudo apt-get update
         sudo apt-get install qrencode nasm python3 -y --no-install-recommends > /dev/null
         nasm -f bin snake.asm -o demo/snake.com -O0
-        gcc -w -xc - -o empty.out <<< "main;" 
+        gcc -Wno-implicit-int -w -xc - -o empty.out <<< "main;"
         gcc -Os -nostartfiles -nodefaultlibs --entry 0 -Wl,--strip-all -xc /dev/null -o optimized.out
-        xxd -p demo/snake.com | python3 docs/update.py
+        python3 docs/update.py
         qrencode -r demo/snake.com -8 -o demo/qr.png
         git config --global user.email "$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
         git config --global user.name "$GITHUB_REPOSITORY_OWNER"
