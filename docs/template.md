@@ -75,7 +75,7 @@ AFAIK This is the smallest snake game ever made.
 
 ## Perspectives
 
-At {size} bytes the compiled binary is so small it can fit it into a single QR:
+At {size} bytes the compiled binary is so small it can fit into a single QR:
 
 <img src="/demo/qr.png" alt="QR Code" width="250"/>
 
@@ -92,8 +92,8 @@ How little is {size} bytes?
 
 - Even a simple sentence like this one weighs more than 60 bytes.
 - And so does this arbitrary pair of emojis: 👩🏼‍❤️‍💋‍👨🏼👩🏼‍❤️‍💋‍👨🏼
-- An **empty** C program compiled with `gcc -Wno-implicit-int -w -xc - <<< "main;"` on {platform} is {empty_size} bytes.
-- An empty C program compiled with size optimization, no startup code, no standard libraries, no `main` or `_start` functions, no symbol information, and no code at all, compiled with `gcc -Os -nostartfiles -nodefaultlibs --entry 0 -Wl,--strip-all -xc /dev/null` on {platform} is {optimized_size} bytes.
+- An **empty** C program is {empty_size} bytes. [^1]
+- An empty C program compiled with aggressive size optimizations is {optimized_size} bytes. [^2]
 
 ### Comparison
 
@@ -114,7 +114,7 @@ The game has been featured on many sites, among them:
 
 - Assembled with NASM
 - Written in 16-bit x86 assembly
-- Compatible with all x86 CPUs [^1]
+- Compatible with all x86 CPUs [^3]
 - Running in real mode
 - QR Code encoded using `qrencode`
 - Currently using a version 4 QR Code
@@ -122,4 +122,6 @@ The game has been featured on many sites, among them:
 - Demo hosted using GH pages
 - Local hosting using Python
 
-[^1]: There might be some CPUs that don't support the `salc` instruction and the `aam` and `aad` instructions with arguments other than `0x0A`, as they were only documented starting with Pentium Pro and Pentium respectively. I don't know of any, but this might be the case.
+[^1]: Compiled with `gcc -Wno-implicit-int -w -xc - <<< "main;"` on {platform}.
+[^2]: Compiled with size optimization, no startup code, no standard libraries, no `main` or `_start` functions, no symbol information, and no code at all using `gcc -Os -nostartfiles -nodefaultlibs --entry 0 -Wl,--strip-all -xc /dev/null` on {platform}.
+[^3]: There might be some CPUs that don't support the `salc` instruction and the `aam` and `aad` instructions with arguments other than `0x0A`, as they were only documented starting with Pentium Pro and Pentium respectively. I don't know of any, but this might be the case.
