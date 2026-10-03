@@ -100,7 +100,7 @@ How little is 54 bytes?
 
 - Even a simple sentence like this one weighs more than 60 bytes.
 - And so does this arbitrary pair of emojis: 👩🏼‍❤️‍💋‍👨🏼👩🏼‍❤️‍💋‍👨🏼
-- An **empty** C program is 15776 bytes. [^1]
+- An **empty** C program compiled is 15776 bytes. [^1]
 - An empty C program compiled with aggressive size optimizations is 9056 bytes. [^2]
 
 ### Comparison
