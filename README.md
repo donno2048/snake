@@ -122,7 +122,7 @@ The game has been featured on many sites, among them:
 
 - Assembled with NASM
 - Written in 16-bit x86 assembly
-- Compatible with all x86 CPUs
+- Compatible with all x86 CPUs [^1]
 - Running in real mode
 - QR Code encoded using `qrencode`
 - Currently using a version 4 QR Code
@@ -130,5 +130,4 @@ The game has been featured on many sites, among them:
 - Demo hosted using GH pages
 - Local hosting using Python
 
-
-
+[^1]: There might be some CPUs that don't support the `salc` instruction and the `aam` and `aad` instructions with arguments other than `0x0A`, as they were only documented starting with Pentium Pro and Pentium respectively. I don't know of any, but this might be the case.
